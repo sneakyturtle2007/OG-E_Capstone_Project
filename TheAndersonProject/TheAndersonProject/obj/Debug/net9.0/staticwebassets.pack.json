@@ -1,0 +1,29 @@
+{
+  "Files": [
+    {
+      "Id": "/home/luis/github/Capstone/TheAndersonProject/TheAndersonProject/wwwroot/favicon.ico",
+      "PackagePath": "staticwebassets/favicon.ico"
+    },
+    {
+      "Id": "obj/Debug/net9.0/staticwebassets/msbuild.TheAndersonProject.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
+    },
+    {
+      "Id": "obj/Debug/net9.0/staticwebassets/msbuild.TheAndersonProject.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj/Debug/net9.0/staticwebassets/msbuild.build.TheAndersonProject.props",
+      "PackagePath": "build\\TheAndersonProject.props"
+    },
+    {
+      "Id": "obj/Debug/net9.0/staticwebassets/msbuild.buildMultiTargeting.TheAndersonProject.props",
+      "PackagePath": "buildMultiTargeting\\TheAndersonProject.props"
+    },
+    {
+      "Id": "obj/Debug/net9.0/staticwebassets/msbuild.buildTransitive.TheAndersonProject.props",
+      "PackagePath": "buildTransitive\\TheAndersonProject.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

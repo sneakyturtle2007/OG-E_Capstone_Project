@@ -1,0 +1,236 @@
+@page "/fileupload"
+@rendermode InteractiveServer
+
+<PageTitle>Blazor Server File Upload</PageTitle>
+@if (!string.IsNullOrEmpty(ErrorMessage))
+{
+    <div>Error: @ErrorMessage</div>
+}
+@if (Data.dataLoaded){
+    _series = Data._series;
+    _xAxisLabels = Data._xAxisLabels;
+    eventsPerReader = Data.eventsPerReader;
+    readerEventsCount = Data.readerEventsCount;
+    FileName = Data.FileName;
+    FileSize = Data.FileSize;
+    FileType = Data.FileType;
+    LastModified = Data.LastModified;
+}
+<MudText Typo="Typo.h2">Blazor Server File Upload</MudText>
+<h3>Reader Events: @readerEventsCount</h3>
+
+<div style="margin-bottom: 20px; display: flex;">
+    <div>Select your file:</div>
+    <MudFileUpload T="IBrowserFile" FilesChanged="FileUploaded">
+      <ActivatorContent>
+        <MudButton Variant="Variant.Filled" Color="Color.Primary" StartIcon="@Icons.Material.Filled.CloudUpload"> 
+          Upload File
+        </MudButton>
+      </ActivatorContent>
+    </MudFileUpload>
+    <!--<InputFile OnChange="FileUploaded" />-->
+</div>
+
+<h2>Selected file</h2>
+<div>
+    <div>File name: @FileName</div>
+    <div>File size: @FileSize.ToString("n0") bytes</div>
+    <div>File type: @FileType</div>
+    <div>Last modified: @LastModified</div>
+</div>
+
+
+
+<MudSimpleTable Style="overflow-x: auto;">
+    <thead>
+        <tr>
+            <th>Day</th>
+            <th>Count</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (KeyValuePair<string, List<ReaderEvent>> pair in eventsPerReader){
+            <tr>
+                <th>@pair.Key</th>
+                <th>@pair.Value.Count</th>
+            </tr>
+        }
+    </tbody>
+
+</MudSimpleTable>
+
+    <MudPaper Class="d-flex justify-center align-center doc-section-component-container" >
+        <MudChart Class="align-center" ChartType="ChartType.Line" ChartSeries="@_series" @bind-SelectedIndex="_index" XAxisLabels="@_xAxisLabels" Width="@_width" Height="@_height" ChartOptions="@_options" AxisChartOptions="_axisChartOptions" >
+            <CustomGraphics>
+                <style>
+                    .mud-chart-line { overflow: visible;}
+                    
+                </style>
+            </CustomGraphics>
+        </MudChart>
+    </MudPaper>
+
+
+
+@code {
+    private List<ChartSeries> _series = new List<ChartSeries>();
+    private string[] _xAxisLabels = new string[7];
+    private int _index = -1;
+    private string _width = "650px";
+    private string _height = "400px";
+    private AxisChartOptions _axisChartOptions = new AxisChartOptions();
+    private ChartOptions _options = new ChartOptions();
+    int readerEventsCount = 0;
+    List<ReaderEvent> readerEvents = new List<ReaderEvent>();
+    Dictionary<string, List<ReaderEvent>> eventsPerReader = new Dictionary<string, List<ReaderEvent>>();
+    string FileName { get; set; } = "";
+    long FileSize { get; set; }
+    string FileType { get; set; } = "";
+    DateTimeOffset LastModified { get; set; }
+    string ErrorMessage { get; set; } = "";
+
+    int MAX_FILESIZE = 5000 * 1024; // 2 MB
+
+    class ReaderEvent{
+        public string eventTime {get; set;}
+        public string location {get; set;}
+        public string readerDesc {get; set;}
+        public string idHash {get; set;}
+        public int devID {get; set;}
+        public int machine {get; set;}
+        
+        public ReaderEvent(){
+            this.eventTime = "0000-00-00";
+            this.location = "NONE";
+            this.readerDesc = "NONE";
+            this.idHash = "NONE";
+            this.devID = -1;
+            this.machine = -1;
+        }
+        public ReaderEvent(string eventTime, string location, string readerDesc, string idHash, int devID, int machine){
+            this.eventTime = eventTime;
+            this.location = location;
+            this.readerDesc = readerDesc;
+            this.idHash = idHash;
+            this.devID = devID;
+            this.machine = machine;
+        }
+    }
+    
+    public async Task FileUploaded(IBrowserFile e)
+    {
+        var browserFile = e;
+
+        if (browserFile != null)
+        {
+            FileSize = browserFile.Size;
+            FileType = browserFile.ContentType;
+            FileName = browserFile.Name;
+            LastModified = browserFile.LastModified;
+
+            try
+            {
+                var fileStream = browserFile.OpenReadStream(MAX_FILESIZE);
+
+                
+                var extension = Path.GetExtension(FileName);
+                var targetFilePath = Path.ChangeExtension( FileName, extension);
+
+                var destinationStream = new FileStream(targetFilePath, FileMode.Create);
+                await fileStream.CopyToAsync(destinationStream);
+                destinationStream.Close();
+            }
+            catch (Exception exception)
+            {
+                ErrorMessage = exception.Message;
+            }
+
+            ReadFile(FileName);
+            eventsPerReader = organizeEventsByDay(readerEvents);
+            double[] counts = new double[7];
+            for(int i = 0; i < eventsPerReader.Count; i++){
+                counts[i] = eventsPerReader.Values.ElementAt(i).Count;
+                _xAxisLabels[i] = eventsPerReader.Keys.ElementAt(i);
+            }
+            _series.Add(new ChartSeries { Name = "Interactions", Data = counts });
+            this.StateHasChanged(); 
+        }
+    }
+    public void ReadFile(string name){
+        //test = "Pass";
+        StreamReader reader = new StreamReader(name);
+        string? line = reader.ReadLine();
+        line = reader.ReadLine();
+        string[] row;
+        while(line != null){
+            row = line.Split(",");
+
+            readerEvents.Add(new ReaderEvent(row[0], row[1], row[2], row[3], Int32.Parse(row[4]), Int32.Parse(row[5]) ) );
+            line = reader.ReadLine();
+        }
+        readerEventsCount = readerEvents.Count;
+        this.StateHasChanged();
+
+    }
+    Dictionary<string, List<ReaderEvent>> organizeEvents(List<ReaderEvent> totalEvents){
+        Dictionary<string, List<ReaderEvent>> eventsPerReader = new Dictionary<string, List<ReaderEvent>>();
+        string uniqueID = "";
+        foreach(ReaderEvent temp in totalEvents){
+            uniqueID = temp.devID.ToString() + temp.machine.ToString();
+            if(!eventsPerReader.ContainsKey(uniqueID)){
+                List<ReaderEvent> events = new List<ReaderEvent>();
+                events.Add(temp);
+                eventsPerReader.Add(uniqueID, events);
+            }else{
+                eventsPerReader[uniqueID].Add(temp);
+            }
+        }
+        
+        return eventsPerReader;
+    }
+    Dictionary<string, List<ReaderEvent>> organizeEventsByDay(List<ReaderEvent> totalEvents){
+        Dictionary<string, List<ReaderEvent>> eventsPerReader = new Dictionary<string, List<ReaderEvent>>();
+        
+        string dayOfEvent;
+        string[] time;
+        foreach(ReaderEvent temp in totalEvents){
+            time = temp.eventTime.Split('T')[0].Split('-');
+            dayOfEvent = new DateTime(Int32.Parse(time[0]), Int32.Parse(time[1]), Int32.Parse(time[2])).ToString("dddd");
+
+            if(!eventsPerReader.ContainsKey(dayOfEvent)){
+                List<ReaderEvent> events = new List<ReaderEvent>();
+                events.Add(temp);
+                eventsPerReader.Add(dayOfEvent, events);
+            }else{
+                
+                eventsPerReader[dayOfEvent].Add(temp);
+            }
+        }
+        Data.constructor(readerEventsCount, FileName, FileSize, FileType, LastModified, eventsPerReader, _series, _xAxisLabels);
+        return eventsPerReader;
+    }
+}
+@code {
+    static class Data{
+        public static int readerEventsCount;
+        public static string? FileName;
+        public static long FileSize;
+        public static string? FileType;
+        public static DateTimeOffset LastModified;     
+        public static Dictionary<string, List<ReaderEvent>>? eventsPerReader = new Dictionary<string, List<ReaderEvent>>();
+        public static List<ChartSeries>? _series = new List<ChartSeries>();
+        public static string[]? _xAxisLabels = new string[7];
+        public static bool dataLoaded = false;
+        public static void constructor(int count, string name, long fileSize, string fileType, DateTimeOffset lastModified, Dictionary<string, List<ReaderEvent>> readerEvents, List<ChartSeries> chartSeries, string[] axisLabels){
+            readerEventsCount = count;
+            FileName = name;
+            FileSize = fileSize;
+            FileType = fileType;
+            LastModified = lastModified;
+            eventsPerReader = readerEvents;
+            _series = chartSeries;
+            _xAxisLabels = axisLabels;
+            dataLoaded = true;
+        }
+    }
+}

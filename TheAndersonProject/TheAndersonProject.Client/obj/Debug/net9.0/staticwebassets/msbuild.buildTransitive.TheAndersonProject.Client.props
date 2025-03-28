@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="../buildMultiTargeting/TheAndersonProject.Client.props" />
+</Project>
