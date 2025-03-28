@@ -1,0 +1,18 @@
+/* /Pages/Home.razor.rz.scp.css */
+#main[b-o8rho6hv3d]{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    height:100%; 
+    width: 100%;
+}
+/* /Pages/Map.razor.rz.scp.css */
+#map[b-y0ut6zua68]{
+    background-image:url('img/map.png');
+    height: 50%;
+    width: 50vh;
+    border-radius:10%; 
+    border-width:3px;
+}

@@ -74,3 +74,4 @@
 /home/luis/github/Capstone/TheAndersonProject/TheAndersonProject/obj/Debug/net9.0/TheAndersonProject.pdb
 /home/luis/github/Capstone/TheAndersonProject/TheAndersonProject/obj/Debug/net9.0/TheAndersonProject.genruntimeconfig.cache
 /home/luis/github/Capstone/TheAndersonProject/TheAndersonProject/obj/Debug/net9.0/ref/TheAndersonProject.dll
+/home/luis/github/Capstone/TheAndersonProject/TheAndersonProject/obj/Debug/net9.0/compressed/0u4q2egdhp-9ttxihvw9y.gz

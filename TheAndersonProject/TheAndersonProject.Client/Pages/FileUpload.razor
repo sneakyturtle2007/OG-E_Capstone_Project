@@ -16,31 +16,19 @@
     FileType = Data.FileType;
     LastModified = Data.LastModified;
 }
-<MudText Typo="Typo.h2">Blazor Server File Upload</MudText>
-<h3>Reader Events: @readerEventsCount</h3>
 
-<div style="margin-bottom: 20px; display: flex;">
-    <div>Select your file:</div>
+<div >
     <MudFileUpload T="IBrowserFile" FilesChanged="FileUploaded">
       <ActivatorContent>
         <MudButton Variant="Variant.Filled" Color="Color.Primary" StartIcon="@Icons.Material.Filled.CloudUpload"> 
-          Upload File
         </MudButton>
       </ActivatorContent>
     </MudFileUpload>
-    <!--<InputFile OnChange="FileUploaded" />-->
-</div>
-
-<h2>Selected file</h2>
-<div>
-    <div>File name: @FileName</div>
-    <div>File size: @FileSize.ToString("n0") bytes</div>
-    <div>File type: @FileType</div>
-    <div>Last modified: @LastModified</div>
 </div>
 
 
 
+<!--
 <MudSimpleTable Style="overflow-x: auto;">
     <thead>
         <tr>
@@ -56,7 +44,6 @@
             </tr>
         }
     </tbody>
-
 </MudSimpleTable>
 
     <MudPaper Class="d-flex justify-center align-center doc-section-component-container" >
@@ -69,7 +56,7 @@
             </CustomGraphics>
         </MudChart>
     </MudPaper>
-
+-->
 
 
 @code {

@@ -43,14 +43,6 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRmlsZVVwbG9hZC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/luis/github/Capstone/TheAndersonProject/TheAndersonProject.Client/Pages/Home.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvSG9tZS5yYXpvcg==
-build_metadata.AdditionalFiles.CssScope = 
-
-[/home/luis/github/Capstone/TheAndersonProject/TheAndersonProject.Client/Pages/Map.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvTWFwLnJhem9y
-build_metadata.AdditionalFiles.CssScope = 
-
 [/home/luis/github/Capstone/TheAndersonProject/TheAndersonProject.Client/Pages/Weather.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvV2VhdGhlci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
@@ -62,3 +54,11 @@ build_metadata.AdditionalFiles.CssScope =
 [/home/luis/github/Capstone/TheAndersonProject/TheAndersonProject.Client/_Imports.razor]
 build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
+
+[/home/luis/github/Capstone/TheAndersonProject/TheAndersonProject.Client/Pages/Home.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvSG9tZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-o8rho6hv3d
+
+[/home/luis/github/Capstone/TheAndersonProject/TheAndersonProject.Client/Pages/Map.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvTWFwLnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-y0ut6zua68

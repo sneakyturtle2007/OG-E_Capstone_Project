@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TheAndersonProject.Client")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+496a560535ab7825e8995485643d15a4ce5fa835")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e817204d3137662ecdd4376945f45545d4022bc5")]
 [assembly: System.Reflection.AssemblyProductAttribute("TheAndersonProject.Client")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TheAndersonProject.Client")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

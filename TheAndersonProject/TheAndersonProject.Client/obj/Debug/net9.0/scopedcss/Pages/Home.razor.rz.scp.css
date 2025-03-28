@@ -1,0 +1,9 @@
+#main[b-o8rho6hv3d]{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    height:100%; 
+    width: 100%;
+}
