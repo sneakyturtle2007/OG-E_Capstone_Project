@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="../build/TheAndersonProject.Client.props" />
-</Project>

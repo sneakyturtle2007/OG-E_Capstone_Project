@@ -1,0 +1,23 @@
+@rendermode InteractiveServer
+@using TheAndersonProject.Services
+@using TheAndersonProject.Components
+
+@inject FileData FileData
+@foreach(KeyValuePair<string, List<ReaderEvent>> kvp in EventsPerReader){
+    <div>
+        <h3>@kvp.Key</h3>
+        <ul>
+            @foreach (var readerEvent in kvp.Value)
+            {
+                <li>@readerEvent.readerDesc</li>
+            }
+        </ul>
+    </div>
+    
+}
+
+
+@code{
+    [Parameter]
+    public Dictionary<string, List<ReaderEvent>> EventsPerReader { get; set; } = new Dictionary<string, List<ReaderEvent>>();
+}

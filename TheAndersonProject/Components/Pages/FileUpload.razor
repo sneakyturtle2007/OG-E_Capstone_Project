@@ -1,0 +1,130 @@
+
+@rendermode InteractiveServer
+@using Microsoft.AspNetCore.Components.Forms
+@using TheAndersonProject.Services
+@using TheAndersonProject.Components
+@inject FileData FileData
+
+
+@if (!string.IsNullOrEmpty(ErrorMessage)){
+    <div>Error: @ErrorMessage</div>
+}
+@if(@FileData.FileName != ""){
+    <div>File Name: @FileData.FileName</div>
+    RestoreFileInfo();
+}
+<div class="main">
+    @if(FileData.FileName == ""){
+        <InputFile OnChange="@FileUploaded"/>
+    }else{
+        <Calendar EventsPerReader="@eventsPerReader"></Calendar>
+    }
+</div>
+
+
+
+
+@code {
+    int readerEventsCount = 0;
+    List<ReaderEvent> readerEvents = new List<ReaderEvent>();
+    Dictionary<string, List<ReaderEvent>> eventsPerReader = new Dictionary<string, List<ReaderEvent>>();
+    string FileName { get; set; } = "";
+    long FileSize { get; set; } = 0;
+    string FileType { get; set; } = "";
+    DateTimeOffset LastModified { get; set; } = DateTimeOffset.MinValue;
+    string ErrorMessage { get; set; } = "";
+
+    int MAX_FILESIZE = 10000 * 1024; 
+
+
+
+    public async Task FileUploaded(InputFileChangeEventArgs e)
+    {
+        var file = e.File;
+        if (file != null)
+        {
+            FileName = file.Name;
+            FileSize = file.Size;
+            FileType = file.ContentType;
+            LastModified = file.LastModified;
+
+            if (file.Size > MAX_FILESIZE)
+            {
+                ErrorMessage = "File size exceeds the maximum limit.";
+                return;
+            }
+
+            using (var stream = new MemoryStream())
+            {
+                await file.OpenReadStream(MAX_FILESIZE).CopyToAsync(stream);
+                stream.Position = 0;
+
+                using (var reader = new StreamReader(stream))
+                {
+                    ReadFile(reader);
+                }
+            }
+        }
+    }
+
+    public void ReadFile(StreamReader reader)
+    {
+        string? line = reader.ReadLine(); 
+        while ((line = reader.ReadLine()) != null)
+        {
+            var row = line.Split(",");
+            if (row.Length >= 6)
+            {
+                readerEvents.Add(new ReaderEvent(
+                    row[0],
+                    row[1],
+                    row[2],
+                    row[3],
+                    int.TryParse(row[4], out var devID) ? devID : -1,
+                    int.TryParse(row[5], out var machine) ? machine : -1
+                ));
+            }
+        }
+
+        readerEventsCount = readerEvents.Count;
+        eventsPerReader = organizeEventsByDay(readerEvents);
+        StateHasChanged();
+        SaveFileInfo();
+    }
+    Dictionary<string, List<ReaderEvent>> organizeEventsByDay(List<ReaderEvent> totalEvents)
+    {
+        var eventsPerReader = new Dictionary<string, List<ReaderEvent>>();
+        foreach (var temp in totalEvents)
+        {
+            var dayOfEvent = DateTime.Parse(temp.eventTime).ToString("dddd");
+            if (!eventsPerReader.ContainsKey(dayOfEvent))
+            {
+                eventsPerReader[dayOfEvent] = new List<ReaderEvent>();
+            }
+            eventsPerReader[dayOfEvent].Add(temp);
+        }
+        return eventsPerReader;
+    }
+     void SaveFileInfo()
+    {
+        FileData.FileName = FileName;
+        FileData.FileSize = FileSize;
+        FileData.FileType = FileType;
+        FileData.LastModified = LastModified;
+        FileData.ReaderEventsCount = readerEventsCount;
+        FileData.EventsPerReader = eventsPerReader;
+        FileData.ReaderEvents = readerEvents;
+    }
+     void RestoreFileInfo()
+    {
+        FileName = FileData.FileName;
+        FileSize = FileData.FileSize;
+        FileType = FileData.FileType;
+        LastModified = FileData.LastModified;
+        readerEventsCount = FileData.ReaderEventsCount;
+        eventsPerReader = FileData.EventsPerReader;
+        readerEvents = FileData.ReaderEvents;
+    }
+}
+
+
