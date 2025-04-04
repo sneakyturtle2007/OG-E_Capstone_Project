@@ -3,21 +3,112 @@
 @using TheAndersonProject.Components
 
 @inject FileData FileData
-@foreach(KeyValuePair<string, List<ReaderEvent>> kvp in EventsPerReader){
-    <div>
-        <h3>@kvp.Key</h3>
-        <ul>
-            @foreach (var readerEvent in kvp.Value)
-            {
-                <li>@readerEvent.readerDesc</li>
+
+<div class="main">
+  <div class="monthManagement">
+      <h5>Most Active Days:</h5>
+      <div>
+        <div class="navButtons" @onclick="PreviousMonth">&#8678;</div>
+        @{
+          DateTime temp = new DateTime(year, month, 1);
+          <h5 class="monthDay">@temp.ToString("MMMM")</h5>
+        }
+        <div class="navButtons" @onclick="NextMonth">&#8680;</div>
+      </div>  
+  </div>
+  <table>
+    <tr>
+      <th>Sunday</th>
+      <th>Monday</th>
+      <th>Tuesday</th>
+      <th>Wednesday</th>
+      <th>Thursday</th>
+      <th>Friday</th>
+      <th>Saturday</th>
+  </tr>
+    @for(int week = 0; week < 5; week++){
+      <tr>
+        @for(int day = 0; day < 7; day++){
+                    
+          @if(numOfDay == 1 && currDay.ToString("dddd") != daysOfWeek[day]){
+            month -= 1;
+            daysInMonth = DateTime.DaysInMonth(year, month);
+            numOfDay = daysInMonth - (Array.FindIndex(daysOfWeek,day => day == currDay.ToString("dddd")) - 1);
+            
+            <td style="background-image: radial-gradient(circle @gradientRadius at center, rgb(173, 216, 230, 1), white);">@numOfDay</td>
+            numOfDay++; 
+          }else{
+            <td style="background-image: radial-gradient(circle @gradientRadius at center, rgb(173, 216, 230, 1 ), white);">@numOfDay</td>
+            numOfDay++;
+          }
+          @if(numOfDay  > daysInMonth){
+            numOfDay = 1;
+                  
+            @if(month == 12){
+              month = 1;
+              year += 1; 
+            }else{
+              month++;
             }
-        </ul>
-    </div>
-    
-}
+            daysInMonth = DateTime.DaysInMonth(year, month);
+
+            currDay = new DateTime(year, month, numOfDay);
+          }   
+        }
+      </tr>
+      @if(week == 4){
+        month--;
+      }
+    }
+  </table>
+</div>
 
 
 @code{
-    [Parameter]
-    public Dictionary<string, List<ReaderEvent>> EventsPerReader { get; set; } = new Dictionary<string, List<ReaderEvent>>();
+  string[] dateYM;
+  int year;
+  int month;
+  int daysInMonth;
+  DateTime currDay;
+  int numOfDay = 1;
+  string[] daysOfWeek = new string[7]{"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
+  
+  string gradientRadius;
+  [Parameter]
+  public Dictionary<string, int> numOfUniqueVisitsPerDay {get; set;}
+  
+
+  protected override void OnInitialized(){
+    dateYM = DateTime.Now.ToString("yyyy/MM").Split('/');
+    year = Int32.Parse(dateYM[0]);
+    month = Int32.Parse(dateYM[1]);
+    daysInMonth = DateTime.DaysInMonth(year, month);
+    currDay = new DateTime(year, month, 1);
+    gradientRadius = "100px";
+  }
+
+  string GetGradientRadius(int year, int month, int day){
+    string date = $"{year}/{month}/{day}";
+    return "placeholder"; 
+  }
+  void PreviousMonth(){
+    Console.WriteLine(month);
+    month--;
+    InitializeNewCalendarData();
+    Console.WriteLine(month);
+    StateHasChanged();
+  }
+  void NextMonth(){
+    Console.WriteLine(month);
+    month++;
+    InitializeNewCalendarData();
+    Console.WriteLine(month);
+    StateHasChanged();
+  }
+  void InitializeNewCalendarData(){
+    dateYM = new DateTime(year, month, 1).ToString("yyyy/MM").Split("/");
+    daysInMonth = DateTime.DaysInMonth(year, month);
+    numOfDay = 1;
+    currDay = new DateTime(year, month, 1);
+  }
 }

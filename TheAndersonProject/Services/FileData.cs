@@ -6,8 +6,7 @@ namespace TheAndersonProject.Services
         public static string FileType { get; set; } = "";
         public static int ReaderEventsCount {get; set;} = 0;
         public static List<ReaderEvent> ReaderEvents {get; set;}= new List<ReaderEvent>();
-        public static Dictionary<string, List<ReaderEvent>> EventsPerReader {get; set;} = new Dictionary<string, List<ReaderEvent>>();
-        
         public static DateTimeOffset LastModified { get; set; } = DateTimeOffset.MinValue;
+        
     }
 }

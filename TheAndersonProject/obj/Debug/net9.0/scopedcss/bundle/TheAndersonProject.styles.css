@@ -206,14 +206,77 @@ main[b-viwk7d5aor] {
     }
 }
 /* _content/TheAndersonProject/Components/Pages/Calendar.razor.rz.scp.css */
+table[b-vsokelsdoc]{
+  text-align: center;
+}
+td[b-vsokelsdoc]{
+  
+  border-radius: 20px;
+}
+.main[b-vsokelsdoc]{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: top;
+    height: 25vh;
+    width: 30vw;
+    padding-left: 5%;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 12px;
+}
+.monthManagement *[b-vsokelsdoc]{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.monthManagement .navButtons[b-vsokelsdoc]{
+    font-size: 30px;
+}
+.navButtons[b-vsokelsdoc]{
+  color: black;
+}
+.navButtons:hover[b-vsokelsdoc]{
+  color: grey;
+}
+.monthDay[b-vsokelsdoc]{
+  align-self: center;
+}
+
+
 /* _content/TheAndersonProject/Components/Pages/FileUpload.razor.rz.scp.css */
 .main[b-nr6u10gl2j]{
     
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
-    padding: 20px;
+    padding-left: 2vw;
+}
+.listContainer[b-nr6u10gl2j]{
+    display: flex;
+    flex-direction: column;
+    width: 17vw;
+
+}
+.list[b-nr6u10gl2j]{
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 12px;    
+    overflow-y: auto;
+    max-height: 20vh;
+    border: 2px solid black;
+    border-radius: 5px;
+}
+.listTitle[b-nr6u10gl2j]{
+  padding-top: 2%;
+}
+.truncate-text[b-nr6u10gl2j] {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.truncate-text:hover[b-nr6u10gl2j]{
+    overflow: visible;
+    white-space: wrap;
 }
 /* _content/TheAndersonProject/Components/Pages/Home.razor.rz.scp.css */
 #main[b-sj0wmxzp23]{
@@ -221,19 +284,15 @@ main[b-viwk7d5aor] {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    flex-wrap: wrap;
     height:100%; 
     width: 100%;
 }
 
-.fileManagement[b-sj0wmxzp23]{
-  padding: 10%;
-}
 /* _content/TheAndersonProject/Components/Pages/Map.razor.rz.scp.css */
 #map[b-wd8kt97pvu]{
     background-image:url('img/map.png');
     height: 75%;
     width: 75vh;
     border: 3px solid black;
-    border-radius:10%; 
+    border-radius:10px; 
 }

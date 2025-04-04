@@ -1,22 +1,22 @@
 namespace TheAndersonProject.Services{
     public class ReaderEvent{
-        public string eventTime { get; set; } = "";
-        public string location { get; set; } = "";
-        public string readerDesc { get; set; } = "";
-        public string idHash { get; set; } = "";
-        public int devID { get; set; } = 0;
-        public int machine { get; set; } = 0;
+        public string EventTime { get; set; } = "";
+        public string Location { get; set; } = "";
+        public string ReaderDesc { get; set; } = "";
+        public string UserID { get; set; } = "";
+        public int DevID { get; set; } = 0;
+        public int Machine { get; set; } = 0;
 
         public ReaderEvent() {}
 
-        public ReaderEvent(string eventTime, string location, string readerDesc, string idHash, int devID, int machine)
+        public ReaderEvent(string EventTime, string Location, string ReaderDesc, string UserID, int DevID, int Machine)
         {
-            this.eventTime = eventTime;
-            this.location = location;
-            this.readerDesc = readerDesc;
-            this.idHash = idHash;
-            this.devID = devID;
-            this.machine = machine;
+            this.EventTime = EventTime;
+            this.Location = Location;
+            this.ReaderDesc = ReaderDesc;
+            this.UserID = UserID;
+            this.DevID = DevID;
+            this.Machine = Machine;
         }
     }
 }

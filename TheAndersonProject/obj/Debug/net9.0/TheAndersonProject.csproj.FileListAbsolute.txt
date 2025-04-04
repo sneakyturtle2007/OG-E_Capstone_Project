@@ -83,5 +83,5 @@
 /home/luis/github/Capstone/TheAndersonProject/obj/Debug/net9.0/TheAndersonProject.genruntimeconfig.cache
 /home/luis/github/Capstone/TheAndersonProject/obj/Debug/net9.0/ref/TheAndersonProject.dll
 /home/luis/github/Capstone/TheAndersonProject/obj/Debug/net9.0/scopedcss/Components/Pages/Calendar.razor.rz.scp.css
-/home/luis/github/Capstone/TheAndersonProject/obj/Debug/net9.0/compressed/0u4q2egdhp-doryajbviy.gz
-/home/luis/github/Capstone/TheAndersonProject/obj/Debug/net9.0/compressed/p5fiz6tea4-doryajbviy.gz
+/home/luis/github/Capstone/TheAndersonProject/obj/Debug/net9.0/compressed/0u4q2egdhp-kzsaazsvug.gz
+/home/luis/github/Capstone/TheAndersonProject/obj/Debug/net9.0/compressed/p5fiz6tea4-kzsaazsvug.gz

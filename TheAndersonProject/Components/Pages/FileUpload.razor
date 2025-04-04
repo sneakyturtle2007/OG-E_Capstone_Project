@@ -10,14 +10,36 @@
     <div>Error: @ErrorMessage</div>
 }
 @if(@FileData.FileName != ""){
-    <div>File Name: @FileData.FileName</div>
     RestoreFileInfo();
 }
 <div class="main">
     @if(FileData.FileName == ""){
         <InputFile OnChange="@FileUploaded"/>
     }else{
-        <Calendar EventsPerReader="@eventsPerReader"></Calendar>
+      @if(siteName == "" || siteName == "Testing"){
+        <div class="listContainer">
+            <h4>@siteName</h4>
+            <h5 class="listTitle">Most Visited Readers:</h5>
+            <div class="list">
+                @foreach(string readerID in readerIDByEventCount){
+                    <div>Reader @readerID - @eventsByReader[readerID].Count Interactions</div>
+                }
+            </div>
+            <h5 class="listTitle">Most Active Panels:</h5>
+            <div class="list">
+                @foreach(int panelID in panelIDByEventCount){
+                    <div>Panel @panelID - @eventsByPanel[panelID].Count Total Pings</div>
+                }
+            </div>
+            <h5 class="listTitle">Most Active Users:</h5>
+            <div class="list">
+                @foreach(string userID in userIDByEventCount){
+                    <div>@userID - @eventsByUser[userID].Count Interactions</div>
+                }
+            </div>
+        </div>
+      }
+        <Calendar/>
     }
 </div>
 
@@ -25,19 +47,23 @@
 
 
 @code {
-    int readerEventsCount = 0;
-    List<ReaderEvent> readerEvents = new List<ReaderEvent>();
-    Dictionary<string, List<ReaderEvent>> eventsPerReader = new Dictionary<string, List<ReaderEvent>>();
+    int MAX_FILESIZE = 10000 * 1024; 
     string FileName { get; set; } = "";
     long FileSize { get; set; } = 0;
     string FileType { get; set; } = "";
     DateTimeOffset LastModified { get; set; } = DateTimeOffset.MinValue;
+    List<ReaderEvent> readerEvents = new List<ReaderEvent>();
+    int readerEventsCount = 0;
+    List<string> readerIDByEventCount = new List<string>();
+    List<int> panelIDByEventCount = new List<int>();
+    List<string> userIDByEventCount = new List<string>();
+    Dictionary<string, List<ReaderEvent>> eventsByReader = new Dictionary<string, List<ReaderEvent>>();
+    Dictionary<string, List<ReaderEvent>> eventsByDay = new Dictionary<string, List<ReaderEvent>>();
+    Dictionary<string, List<ReaderEvent>> eventsByUser = new Dictionary<string, List<ReaderEvent>>();
+    Dictionary<int, List<ReaderEvent>> eventsByPanel = new Dictionary<int, List<ReaderEvent>>();
     string ErrorMessage { get; set; } = "";
-
-    int MAX_FILESIZE = 10000 * 1024; 
-
-
-
+    
+    string siteName = "Testing";
     public async Task FileUploaded(InputFileChangeEventArgs e)
     {
         var file = e.File;
@@ -80,30 +106,120 @@
                     row[1],
                     row[2],
                     row[3],
-                    int.TryParse(row[4], out var devID) ? devID : -1,
-                    int.TryParse(row[5], out var machine) ? machine : -1
+                    int.Parse(row[4]),
+                    int.Parse(row[5])
                 ));
             }
         }
 
         readerEventsCount = readerEvents.Count;
-        eventsPerReader = organizeEventsByDay(readerEvents);
+        eventsByDay = OrganizeEventsByDay(readerEvents);
+        eventsByPanel = OrganizeEventsByPanel(readerEvents);
+        eventsByReader = OrganizeEventsByReader(readerEvents);
+        eventsByUser = OrganizeEventsByUser(readerEvents);
+        userIDByEventCount = OrganizeByCountString(eventsByUser);
+        readerIDByEventCount = OrganizeByCountString(eventsByReader);
+        panelIDByEventCount = OrganizeByCountInt(eventsByPanel);
         StateHasChanged();
         SaveFileInfo();
     }
-    Dictionary<string, List<ReaderEvent>> organizeEventsByDay(List<ReaderEvent> totalEvents)
+    Dictionary<string, List<ReaderEvent>> OrganizeEventsByDay(List<ReaderEvent> totalEvents)
     {
-        var eventsPerReader = new Dictionary<string, List<ReaderEvent>>();
-        foreach (var temp in totalEvents)
+        Dictionary<string, List<ReaderEvent>> eventsByDay = new Dictionary<string, List<ReaderEvent>>();
+        List<ReaderEvent> tempList = new List<ReaderEvent>();
+        foreach (ReaderEvent temp in totalEvents)
         {
-            var dayOfEvent = DateTime.Parse(temp.eventTime).ToString("dddd");
-            if (!eventsPerReader.ContainsKey(dayOfEvent))
-            {
-                eventsPerReader[dayOfEvent] = new List<ReaderEvent>();
+            var dayOfEvent = DateTime.Parse(temp.EventTime).ToString("dddd");
+            if (!eventsByDay.ContainsKey(dayOfEvent)){
+                tempList = new List<ReaderEvent>();
+                tempList.Add(temp);
+                eventsByDay.Add(dayOfEvent, tempList);
             }
-            eventsPerReader[dayOfEvent].Add(temp);
+            eventsByDay[dayOfEvent].Add(temp);
         }
-        return eventsPerReader;
+        return eventsByDay;
+    }
+    Dictionary<string, List<ReaderEvent>> OrganizeEventsByUser(List<ReaderEvent> totalEvents)
+    {
+        Dictionary<string, List<ReaderEvent>> eventsByUser = new Dictionary<string, List<ReaderEvent>>();
+        List<ReaderEvent> tempList = new List<ReaderEvent>();
+        foreach(ReaderEvent temp in totalEvents){
+            if(!eventsByUser.ContainsKey(temp.UserID)){
+                tempList = new List<ReaderEvent>();
+                tempList.Add(temp);
+                eventsByUser.Add(temp.UserID, tempList);
+            }
+            eventsByUser[temp.UserID].Add(temp);
+        }
+        return eventsByUser;
+    }
+    Dictionary<int, List<ReaderEvent>> OrganizeEventsByPanel(List<ReaderEvent> totalEvents){
+        Dictionary<int, List<ReaderEvent>> eventsByPanel = new Dictionary<int, List<ReaderEvent>>();
+        List<ReaderEvent> tempList = new List<ReaderEvent>();
+        foreach(ReaderEvent temp in totalEvents){
+            if(!eventsByPanel.ContainsKey(temp.Machine)){
+                tempList = new List<ReaderEvent>();
+                tempList.Add(temp);
+                eventsByPanel.Add(temp.Machine, tempList);
+            }
+            eventsByPanel[temp.Machine].Add(temp);
+        }
+        return eventsByPanel;
+    }
+    Dictionary<string, List<ReaderEvent>> OrganizeEventsByReader(List<ReaderEvent> totalEvents){
+        Dictionary<string, List<ReaderEvent>> eventsByReader = new Dictionary<string, List<ReaderEvent>>();
+        string readerName = "";
+        List<ReaderEvent> tempList = new List<ReaderEvent>();
+        foreach(ReaderEvent temp in totalEvents){
+            readerName = ""+temp.DevID + temp.Machine;
+
+            if(!eventsByReader.ContainsKey(readerName)){
+                tempList = new List<ReaderEvent>();
+                tempList.Add(temp);
+                eventsByReader.Add(readerName, tempList);
+            }
+            eventsByReader[readerName].Add(temp);
+        }
+        return eventsByReader;
+    }
+    List<int> OrganizeByCountInt<T>(Dictionary<int, List<T>> dictionary){
+        List<int> sortedList = new List<int>();
+        foreach(KeyValuePair<int, List<T>> kvp in dictionary){
+            for(int i = 0; i < sortedList.Count; i++){
+                if(kvp.Value.Count > dictionary[sortedList[i]].Count){
+                    sortedList.Insert(i, kvp.Key);
+                    break;
+                }
+            }
+            if(!sortedList.Contains(kvp.Key)){
+                sortedList.Add(kvp.Key);
+            }
+        }
+        return sortedList;
+    }
+    List<string> OrganizeByCountString<T>(Dictionary<string, List<T>> dictionary){
+        List<string> sortedList = new List<string>();
+        foreach(KeyValuePair<string, List<T>> kvp in dictionary){
+            for(int i = 0; i < sortedList.Count; i++){
+                if(kvp.Value.Count > dictionary[sortedList[i]].Count){
+                    sortedList.Insert(i, kvp.Key);
+                    break;
+                }
+            }
+            if(!sortedList.Contains(kvp.Key)){
+                sortedList.Add(kvp.Key);
+            }
+        }
+        return sortedList;
+    }
+    List<int> GetPanelIDs(List<ReaderEvent> totalEvents){
+        List<int> panelIDs = new List<int>();
+        foreach(ReaderEvent temp in totalEvents){
+            if(!panelIDs.Contains(temp.Machine)){
+                panelIDs.Add(temp.Machine);
+            }
+        }
+        return panelIDs;
     }
      void SaveFileInfo()
     {
@@ -112,7 +228,6 @@
         FileData.FileType = FileType;
         FileData.LastModified = LastModified;
         FileData.ReaderEventsCount = readerEventsCount;
-        FileData.EventsPerReader = eventsPerReader;
         FileData.ReaderEvents = readerEvents;
     }
      void RestoreFileInfo()
@@ -122,8 +237,9 @@
         FileType = FileData.FileType;
         LastModified = FileData.LastModified;
         readerEventsCount = FileData.ReaderEventsCount;
-        eventsPerReader = FileData.EventsPerReader;
         readerEvents = FileData.ReaderEvents;
+        eventsByDay = OrganizeEventsByDay(readerEvents);
+        
     }
 }
 
