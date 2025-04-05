@@ -1,0 +1,126 @@
+@rendermode InteractiveServer
+@using TheAndersonProject.Services
+@using TheAndersonProject.Components
+
+@inject FileData FileData
+
+<div class="main">
+  <div class="monthManagement">
+      <h5>Most Active Days:</h5>
+      <div>
+        <div class="navButtons" @onclick="() => {PreviousMonth(-1);}">&#8678;</div>
+        @{
+          DateTime temp = new DateTime(year, month, 1);
+          <h5 class="monthDay">@temp.ToString("MMMM")</h5>
+        }
+        <div class="navButtons" @onclick="()=>{NextMonth(-1);}">&#8680;</div>
+      </div>  
+  </div>
+  <table>
+    <tr>
+      <th>Sunday</th>
+      <th>Monday</th>
+      <th>Tuesday</th>
+      <th>Wednesday</th>
+      <th>Thursday</th>
+      <th>Friday</th>
+      <th>Saturday</th>
+  </tr>
+    @for(int week = 0; week < 6; week++){
+      <tr>
+        @for(int day = 0; day < 7; day++){
+          @if(numOfDay == 1 && currDay.ToString("dddd") != daysOfWeek[day]){    
+            Console.WriteLine(currDay.ToString("dddd") + daysOfWeek[day]);     
+
+            PreviousMonth(day);
+            <td style="background-image: radial-gradient(circle @gradientRadius at center, rgb(173, 216, 230, 1), white);">@numOfDay</td>
+            numOfDay++; 
+          }else{
+            <td style="background-image: radial-gradient(circle @gradientRadius at center, rgb(173, 216, 230, 1 ), white);">@numOfDay</td>
+            numOfDay++;
+            Console.WriteLine(daysOfWeek[day]);
+          }
+          @if(numOfDay > daysInMonth){
+            NextMonth(numOfDay);
+          }   
+        }
+      </tr>
+      @if(week == 5){
+        month--;
+      }
+    }
+  </table>
+</div>
+
+
+@code{
+  string[] dateYM;
+  int year;
+  int month;
+  int daysInMonth;
+  DateTime currDay;
+  int numOfDay = 1;
+  string[] daysOfWeek = new string[7]{"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
+  
+  string gradientRadius;
+  [Parameter]
+  public Dictionary<string, int> numOfUniqueVisitsPerDay {get; set;}
+  
+
+  protected override void OnInitialized(){
+    dateYM = DateTime.Now.ToString("yyyy/MM").Split('/');
+    year = Int32.Parse(dateYM[0]);
+    month = Int32.Parse(dateYM[1]);
+    daysInMonth = DateTime.DaysInMonth(year, month);
+    currDay = new DateTime(year, month, 1);
+    gradientRadius = "100px";
+  }
+
+  string GetGradientRadius(int year, int month, int day){
+    string date = $"{year}/{month}/{day}";
+    return "placeholder"; 
+  }
+  void PreviousMonth(int tempNumOfDay){
+    Console.WriteLine(month);
+    month--;
+    if(month < 1){
+      month = 12;
+      year -= 1;
+    }    
+
+    InitializeNewCalendarData(tempNumOfDay);
+    StateHasChanged();
+  }
+  void NextMonth(int tempNumOfDay){
+    Console.WriteLine(month);
+    month++;
+    if(month > 12){
+      month = 1;
+      year += 1;
+    }
+    InitializeNewCalendarData(tempNumOfDay);
+    StateHasChanged();
+  }
+  void InitializeNewCalendarData(int tempNumOfDay){
+    
+    if(tempNumOfDay == -1){
+      numOfDay = 1;
+      dateYM = new DateTime(year, month, numOfDay).ToString("yyyy/MM").Split("/");
+      currDay = new DateTime(year, month, numOfDay);
+
+    }else if(tempNumOfDay > daysInMonth){
+      daysInMonth = DateTime.DaysInMonth(year, month);
+      numOfDay = 1;
+      currDay = new DateTime(year, month, numOfDay);
+      Console.WriteLine("End Month: Current day: " + currDay.ToString("dddd") + " Week Day: " + daysOfWeek[numOfDay] + " Month: " + month + " Days in Month: " + daysInMonth);
+      Thread.Sleep(1000);
+    }else{
+      daysInMonth = DateTime.DaysInMonth(year, month);
+      int weekDayIndex = Array.FindIndex(daysOfWeek, tempDay => tempDay == currDay.ToString("dddd"));
+      numOfDay = daysInMonth - weekDayIndex;
+      Console.WriteLine("Week day index:" + weekDayIndex + "\nWeek Day: " + daysOfWeek[weekDayIndex] +"\nNum of day: " + numOfDay + "\nCurrent Day: " + currDay.ToString("dddd") + "\nDays in Month: " + daysInMonth);
+    }
+    
+  }
+}
+

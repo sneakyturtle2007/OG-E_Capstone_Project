@@ -39,7 +39,7 @@
             </div>
         </div>
       }
-        <Calendar/>
+        <Calendar userIDByDate="@userIDByDate"/>
     }
 </div>
 
@@ -61,6 +61,7 @@
     Dictionary<string, List<ReaderEvent>> eventsByDay = new Dictionary<string, List<ReaderEvent>>();
     Dictionary<string, List<ReaderEvent>> eventsByUser = new Dictionary<string, List<ReaderEvent>>();
     Dictionary<int, List<ReaderEvent>> eventsByPanel = new Dictionary<int, List<ReaderEvent>>();
+    Dictionary<string, List<string>> userIDByDate = new Dictionary<string, List<string>>();
     string ErrorMessage { get; set; } = "";
     
     string siteName = "Testing";
@@ -118,8 +119,10 @@
         eventsByReader = OrganizeEventsByReader(readerEvents);
         eventsByUser = OrganizeEventsByUser(readerEvents);
         userIDByEventCount = OrganizeByCountString(eventsByUser);
+        userIDByDate = OrganizeUniqueUserIDByDay(readerEvents);
         readerIDByEventCount = OrganizeByCountString(eventsByReader);
         panelIDByEventCount = OrganizeByCountInt(eventsByPanel);
+
         StateHasChanged();
         SaveFileInfo();
     }
@@ -181,6 +184,23 @@
             eventsByReader[readerName].Add(temp);
         }
         return eventsByReader;
+    }
+    Dictionary<string, List<string>> OrganizeUniqueUserIDByDay(List<ReaderEvent> totalEvents){
+        Dictionary<string, List<string>> userIDByDate = new Dictionary<string, List<string>>();
+        string date = "";
+        List<string> tempList = new List<string>();
+        foreach(ReaderEvent temp in totalEvents){
+            date = temp.EventTime.Split('T')[0];
+            if(!userIDByDate.ContainsKey(date)){
+                tempList = new List<string>();
+                tempList.Add(temp.UserID);
+                userIDByDate.Add(date, tempList);
+            }
+            if(!userIDByDate[date].Contains(temp.UserID)){
+                userIDByDate[date].Add(temp.UserID);
+            }
+        }    
+        return userIDByDate;
     }
     List<int> OrganizeByCountInt<T>(Dictionary<int, List<T>> dictionary){
         List<int> sortedList = new List<int>();

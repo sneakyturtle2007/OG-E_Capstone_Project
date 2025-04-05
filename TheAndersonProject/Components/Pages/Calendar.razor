@@ -7,11 +7,11 @@
 <div class="main">
   <div class="monthManagement">
       <h5>Most Active Days:</h5>
+      <h5>@currDay.ToString("yyyy")</h5>
       <div>
         <div class="navButtons" @onclick="PreviousMonth">&#8678;</div>
         @{
-          DateTime temp = new DateTime(year, month, 1);
-          <h5 class="monthDay">@temp.ToString("MMMM")</h5>
+          <h5 class="monthDay">@currDay.ToString("MMMM")</h5>
         }
         <div class="navButtons" @onclick="NextMonth">&#8680;</div>
       </div>  
@@ -26,12 +26,28 @@
       <th>Friday</th>
       <th>Saturday</th>
   </tr>
-    @for(int week = 0; week < 5; week++){
+    @{
+      string tempMonth = "";
+      string tempDay = "";
+    }
+    @for(int week = 0; week < 6; week++){
       <tr>
         @for(int day = 0; day < 7; day++){
-                    
+          tempMonth = month.ToString().PadLeft(2,'0');
+          tempDay = day.ToString().PadLeft(2,'0');
+          if(userIDByDate.ContainsKey($"{year}-{tempMonth}-{tempDay}")){
+            gradientRadius = (userIDByDate[$"{year}-{tempMonth}-{tempDay}"].Count /2).ToString() + "px";
+          }else{
+            gradientRadius = "0px";
+          }
+          
           @if(numOfDay == 1 && currDay.ToString("dddd") != daysOfWeek[day]){
+            
             month -= 1;
+            if(month <= 0){
+              month = 12;
+              year--;
+            }
             daysInMonth = DateTime.DaysInMonth(year, month);
             numOfDay = daysInMonth - (Array.FindIndex(daysOfWeek,day => day == currDay.ToString("dddd")) - 1);
             
@@ -46,7 +62,7 @@
                   
             @if(month == 12){
               month = 1;
-              year += 1; 
+              year++; 
             }else{
               month++;
             }
@@ -56,8 +72,12 @@
           }   
         }
       </tr>
-      @if(week == 4){
+      @if(week == 5){
         month--;
+        if(month == 0){
+          year --;
+          month = 12;
+        }
       }
     }
   </table>
@@ -73,9 +93,9 @@
   int numOfDay = 1;
   string[] daysOfWeek = new string[7]{"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
   
-  string gradientRadius;
+  string gradientRadius = "";
   [Parameter]
-  public Dictionary<string, int> numOfUniqueVisitsPerDay {get; set;}
+  public Dictionary<string, List<string>> userIDByDate {get; set;} = new Dictionary<string, List<string>>();
   
 
   protected override void OnInitialized(){
@@ -92,15 +112,23 @@
     return "placeholder"; 
   }
   void PreviousMonth(){
-    Console.WriteLine(month);
+    Console.WriteLine("Prev: " + month);
     month--;
+    if(month <= 0){
+      month = 12;
+      year --;
+    }
     InitializeNewCalendarData();
-    Console.WriteLine(month);
+    Console.WriteLine("After: " + month);
     StateHasChanged();
   }
   void NextMonth(){
     Console.WriteLine(month);
     month++;
+    if(month > 12){
+      month = 1;
+      year ++;
+    }
     InitializeNewCalendarData();
     Console.WriteLine(month);
     StateHasChanged();
