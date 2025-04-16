@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "FrEnOk7TOYE=",
+  "dgSpecHash": "oAfTksUmp6A=",
   "success": true,
-  "projectFilePath": "/home/luis/github/Capstone/TheAndersonProject/TheAndersonProject.csproj",
+  "projectFilePath": "/home/luis/github/OG-E_Capstone_Project/TheAndersonProject/TheAndersonProject.csproj",
   "expectedPackageFiles": [
     "/home/luis/.nuget/packages/blazored.sessionstorage/2.4.0/blazored.sessionstorage.2.4.0.nupkg.sha512",
     "/home/luis/.nuget/packages/microsoft.aspnetcore.authorization/7.0.1/microsoft.aspnetcore.authorization.7.0.1.nupkg.sha512",

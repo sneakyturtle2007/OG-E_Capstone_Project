@@ -1,5 +1,17 @@
+@rendermode InteractiveServer
+@using TheAndersonProject.Services
+@using TheAndersonProject.Components
+@inject IJSRuntime JSRuntime
 
 <div id="map">
       
 </div> 
+
+@code{
+    protected override async Task OnAfterRenderAsync(bool firstRender){
+        if (firstRender){
+            await JSRuntime.InvokeVoidAsync("initMap");
+        }
+    }
+}
 

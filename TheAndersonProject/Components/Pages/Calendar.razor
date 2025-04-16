@@ -26,21 +26,10 @@
       <th>Friday</th>
       <th>Saturday</th>
   </tr>
-    @{
-      string tempMonth = "";
-      string tempDay = "";
-    }
+    
     @for(int week = 0; week < 6; week++){
       <tr>
         @for(int day = 0; day < 7; day++){
-          tempMonth = month.ToString().PadLeft(2,'0');
-          tempDay = day.ToString().PadLeft(2,'0');
-          if(userIDByDate.ContainsKey($"{year}-{tempMonth}-{tempDay}")){
-            gradientRadius = (userIDByDate[$"{year}-{tempMonth}-{tempDay}"].Count /2).ToString() + "px";
-          }else{
-            gradientRadius = "0px";
-          }
-          
           @if(numOfDay == 1 && currDay.ToString("dddd") != daysOfWeek[day]){
             
             month -= 1;
@@ -51,10 +40,10 @@
             daysInMonth = DateTime.DaysInMonth(year, month);
             numOfDay = daysInMonth - (Array.FindIndex(daysOfWeek,day => day == currDay.ToString("dddd")) - 1);
             
-            <td style="background-image: radial-gradient(circle @gradientRadius at center, rgb(173, 216, 230, 1), white);">@numOfDay</td>
+            <td style="background-image: radial-gradient(circle @GetGradientRadius(day) at center, rgb(173, 216, 230, 1), white);">@numOfDay</td>
             numOfDay++; 
           }else{
-            <td style="background-image: radial-gradient(circle @gradientRadius at center, rgb(173, 216, 230, 1 ), white);">@numOfDay</td>
+            <td style="background-image: radial-gradient(circle @GetGradientRadius(day) at center, rgb(173, 216, 230, 1 ), white);">@numOfDay</td>
             numOfDay++;
           }
           @if(numOfDay  > daysInMonth){
@@ -93,7 +82,8 @@
   int numOfDay = 1;
   string[] daysOfWeek = new string[7]{"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
   
-  string gradientRadius = "";
+  int maxNumOfUniqueIDsPerDay = 0;
+
   [Parameter]
   public Dictionary<string, List<string>> userIDByDate {get; set;} = new Dictionary<string, List<string>>();
   
@@ -104,22 +94,33 @@
     month = Int32.Parse(dateYM[1]);
     daysInMonth = DateTime.DaysInMonth(year, month);
     currDay = new DateTime(year, month, 1);
-    gradientRadius = "100px";
+    int tempNumOfUniqueIDs = 0;
+    foreach(KeyValuePair<string, List<string>> kvp in userIDByDate){
+      tempNumOfUniqueIDs = kvp.Value.Count;
+      if(tempNumOfUniqueIDs > maxNumOfUniqueIDsPerDay){
+        maxNumOfUniqueIDsPerDay = tempNumOfUniqueIDs;
+      }
+    }
   }
 
-  string GetGradientRadius(int year, int month, int day){
-    string date = $"{year}/{month}/{day}";
-    return "placeholder"; 
+  string GetGradientRadius(int day){
+    string tempMonth = month.ToString().PadLeft(2,'0');
+    string tempDay = day.ToString().PadLeft(2,'0');
+    string resultRadius = "";
+    if(userIDByDate.ContainsKey($"{year}-{tempMonth}-{tempDay}")){
+      resultRadius = (userIDByDate[$"{year}-{tempMonth}-{tempDay}"].Count /2).ToString() + "px";
+    }else{
+      resultRadius = "0px";
+    }
+    return resultRadius; 
   }
   void PreviousMonth(){
-    Console.WriteLine("Prev: " + month);
     month--;
     if(month <= 0){
       month = 12;
       year --;
     }
     InitializeNewCalendarData();
-    Console.WriteLine("After: " + month);
     StateHasChanged();
   }
   void NextMonth(){
