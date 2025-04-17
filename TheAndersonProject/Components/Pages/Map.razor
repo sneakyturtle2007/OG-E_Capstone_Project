@@ -1,4 +1,5 @@
 @rendermode InteractiveServer
+@implements IAsyncDisposable
 @using TheAndersonProject.Services
 @using TheAndersonProject.Components
 @inject IJSRuntime JSRuntime
@@ -8,9 +9,27 @@
 </div> 
 
 @code{
+    private IJSObjectReference? module;
     protected override async Task OnAfterRenderAsync(bool firstRender){
         if (firstRender){
-            await JSRuntime.InvokeVoidAsync("initMap");
+            module = await JSRuntime.InvokeAsync<IJSObjectReference>("import",
+                "./Components/Pages/Map.razor.js");
+
+            await module.InvokeVoidAsync("MapInit");
+        }
+    }
+    [JSInvokable]
+    async ValueTask IAsyncDisposable.DisposeAsync()
+    {
+        if (module is not null)
+        {
+            try
+            {
+                await module.DisposeAsync();
+            }
+            catch (JSDisconnectedException)
+            {
+            }
         }
     }
 }
