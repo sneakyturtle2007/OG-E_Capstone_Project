@@ -118,15 +118,15 @@
         userIDByEventCount = OrganizeCount_String(eventsByUser);
         userIDByDate = OrganizeUniqueUserIDByDay(readerEvents);
         readerIDByEventCount = OrganizeCount_String(eventsByReader);
-        panelIDByEventCount = OrganizeByCountInt(eventsByPanel);
+        panelIDByEventCount = OrganizeByCount_Int(eventsByPanel);
         SaveFileInfo();
         StateHasChanged();
         
     }
-    Dictionary<string, List<ReaderEvent>> OrganizeEvents_StringKey(List<ReaderEvent> totalEvents, string category)
+    Dictionary<string, List<T>> OrganizeEvents_StringKey<T>(List<ReaderEvent> totalEvents, string category)
     {
-        Dictionary<string, List<ReaderEvent>> eventsByCategory = new Dictionary<string, List<ReaderEvent>>();
-        List<ReaderEvent> tempList = new List<ReaderEvent>();
+        Dictionary<string, List<T>> eventsByCategory = new Dictionary<string, List<T>>();
+        List<T> tempList = new List<T>();
         string key = "";
         foreach(ReaderEvent temp in totalEvents){
             switch(category){
@@ -138,6 +138,12 @@
                     break;
                 case "day":
                     key = DateTime.Parse(temp.EventTime).ToString("dddd");
+                    break;
+                case "location":
+                    key = temp.Location;
+                    break;
+                case "userID_B_Day":
+                    key = temp.UserID;
                     break;
                 default:
                     break;
@@ -177,7 +183,7 @@
         }    
         return userIDByDate;
     }
-    List<int> OrganizeByCountInt<T>(Dictionary<int, List<T>> dictionary){
+    List<int> OrganizeByCount_Int<T>(Dictionary<int, List<T>> dictionary){
         List<int> sortedList = new List<int>();
         foreach(KeyValuePair<int, List<T>> kvp in dictionary){
             for(int i = 0; i < sortedList.Count; i++){
@@ -241,7 +247,7 @@
         userIDByEventCount = OrganizeCount_String(eventsByUser);
         userIDByDate = OrganizeUniqueUserIDByDay(readerEvents);
         readerIDByEventCount = OrganizeCount_String(eventsByReader);
-        panelIDByEventCount = OrganizeByCountInt(eventsByPanel);
+        panelIDByEventCount = OrganizeByCount_Int(eventsByPanel);
     }
 }
 

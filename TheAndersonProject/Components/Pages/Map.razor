@@ -1,24 +1,42 @@
 @rendermode InteractiveServer
 @implements IAsyncDisposable
+
 @using TheAndersonProject.Services
 @using TheAndersonProject.Components
+
 @inject IJSRuntime JSRuntime
+@inject MapData MapData
+
 
 <div id="map">
       
 </div> 
 
 @code{
+    public Dictionary<string, List<ReaderEvent>>? eventsByLocation { get; set; } = new Dictionary<string, List<ReaderEvent>>();
     private IJSObjectReference? module;
+
     protected override async Task OnAfterRenderAsync(bool firstRender){
         if (firstRender){
             module = await JSRuntime.InvokeAsync<IJSObjectReference>("import",
                 "./Components/Pages/Map.razor.js");
-
-            await module.InvokeVoidAsync("MapInit");
+            await module.InvokeVoidAsync("MapInit", eventsByLocation.Keys.ToArray(), "Site");
         }
+        
+    }
+    void SaveMapInfo(){
+        MapData.EventsByLocation = eventsByLocation;
+    }
+    void RestoreMapInfo(){
+        eventsByLocation = MapData.EventsByLocation;
+        StateHasChanged();
     }
     [JSInvokable]
+    /*public static async Task UpdateMap(string[] locations, string siteName){
+        if (locations.Length > 0){
+            await module.InvokeVoidAsync("RefreshMap", locations, siteName);
+        }
+    }*/
     async ValueTask IAsyncDisposable.DisposeAsync()
     {
         if (module is not null)
@@ -29,6 +47,7 @@
             }
             catch (JSDisconnectedException)
             {
+                
             }
         }
     }

@@ -3,7 +3,7 @@ using TheAndersonProject.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddScoped<AppData>();
+builder.Services.AddScoped<MapData>();
 builder.Services.AddSingleton<FileData>();
 builder.Services.AddSingleton<ReaderEvent>();
 
