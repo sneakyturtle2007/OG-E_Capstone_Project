@@ -8,19 +8,25 @@
 @inject MapData MapData
 
 
-<div id="map">
-      
-</div> 
+<div id="map"></div> 
 
 @code{
-    public Dictionary<string, List<ReaderEvent>>? eventsByLocation { get; set; } = new Dictionary<string, List<ReaderEvent>>();
+    public Dictionary<string, List<ReaderEvent>> eventsByLocation { get; set; } = new Dictionary<string, List<ReaderEvent>>();
     private IJSObjectReference? module;
+    private List<double[]> elementLocations = new List<double[]>();
+    protected override void OnInitialized(){
+        if(MapData.EventsByLocation.Count != 0){
+            RestoreMapInfo();
+        }
+    }
 
     protected override async Task OnAfterRenderAsync(bool firstRender){
         if (firstRender){
             module = await JSRuntime.InvokeAsync<IJSObjectReference>("import",
                 "./Components/Pages/Map.razor.js");
-            await module.InvokeVoidAsync("MapInit", eventsByLocation.Keys.ToArray(), "Site");
+            
+            elementLocations = await module.InvokeAsync<List<double[]>>("MapInit", "Site", eventsByLocation.Keys);// eventsByLocation.Keys.ToArray(), "Site"
+            Console.WriteLine("" + elementLocations.Count);
         }
         
     }
@@ -29,7 +35,6 @@
     }
     void RestoreMapInfo(){
         eventsByLocation = MapData.EventsByLocation;
-        StateHasChanged();
     }
     [JSInvokable]
     /*public static async Task UpdateMap(string[] locations, string siteName){

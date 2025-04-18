@@ -4,14 +4,14 @@
 @using TheAndersonProject.Services
 @using TheAndersonProject.Components
 @inject FileData FileData
+@inject MapData MapData
+@inject NavigationManager navigationManager
 
 
 @if (!string.IsNullOrEmpty(ErrorMessage)){
     <div>Error: @ErrorMessage</div>
-}
-@if(@FileData.FileName != ""){
-    RestoreFileInfo();
-}
+}   
+
 <div class="main">
     @if(FileData.FileName == ""){
         <InputFile OnChange="@FileUploaded"/>
@@ -65,8 +65,12 @@
     string ErrorMessage { get; set; } = "";
     
     string siteName = "Testing";
-    public async Task FileUploaded(InputFileChangeEventArgs e)
-    {
+    protected override void OnInitialized(){
+        if(@FileData.FileName != ""){
+            RestoreFileInfo();
+        }
+    }
+    public async Task FileUploaded(InputFileChangeEventArgs e){
         var file = e.File;
         if (file != null)
         {
@@ -90,9 +94,7 @@
             }
         }
     }
-
-    public void ReadFile(StreamReader reader)
-    {
+    public void ReadFile(StreamReader reader){
         string? line = reader.ReadLine(); 
         while ((line = reader.ReadLine()) != null)
         {
@@ -119,14 +121,14 @@
         userIDByDate = OrganizeUniqueUserIDByDay(readerEvents);
         readerIDByEventCount = OrganizeCount_String(eventsByReader);
         panelIDByEventCount = OrganizeByCount_Int(eventsByPanel);
-        SaveFileInfo();
+        Dictionary<string, List<ReaderEvent>> eventsByLocation = OrganizeEvents_StringKey(readerEvents, "location");
+        SaveFileInfo(eventsByLocation);
         StateHasChanged();
         
     }
-    Dictionary<string, List<T>> OrganizeEvents_StringKey<T>(List<ReaderEvent> totalEvents, string category)
-    {
-        Dictionary<string, List<T>> eventsByCategory = new Dictionary<string, List<T>>();
-        List<T> tempList = new List<T>();
+    Dictionary<string, List<ReaderEvent>> OrganizeEvents_StringKey(List<ReaderEvent> totalEvents, string category){
+        Dictionary<string, List<ReaderEvent>> eventsByCategory = new Dictionary<string, List<ReaderEvent>>();
+        List<ReaderEvent> tempList = new List<ReaderEvent>();
         string key = "";
         foreach(ReaderEvent temp in totalEvents){
             switch(category){
@@ -141,9 +143,6 @@
                     break;
                 case "location":
                     key = temp.Location;
-                    break;
-                case "userID_B_Day":
-                    key = temp.UserID;
                     break;
                 default:
                     break;
@@ -222,18 +221,17 @@
         }
         return panelIDs;
     }
-     void SaveFileInfo()
-    {
+     void SaveFileInfo(Dictionary<string, List<ReaderEvent>> eventsByLocation){
         FileData.FileName = FileName;
         FileData.FileSize = FileSize;
         FileData.FileType = FileType;
         FileData.LastModified = LastModified;
         FileData.ReaderEventsCount = readerEventsCount;
         FileData.ReaderEvents = readerEvents;
-        StateHasChanged();
+        MapData.EventsByLocation = eventsByLocation;
+        navigationManager.NavigateTo(navigationManager.Uri, forceLoad: true);
     }
-    void RestoreFileInfo()
-    {
+    void RestoreFileInfo(){
         FileName = FileData.FileName;
         FileSize = FileData.FileSize;
         FileType = FileData.FileType;

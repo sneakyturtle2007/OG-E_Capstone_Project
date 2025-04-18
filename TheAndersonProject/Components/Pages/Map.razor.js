@@ -1,30 +1,30 @@
 var map;
 var markerElements;
-export function MapInit(elementNames, elementType){
-    map = L.map('map').setView([35.548087971615125, -97.50602842324439], 10);
+var elementLocations = [];
+export function MapInit(elementType, elementNames) {
+    map = L.map('map').setView([35.548087971615125, -97.50602842324439], 7);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         mazxZoom: 19,
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
-    markerElements  = L.markerClusterGroup();
     
     for(let i = 0; i < elementNames.length; i++){
-        AddElement(elementType, elementNames[i]);
+        AddElement(elementType, elementNames[i].toString());
     }
-
+    return elementLocations;
 }
 export function RefreshMap(elementNames, elementType){
     for(let i = 0; i < elementNames.length; i++){
         AddElement(elementType, elementNames[i]);
     }
 }
-export function AddElement(imgName, siteName){
+export function AddElement(elementType, elementName){
     var Icon = L.icon({
         iconUrl: 'img/Site.jpg',
         iconSize: [30, 55],
     });
 
-    switch(imgName){
+    switch(elementType){
         case "Reader":
             Icon = new Icon({iconURL: 'img/Reader.jpg'});
             break;
@@ -36,13 +36,13 @@ export function AddElement(imgName, siteName){
     }
     let coordinates = [RandNum(33.3489, 36.8531), RandNum(-102.9515, -94.4914)];
     
-    var marker = L.marker(coordinates, {icon: Icon}, {title: siteName});
-    
-    marker.on('click', function(e) {
+    var markerElement = L.marker(coordinates, {icon: Icon}, {title: elementName}).addTo(map);
+    markerElement.on('click', function(e) {
         alert("Marker clicked!");
     });
+    markerElement.bindTooltip(elementName, {permanent: true, direction:'center', offset: [0, -47], className:"elementTitle"}).openTooltip();
 
-    markerElements.addLayer(marker);
+    elementLocations.push(coordinates);
 }
 export function RandNum(min, max){
     return Math.random() * (max - min) + min;
