@@ -30,8 +30,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>jgwkfcp4ze</Fingerprint>
-      <Integrity>U5Bbh+T0z1d4CaRwBS1q9qRB5zC5qPNlhUoX9RMWeHA=</Integrity>
+      <Fingerprint>ooocporej7</Fingerprint>
+      <Integrity>+FDmmcgMiSZUcPKuYjvkLGHBjWkyzTt18vap2B+umGo=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Components\Pages\Map.razor.js'))</OriginalItemSpec>

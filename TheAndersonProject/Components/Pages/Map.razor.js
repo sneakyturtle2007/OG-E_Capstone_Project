@@ -1,7 +1,7 @@
 var map;
 var markerElements;
 var elementLocations = [];
-export function MapInit(elementType, elementNames) {
+export function MapInit(elementType, elementNames, siteLocations) {
     map = L.map('map').setView([35.548087971615125, -97.50602842324439], 7);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         mazxZoom: 19,
@@ -9,16 +9,11 @@ export function MapInit(elementType, elementNames) {
     }).addTo(map);
     
     for(let i = 0; i < elementNames.length; i++){
-        AddElement(elementType, elementNames[i].toString());
+        AddElement(elementType, elementNames[i].toString(), siteLocations[i]);
     }
     return elementLocations;
 }
-export function RefreshMap(elementNames, elementType){
-    for(let i = 0; i < elementNames.length; i++){
-        AddElement(elementType, elementNames[i]);
-    }
-}
-export function AddElement(elementType, elementName){
+export function AddElement(elementType, elementName, elementCoor){
     var Icon = L.icon({
         iconUrl: 'img/Site.jpg',
         iconSize: [30, 55],
@@ -34,8 +29,12 @@ export function AddElement(elementType, elementName){
         default:
             break;
     }
-    let coordinates = [RandNum(33.3489, 36.8531), RandNum(-102.9515, -94.4914)];
-    
+    let coordinates;
+    if(elementCoor){
+      coordinates = [elementCoor[0], elementCoor[1]];
+    }else{
+      coordinates = [RandNum(34.3489, 36.8531), RandNum(-101.9515, -94.4914)];
+    }
     var markerElement = L.marker(coordinates, {icon: Icon}, {title: elementName}).addTo(map);
     markerElement.on('click', function(e) {
         alert("Marker clicked!");

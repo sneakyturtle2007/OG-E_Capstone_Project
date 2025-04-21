@@ -11,9 +11,9 @@
 <div id="map"></div> 
 
 @code{
-    public Dictionary<string, List<ReaderEvent>> eventsByLocation { get; set; } = new Dictionary<string, List<ReaderEvent>>();
-    private IJSObjectReference? module;
-    private List<double[]> elementLocations = new List<double[]>();
+    public static Dictionary<string, List<ReaderEvent>> eventsByLocation { get; set; } = new Dictionary<string, List<ReaderEvent>>();
+    private static IJSObjectReference? module;
+    private static List<double[]> siteCoordinates = new List<double[]>();
     protected override void OnInitialized(){
         if(MapData.EventsByLocation.Count != 0){
             RestoreMapInfo();
@@ -25,23 +25,20 @@
             module = await JSRuntime.InvokeAsync<IJSObjectReference>("import",
                 "./Components/Pages/Map.razor.js");
             
-            elementLocations = await module.InvokeAsync<List<double[]>>("MapInit", "Site", eventsByLocation.Keys);// eventsByLocation.Keys.ToArray(), "Site"
-            Console.WriteLine("" + elementLocations.Count);
+            siteCoordinates = await module.InvokeAsync<List<double[]>>("MapInit", "Site", eventsByLocation.Keys, siteCoordinates);
+            SaveMapInfo();
         }
         
     }
     void SaveMapInfo(){
         MapData.EventsByLocation = eventsByLocation;
+        MapData.SiteLocations = siteCoordinates; 
     }
     void RestoreMapInfo(){
         eventsByLocation = MapData.EventsByLocation;
+        siteCoordinates = MapData.SiteLocations;
     }
     [JSInvokable]
-    /*public static async Task UpdateMap(string[] locations, string siteName){
-        if (locations.Length > 0){
-            await module.InvokeVoidAsync("RefreshMap", locations, siteName);
-        }
-    }*/
     async ValueTask IAsyncDisposable.DisposeAsync()
     {
         if (module is not null)

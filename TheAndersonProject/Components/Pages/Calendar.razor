@@ -30,6 +30,7 @@
     @for(int week = 0; week < 6; week++){
       <tr>
         @for(int day = 0; day < 7; day++){
+          string gradient = GetGradient(day);
           @if(numOfDay == 1 && currDay.ToString("dddd") != daysOfWeek[day]){
             
             month -= 1;
@@ -40,10 +41,10 @@
             daysInMonth = DateTime.DaysInMonth(year, month);
             numOfDay = daysInMonth - (Array.FindIndex(daysOfWeek,day => day == currDay.ToString("dddd")) - 1);
             
-            <td style="background-image: radial-gradient(circle @GetGradientRadius(day) at center, rgb(173, 216, 230, 1), white);">@numOfDay</td>
+            <td style="background-color: rgb(@gradient, @gradient, 255, 1);">@numOfDay</td>
             numOfDay++; 
           }else{
-            <td style="background-image: radial-gradient(circle @GetGradientRadius(day) at center, rgb(173, 216, 230, 1 ), white);">@numOfDay</td>
+            <td style="background-color: rgb(@gradient, @gradient, 255, 1);">@numOfDay</td>
             numOfDay++;
           }
           @if(numOfDay  > daysInMonth){
@@ -82,7 +83,7 @@
   int numOfDay = 1;
   string[] daysOfWeek = new string[7]{"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
   
-  int maxNumOfUniqueIDsPerDay = 0;
+  float maxNumOfUniqueIDsPerDay = 0;
 
   [Parameter]
   public Dictionary<string, List<string>> userIDByDate {get; set;} = new Dictionary<string, List<string>>();
@@ -101,18 +102,21 @@
         maxNumOfUniqueIDsPerDay = tempNumOfUniqueIDs;
       }
     }
+  
   }
 
-  string GetGradientRadius(int day){
+  string GetGradient(int day){
     string tempMonth = month.ToString().PadLeft(2,'0');
     string tempDay = day.ToString().PadLeft(2,'0');
-    string resultRadius = "";
+    string resultIntensity = "";
+    float colorIntensity;
     if(userIDByDate.ContainsKey($"{year}-{tempMonth}-{tempDay}")){
-      resultRadius = (userIDByDate[$"{year}-{tempMonth}-{tempDay}"].Count /2).ToString() + "px";
+      colorIntensity = (userIDByDate[$"{year}-{tempMonth}-{tempDay}"].Count / maxNumOfUniqueIDsPerDay) * 255;
+      resultIntensity = (255 - colorIntensity).ToString();
     }else{
-      resultRadius = "0px";
+      resultIntensity = "255";
     }
-    return resultRadius; 
+    return resultIntensity; 
   }
   void PreviousMonth(){
     month--;
@@ -124,14 +128,14 @@
     StateHasChanged();
   }
   void NextMonth(){
-    Console.WriteLine(month);
+  
     month++;
     if(month > 12){
       month = 1;
       year ++;
     }
     InitializeNewCalendarData();
-    Console.WriteLine(month);
+    
     StateHasChanged();
   }
   void InitializeNewCalendarData(){
