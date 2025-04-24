@@ -6,7 +6,7 @@
     },
     {
       "Id": "/home/luis/github/OG-E_Capstone_Project/TheAndersonProject/obj/Debug/net9.0/scopedcss/projectbundle/TheAndersonProject.bundle.scp.css",
-      "PackagePath": "staticwebassets/TheAndersonProject.qwqtw67ccv.bundle.scp.css"
+      "PackagePath": "staticwebassets/TheAndersonProject.84vmr7daz0.bundle.scp.css"
     },
     {
       "Id": "/home/luis/github/OG-E_Capstone_Project/TheAndersonProject/wwwroot/app.css",
@@ -15,6 +15,10 @@
     {
       "Id": "/home/luis/github/OG-E_Capstone_Project/TheAndersonProject/wwwroot/favicon.png",
       "PackagePath": "staticwebassets/favicon.png"
+    },
+    {
+      "Id": "/home/luis/github/OG-E_Capstone_Project/TheAndersonProject/wwwroot/img/BuildingBlueprint.jpg",
+      "PackagePath": "staticwebassets/img/BuildingBlueprint.jpg"
     },
     {
       "Id": "/home/luis/github/OG-E_Capstone_Project/TheAndersonProject/wwwroot/img/Panel.jpg",

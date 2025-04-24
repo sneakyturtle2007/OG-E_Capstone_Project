@@ -25,7 +25,7 @@
       <th>Thursday</th>
       <th>Friday</th>
       <th>Saturday</th>
-  </tr>
+    </tr>
     
     @for(int week = 0; week < 6; week++){
       <tr>
@@ -71,6 +71,7 @@
       }
     }
   </table>
+  <AdditionalInfo contents="@temp"/>
 </div>
 
 
@@ -84,6 +85,7 @@
   string[] daysOfWeek = new string[7]{"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
   
   float maxNumOfUniqueIDsPerDay = 0;
+  string[] temp = new string[]{"lorem ipsum", "hta"};
 
   [Parameter]
   public Dictionary<string, List<string>> userIDByDate {get; set;} = new Dictionary<string, List<string>>();

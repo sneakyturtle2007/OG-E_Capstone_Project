@@ -30,8 +30,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>ooocporej7</Fingerprint>
-      <Integrity>+FDmmcgMiSZUcPKuYjvkLGHBjWkyzTt18vap2B+umGo=</Integrity>
+      <Fingerprint>iwpmq7eh10</Fingerprint>
+      <Integrity>Xt2UUCDcjd2qK4FEWY9j2OmRJQ4CBYWCaGWlH1KVV+Y=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Components\Pages\Map.razor.js'))</OriginalItemSpec>
@@ -53,6 +53,24 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\favicon.png'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\BuildingBlueprint.jpg'))">
+      <SourceType>Package</SourceType>
+      <SourceId>TheAndersonProject</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/TheAndersonProject</BasePath>
+      <RelativePath>img/BuildingBlueprint.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>gbdgif1g2s</Fingerprint>
+      <Integrity>lFoiN1C/t6jpKek6lCSRsXJMp7Swn0QsnFjkwyzxJ+o=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\BuildingBlueprint.jpg'))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\map.png'))">
       <SourceType>Package</SourceType>
@@ -918,23 +936,23 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\lib\bootstrap\dist\js\bootstrap.min.js.map'))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\TheAndersonProject.qwqtw67ccv.bundle.scp.css'))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\TheAndersonProject.84vmr7daz0.bundle.scp.css'))">
       <SourceType>Package</SourceType>
       <SourceId>TheAndersonProject</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/TheAndersonProject</BasePath>
-      <RelativePath>TheAndersonProject.qwqtw67ccv.bundle.scp.css</RelativePath>
+      <RelativePath>TheAndersonProject.84vmr7daz0.bundle.scp.css</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>Reference</AssetMode>
       <AssetRole>Primary</AssetRole>
       <RelatedAsset></RelatedAsset>
       <AssetTraitName>ScopedCss</AssetTraitName>
       <AssetTraitValue>ProjectBundle</AssetTraitValue>
-      <Fingerprint>qwqtw67ccv</Fingerprint>
-      <Integrity>epVls+0YH3xMo4uVP7UlGcTJAHI1vMZB5LNM0w5IMmU=</Integrity>
+      <Fingerprint>84vmr7daz0</Fingerprint>
+      <Integrity>CA60obqpi/kP2cfGn+AfxCFVxb22oPzp8aYI6i6+eZM=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\TheAndersonProject.qwqtw67ccv.bundle.scp.css'))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\TheAndersonProject.84vmr7daz0.bundle.scp.css'))</OriginalItemSpec>
     </StaticWebAsset>
   </ItemGroup>
 </Project>

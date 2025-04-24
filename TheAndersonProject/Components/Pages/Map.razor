@@ -6,49 +6,79 @@
 
 @inject IJSRuntime JSRuntime
 @inject MapData MapData
+@inject SiteData SiteData
+@inject NavigationManager navigationManager
 
-
-<div id="map"></div> 
+@if(SiteData.DisplaySiteInfo){
+    
+    <div id="map" style="background-image:url('img/BuildingBlueprint.jpg')">
+        @if(SiteData.DisplaySiteInfo){
+            <div class="back" style="align-self: start;" @onclick="@back">Back</div>
+        }
+    </div>
+}else{
+    <div id="map"></div>
+}
+ 
 
 @code{
-    public static Dictionary<string, List<ReaderEvent>> eventsByLocation { get; set; } = new Dictionary<string, List<ReaderEvent>>();
+    public static List<Site> sites { get; set; } = new List<Site>();
     private static IJSObjectReference? module;
     private static List<double[]> siteCoordinates = new List<double[]>();
-    protected override void OnInitialized(){
-        if(MapData.EventsByLocation.Count != 0){
-            RestoreMapInfo();
-        }
-    }
 
     protected override async Task OnAfterRenderAsync(bool firstRender){
-        if (firstRender){
+        RestoreMapInfo();
+        if (firstRender && sites.Count > 0 ){
             module = await JSRuntime.InvokeAsync<IJSObjectReference>("import",
                 "./Components/Pages/Map.razor.js");
-            
-            siteCoordinates = await module.InvokeAsync<List<double[]>>("MapInit", "Site", eventsByLocation.Keys, siteCoordinates);
-            SaveMapInfo();
+            if(SiteData.DisplaySiteInfo){
+                List<ReaderEvent> readerEvents = SiteData.ReaderEvents;
+                Dictionary<string, List<ReaderEvent>> eventsByReader = SiteData.OrganizeEvents_StringKey(readerEvents, "reader");
+                Dictionary<int, List<ReaderEvent>> eventsByPanel = SiteData.OrganizeEvents_IntKey(readerEvents);
+            }else{
+                string[] siteNames = new string[sites.Count];
+                for(int i = 0; i < sites.Count; i++){
+                    siteNames[i] = sites[i].SiteName;
+                }
+                siteCoordinates = await module.InvokeAsync<List<double[]>>("MapInit", siteNames, siteCoordinates);
+                SaveMapInfo();
+            }
         }
-        
+    }
+    void back(){
+        SiteData.DisplaySiteInfo = false;
+        navigationManager.NavigateTo(navigationManager.Uri, forceLoad: true);
     }
     void SaveMapInfo(){
-        MapData.EventsByLocation = eventsByLocation;
-        MapData.SiteLocations = siteCoordinates; 
+        if(sites.Count > 0){
+            MapData.Sites = sites;
+            MapData.SiteCoordinates = siteCoordinates;
+        }
     }
     void RestoreMapInfo(){
-        eventsByLocation = MapData.EventsByLocation;
-        siteCoordinates = MapData.SiteLocations;
+        sites = MapData.Sites;
+        siteCoordinates = MapData.SiteCoordinates;
     }
+    
     [JSInvokable]
-    async ValueTask IAsyncDisposable.DisposeAsync()
-    {
-        if (module is not null)
-        {
-            try
-            {
-                await module.DisposeAsync();
+    public static void SelectSite(string siteName){
+        foreach(Site site in sites){
+            Console.WriteLine(site.SiteName);
+            if(site.SiteName == siteName){
+                SiteData.DisplaySiteInfo = true;
+                SiteData.SiteName = site.SiteName;  
+                SiteData.ReaderEvents = site.ReaderEvents;
+                SiteData.ReaderEventsCount = site.ReaderEvents.Count;
             }
-            catch (JSDisconnectedException)
-            {
+        }
+    }
+    async ValueTask IAsyncDisposable.DisposeAsync(){
+        if (module is not null){
+            try{
+                await module.DisposeAsync();
+            }catch (JSDisconnectedException){
+                
+            }catch(TaskCanceledException ){
                 
             }
         }

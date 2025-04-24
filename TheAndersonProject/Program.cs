@@ -6,7 +6,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddScoped<MapData>();
 builder.Services.AddSingleton<FileData>();
 builder.Services.AddSingleton<ReaderEvent>();
-
+builder.Services.AddSingleton<SiteData>();
+builder.Services.AddSingleton<Site>();
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();

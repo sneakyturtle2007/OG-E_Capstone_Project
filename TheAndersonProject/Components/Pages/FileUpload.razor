@@ -1,10 +1,12 @@
-
 @rendermode InteractiveServer
+
 @using Microsoft.AspNetCore.Components.Forms
 @using TheAndersonProject.Services
 @using TheAndersonProject.Components
+
 @inject FileData FileData
 @inject MapData MapData
+@inject SiteData SiteData
 @inject NavigationManager navigationManager
 
 
@@ -16,9 +18,9 @@
     @if(FileData.FileName == ""){
         <InputFile OnChange="@FileUploaded"/>
     }else{
-        if(siteName == "" || siteName == "Testing"){
+        if(@SiteData.DisplaySiteInfo){
             <div class="listContainer">
-                <h4>@siteName</h4>
+                <h4>@SiteData.SiteName</h4>
                 <h5 class="listTitle">Most Visited Readers:</h5>
                 <div class="list">
                     @foreach(string readerID in readerIDByEventCount){
@@ -49,9 +51,7 @@
 @code {
     int MAX_FILESIZE = 10000 * 1024; 
     string FileName { get; set; } = "";
-    long FileSize { get; set; } = 0;
     string FileType { get; set; } = "";
-    DateTimeOffset LastModified { get; set; } = DateTimeOffset.MinValue;
     List<ReaderEvent> readerEvents = new List<ReaderEvent>();
     int readerEventsCount = 0;
     List<string> readerIDByEventCount = new List<string>();
@@ -64,10 +64,9 @@
     Dictionary<string, List<string>> userIDByDate = new Dictionary<string, List<string>>();
     string ErrorMessage { get; set; } = "";
     
-    string siteName = "Testing";
     protected override void OnInitialized(){
         if(@FileData.FileName != ""){
-            RestoreFileInfo();
+            RestoreInfo();
         }
     }
     public async Task FileUploaded(InputFileChangeEventArgs e){
@@ -75,9 +74,8 @@
         if (file != null)
         {
             FileName = file.Name;
-            FileSize = file.Size;
+            long FileSize = file.Size;
             FileType = file.ContentType;
-            LastModified = file.LastModified;
             if (file.Size > MAX_FILESIZE)
             {
                 ErrorMessage = "File size exceeds the maximum limit.";
@@ -112,60 +110,15 @@
             }
         }
 
-        readerEventsCount = readerEvents.Count;
-        eventsByDay = OrganizeEvents_StringKey(readerEvents, "day");
-        eventsByUser = OrganizeEvents_StringKey(readerEvents, "user");
-        eventsByReader = OrganizeEvents_StringKey(readerEvents, "reader");
-        eventsByPanel = OrganizeEventsByPanel(readerEvents);
-        userIDByEventCount = OrganizeCount_String(eventsByUser);
         userIDByDate = OrganizeUniqueUserIDByDay(readerEvents);
-        readerIDByEventCount = OrganizeCount_String(eventsByReader);
-        panelIDByEventCount = OrganizeByCount_Int(eventsByPanel);
-        Dictionary<string, List<ReaderEvent>> eventsByLocation = OrganizeEvents_StringKey(readerEvents, "location");
-        SaveFileInfo(eventsByLocation);
+        List<Site> sites = new List<Site>();
+        Dictionary<string, List<ReaderEvent>> eventsByLocation = SiteData.OrganizeEvents_StringKey(readerEvents, "location");
+        foreach(KeyValuePair<string, List<ReaderEvent>> kvp in eventsByLocation){
+            sites.Add(new Site(kvp.Key, kvp.Value));
+        }
+        SaveFileInfo(sites);
         StateHasChanged();
         
-    }
-    Dictionary<string, List<ReaderEvent>> OrganizeEvents_StringKey(List<ReaderEvent> totalEvents, string category){
-        Dictionary<string, List<ReaderEvent>> eventsByCategory = new Dictionary<string, List<ReaderEvent>>();
-        List<ReaderEvent> tempList = new List<ReaderEvent>();
-        string key = "";
-        foreach(ReaderEvent temp in totalEvents){
-            switch(category){
-                case "user":
-                    key = temp.UserID;
-                    break;
-                case "reader":
-                    key = ""+temp.DevID + temp.Machine;
-                    break;
-                case "day":
-                    key = DateTime.Parse(temp.EventTime).ToString("dddd");
-                    break;
-                case "location":
-                    key = temp.Location;
-                    break;
-                default:
-                    break;
-            }
-            if(!eventsByCategory.ContainsKey(key)){
-                tempList = new List<ReaderEvent>();
-                eventsByCategory.Add(key, tempList);
-            }
-            eventsByCategory[key].Add(temp);
-        }
-        return eventsByCategory;
-    }
-    Dictionary<int, List<ReaderEvent>> OrganizeEventsByPanel(List<ReaderEvent> totalEvents){
-        Dictionary<int, List<ReaderEvent>> eventsByPanel = new Dictionary<int, List<ReaderEvent>>();
-        List<ReaderEvent> tempList = new List<ReaderEvent>();
-        foreach(ReaderEvent temp in totalEvents){
-            if(!eventsByPanel.ContainsKey(temp.Machine)){
-                tempList = new List<ReaderEvent>();
-                eventsByPanel.Add(temp.Machine, tempList);
-            }
-            eventsByPanel[temp.Machine].Add(temp);
-        }
-        return eventsByPanel;
     }
 
     Dictionary<string, List<string>> OrganizeUniqueUserIDByDay(List<ReaderEvent> totalEvents){
@@ -182,7 +135,7 @@
         }    
         return userIDByDate;
     }
-    List<int> OrganizeByCount_Int<T>(Dictionary<int, List<T>> dictionary){
+    List<int> OrganizeKeyByCount_Int<T>(Dictionary<int, List<T>> dictionary){
         List<int> sortedList = new List<int>();
         foreach(KeyValuePair<int, List<T>> kvp in dictionary){
             for(int i = 0; i < sortedList.Count; i++){
@@ -221,31 +174,30 @@
         }
         return panelIDs;
     }
-     void SaveFileInfo(Dictionary<string, List<ReaderEvent>> eventsByLocation){
+     void SaveFileInfo(List<Site> sites){
         FileData.FileName = FileName;
-        FileData.FileSize = FileSize;
         FileData.FileType = FileType;
-        FileData.LastModified = LastModified;
-        FileData.ReaderEventsCount = readerEventsCount;
         FileData.ReaderEvents = readerEvents;
-        MapData.EventsByLocation = eventsByLocation;
+        MapData.Sites = sites;
         navigationManager.NavigateTo(navigationManager.Uri, forceLoad: true);
     }
-    void RestoreFileInfo(){
+    void RestoreInfo(){
         FileName = FileData.FileName;
-        FileSize = FileData.FileSize;
         FileType = FileData.FileType;
-        LastModified = FileData.LastModified;
-        readerEventsCount = FileData.ReaderEventsCount;
         readerEvents = FileData.ReaderEvents;
-        eventsByDay = OrganizeEvents_StringKey(readerEvents, "day");
-        eventsByUser = OrganizeEvents_StringKey(readerEvents, "user");
-        eventsByReader = OrganizeEvents_StringKey(readerEvents, "reader");
-        eventsByPanel = OrganizeEventsByPanel(readerEvents);        
-        userIDByEventCount = OrganizeCount_String(eventsByUser);
         userIDByDate = OrganizeUniqueUserIDByDay(readerEvents);
-        readerIDByEventCount = OrganizeCount_String(eventsByReader);
-        panelIDByEventCount = OrganizeByCount_Int(eventsByPanel);
+
+        if(SiteData.DisplaySiteInfo){
+            eventsByDay = SiteData.OrganizeEvents_StringKey(readerEvents, "day");
+            eventsByUser = SiteData.OrganizeEvents_StringKey(readerEvents, "user");
+            eventsByReader = SiteData.OrganizeEvents_StringKey(readerEvents, "reader");
+            eventsByPanel = SiteData.OrganizeEvents_IntKey(readerEvents);        
+            userIDByEventCount = OrganizeCount_String(eventsByUser);
+            
+            readerIDByEventCount = OrganizeCount_String(eventsByReader);
+            panelIDByEventCount = OrganizeKeyByCount_Int(eventsByPanel);
+        }
     }
+    
 }
 

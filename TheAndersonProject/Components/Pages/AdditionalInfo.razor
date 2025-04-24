@@ -1,0 +1,20 @@
+@rendermode InteractiveServer
+@using TheAndersonProject.Services
+@using TheAndersonProject.Components
+
+@inject FileData FileData
+@inject MapData MapData
+
+<div class="main">
+    
+</div>
+
+@code{
+
+    [Parameter]
+    /*
+        The variables contents contains a string with the title of the element selected along with a string with additional information 
+        about the element selected.
+    */
+    public string[]? contents { get; set;} = new string[]{"", ""};
+}

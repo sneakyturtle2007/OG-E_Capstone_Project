@@ -1,7 +1,19 @@
 #map{
-    /*background-image:url('img/map.png');*/
+    background-image:url('img/map.png');/*url('img/BuildingBlueprint.jpg')*/
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
     height: 75%;
     width: 75vh;
     border: 3px solid black;
     border-radius:10px; 
+}
+.back{
+    border: 2px solid black;
+    border-radius: 10px;
+    text-align: center;
+    width: 5vw;
+    height: auto;
+    margin-top: 2%;
+    margin-left: 2%;
 }
