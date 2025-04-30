@@ -8,6 +8,7 @@ builder.Services.AddSingleton<FileData>();
 builder.Services.AddSingleton<ReaderEvent>();
 builder.Services.AddSingleton<SiteData>();
 builder.Services.AddSingleton<Site>();
+builder.Services.AddSingleton<AdditionalInfo>();
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();

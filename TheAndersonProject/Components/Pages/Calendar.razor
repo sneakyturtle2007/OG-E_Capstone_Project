@@ -3,7 +3,8 @@
 @using TheAndersonProject.Components
 
 @inject FileData FileData
-
+@inject AdditionalInfo AdditionalInfo
+@inject NavigationManager navigationManager
 <div class="main">
   <div class="monthManagement">
       <h5>Most Active Days:</h5>
@@ -14,7 +15,7 @@
           <h5 class="monthDay">@currDay.ToString("MMMM")</h5>
         }
         <div class="navButtons" @onclick="NextMonth">&#8680;</div>
-      </div>  
+      </div> 
   </div>
   <table>
     <tr>
@@ -30,7 +31,7 @@
     @for(int week = 0; week < 6; week++){
       <tr>
         @for(int day = 0; day < 7; day++){
-          string gradient = GetGradient(day);
+          
           @if(numOfDay == 1 && currDay.ToString("dddd") != daysOfWeek[day]){
             
             month -= 1;
@@ -40,11 +41,12 @@
             }
             daysInMonth = DateTime.DaysInMonth(year, month);
             numOfDay = daysInMonth - (Array.FindIndex(daysOfWeek,day => day == currDay.ToString("dddd")) - 1);
-            
-            <td style="background-color: rgb(@gradient, @gradient, 255, 1);">@numOfDay</td>
+            string intensity = GetIntensity(numOfDay);
+            <td style="background-color: rgb(@intensity, @intensity, 255, 1);"><div>@numOfDay</div></td>
             numOfDay++; 
           }else{
-            <td style="background-color: rgb(@gradient, @gradient, 255, 1);">@numOfDay</td>
+            string intensity = GetIntensity(numOfDay);
+            <td style="background-color: rgb(@intensity, @intensity, 255, 1);"><div>@numOfDay</div></td>
             numOfDay++;
           }
           @if(numOfDay  > daysInMonth){
@@ -70,8 +72,15 @@
         }
       }
     }
+    
   </table>
-  <AdditionalInfo contents="@temp"/>
+  
+  <div class="heatKey" > </div>
+  <div class="heatKeyValues">
+    <p>0</p>
+    <p>@maxNumOfUniqueIDsPerDay</p>
+  </div>
+  <Info/>
 </div>
 
 
@@ -85,7 +94,7 @@
   string[] daysOfWeek = new string[7]{"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
   
   float maxNumOfUniqueIDsPerDay = 0;
-  string[] temp = new string[]{"lorem ipsum", "hta"};
+  bool tableRendered = false;
 
   [Parameter]
   public Dictionary<string, List<string>> userIDByDate {get; set;} = new Dictionary<string, List<string>>();
@@ -102,18 +111,23 @@
       tempNumOfUniqueIDs = kvp.Value.Count;
       if(tempNumOfUniqueIDs > maxNumOfUniqueIDsPerDay){
         maxNumOfUniqueIDsPerDay = tempNumOfUniqueIDs;
+        //Console.WriteLine(maxNumOfUniqueIDsPerDay + " day: " + kvp.Key);
       }
     }
-  
   }
 
-  string GetGradient(int day){
+  string GetIntensity(int day){
     string tempMonth = month.ToString().PadLeft(2,'0');
     string tempDay = day.ToString().PadLeft(2,'0');
     string resultIntensity = "";
     float colorIntensity;
     if(userIDByDate.ContainsKey($"{year}-{tempMonth}-{tempDay}")){
       colorIntensity = (userIDByDate[$"{year}-{tempMonth}-{tempDay}"].Count / maxNumOfUniqueIDsPerDay) * 255;
+      //Console.WriteLine((userIDByDate[$"{year}-{tempMonth}-{tempDay}"].Count / maxNumOfUniqueIDsPerDay)*100 + "%");
+      //Console.WriteLine("Count: " + userIDByDate[$"{year}-{tempMonth}-{tempDay}"].Count + " Day: " + $"{year}-{tempMonth}-{tempDay}");
+      if(colorIntensity > 165){
+        colorIntensity = 165;
+      }
       resultIntensity = (255 - colorIntensity).ToString();
     }else{
       resultIntensity = "255";
@@ -121,6 +135,7 @@
     return resultIntensity; 
   }
   void PreviousMonth(){
+    tableRendered = false;
     month--;
     if(month <= 0){
       month = 12;
@@ -130,7 +145,7 @@
     StateHasChanged();
   }
   void NextMonth(){
-  
+    tableRendered = false;
     month++;
     if(month > 12){
       month = 1;
@@ -146,4 +161,31 @@
     numOfDay = 1;
     currDay = new DateTime(year, month, 1);
   }
+  void SelectDay(){
+    int day = numOfDay;
+    string tempMonth = month.ToString().PadLeft(2,'0');
+    string tempDay = day.ToString().PadLeft(2,'0');
+    string date = $"{year}-{tempMonth}-{tempDay}";
+    if(userIDByDate.ContainsKey(date)){
+      var temp = userIDByDate[date];
+      List<ReaderEvent> readerEvents = SiteData.ReaderEvents;
+      Dictionary<string, List<ReaderEvent>> eventsPerDay = SiteData.OrganizeEvents_StringKey(readerEvents, "day");
+      foreach(KeyValuePair<string, List<ReaderEvent>> kvp in eventsPerDay){
+        Console.WriteLine("Key: " + kvp.Key + " Value: " + kvp.Value);
+      }
+      if(eventsPerDay.ContainsKey(date)){
+        readerEvents = eventsPerDay[date];
+        Dictionary<string, List<ReaderEvent>> eventsPerReader = SiteData.OrganizeEvents_StringKey(readerEvents, "reader");
+        string content_Readers = "Readers: ";
+        foreach(KeyValuePair<string, List<ReaderEvent>> kvp in eventsPerReader){
+          content_Readers += $"{kvp.Key}, ";
+        }
+        content_Readers.Substring(0,content_Readers.Length -1 );
+        AdditionalInfo.content.Add(content_Readers);
+        StateHasChanged();
+      }
+    }
+  }
+
 }
+

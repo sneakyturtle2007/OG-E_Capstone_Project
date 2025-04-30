@@ -44,10 +44,6 @@ build_metadata.AdditionalFiles.CssScope = b-viwk7d5aor
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9MYXlvdXQvTmF2TWVudS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = b-f5lw9dbrcw
 
-[/home/luis/github/OG-E_Capstone_Project/TheAndersonProject/Components/Pages/AdditionalInfo.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9BZGRpdGlvbmFsSW5mby5yYXpvcg==
-build_metadata.AdditionalFiles.CssScope = b-l4vcyjtmym
-
 [/home/luis/github/OG-E_Capstone_Project/TheAndersonProject/Components/Pages/Calendar.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9DYWxlbmRhci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = b-vsokelsdoc
@@ -59,6 +55,10 @@ build_metadata.AdditionalFiles.CssScope = b-nr6u10gl2j
 [/home/luis/github/OG-E_Capstone_Project/TheAndersonProject/Components/Pages/Home.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9Ib21lLnJhem9y
 build_metadata.AdditionalFiles.CssScope = b-sj0wmxzp23
+
+[/home/luis/github/OG-E_Capstone_Project/TheAndersonProject/Components/Pages/Info.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9JbmZvLnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-5so2s6omzd
 
 [/home/luis/github/OG-E_Capstone_Project/TheAndersonProject/Components/Pages/Map.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9NYXAucmF6b3I=

@@ -1,0 +1,19 @@
+@rendermode InteractiveServer
+@using TheAndersonProject.Services
+@using TheAndersonProject.Components
+
+@inject FileData FileData
+@inject MapData MapData
+@inject AdditionalInfo additionalInfo
+
+<div class="main">
+   @foreach(string info in AdditionalInfo.content){
+        <p>@info</p>
+   }
+</div>
+
+@code{
+    protected override void OnInitialized(){
+        
+    }
+}

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "UvohwoQH2+OobyF/LOxEgKjjyUlznvE0vHMuwyzJF7M=",
+  "Hash": "HrNXEvvo3qpkbzvopsd3011bI+024U23QDPCADHV/d0=",
   "Source": "TheAndersonProject",
   "BasePath": "_content/TheAndersonProject",
   "Mode": "Default",
@@ -31,19 +31,19 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "iwpmq7eh10",
-      "Integrity": "Xt2UUCDcjd2qK4FEWY9j2OmRJQ4CBYWCaGWlH1KVV+Y=",
+      "Fingerprint": "c6q7e8bnwb",
+      "Integrity": "vCF1ADGF08mP/SjS6s84Y0pbNV/33lr54V2F5xsLP88=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "Components/Pages/Map.razor.js"
     },
     {
-      "Identity": "/home/luis/github/OG-E_Capstone_Project/TheAndersonProject/obj/Debug/net9.0/compressed/0u4q2egdhp-84vmr7daz0.gz",
+      "Identity": "/home/luis/github/OG-E_Capstone_Project/TheAndersonProject/obj/Debug/net9.0/compressed/0u4q2egdhp-whambfc1zc.gz",
       "SourceId": "TheAndersonProject",
       "SourceType": "Computed",
       "ContentRoot": "/home/luis/github/OG-E_Capstone_Project/TheAndersonProject/obj/Debug/net9.0/compressed/",
       "BasePath": "_content/TheAndersonProject",
-      "RelativePath": "TheAndersonProject#[.{fingerprint=84vmr7daz0}]?.styles.css.gz",
+      "RelativePath": "TheAndersonProject#[.{fingerprint=whambfc1zc}]?.styles.css.gz",
       "AssetKind": "All",
       "AssetMode": "CurrentProject",
       "AssetRole": "Alternative",
@@ -52,8 +52,8 @@
       "RelatedAsset": "/home/luis/github/OG-E_Capstone_Project/TheAndersonProject/obj/Debug/net9.0/scopedcss/bundle/TheAndersonProject.styles.css",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "gzip",
-      "Fingerprint": "xef2qisua5",
-      "Integrity": "idz6Is5VseM1xq/eclhydT3Zh5ypHWkmkADP1FVY9aA=",
+      "Fingerprint": "ruwcs4jntd",
+      "Integrity": "rbI36PdSB++oGG264kz1RmNmOUaBwU88kx5VLcD22IQ=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "/home/luis/github/OG-E_Capstone_Project/TheAndersonProject/obj/Debug/net9.0/scopedcss/bundle/TheAndersonProject.styles.css"
@@ -626,7 +626,7 @@
       "OriginalItemSpec": "/home/luis/github/OG-E_Capstone_Project/TheAndersonProject/wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.css"
     },
     {
-      "Identity": "/home/luis/github/OG-E_Capstone_Project/TheAndersonProject/obj/Debug/net9.0/compressed/ilx0dnabqm-iwpmq7eh10.gz",
+      "Identity": "/home/luis/github/OG-E_Capstone_Project/TheAndersonProject/obj/Debug/net9.0/compressed/ilx0dnabqm-c6q7e8bnwb.gz",
       "SourceId": "TheAndersonProject",
       "SourceType": "Discovered",
       "ContentRoot": "/home/luis/github/OG-E_Capstone_Project/TheAndersonProject/obj/Debug/net9.0/compressed/",
@@ -640,8 +640,8 @@
       "RelatedAsset": "/home/luis/github/OG-E_Capstone_Project/TheAndersonProject/Components/Pages/Map.razor.js",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "gzip",
-      "Fingerprint": "jaabr3fu18",
-      "Integrity": "2186TIKaNe5bweLlOSW+4Jvi5hw4xJTpwaeUCSaF/eU=",
+      "Fingerprint": "onwtw6ky6q",
+      "Integrity": "lAIpZRirQgZTLmLsIvfTOXVS9qZphrwdsse0kMJ4WTY=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "/home/luis/github/OG-E_Capstone_Project/TheAndersonProject/Components/Pages/Map.razor.js"
@@ -815,12 +815,12 @@
       "OriginalItemSpec": "/home/luis/github/OG-E_Capstone_Project/TheAndersonProject/wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.min.css"
     },
     {
-      "Identity": "/home/luis/github/OG-E_Capstone_Project/TheAndersonProject/obj/Debug/net9.0/compressed/p5fiz6tea4-84vmr7daz0.gz",
+      "Identity": "/home/luis/github/OG-E_Capstone_Project/TheAndersonProject/obj/Debug/net9.0/compressed/p5fiz6tea4-whambfc1zc.gz",
       "SourceId": "TheAndersonProject",
       "SourceType": "Computed",
       "ContentRoot": "/home/luis/github/OG-E_Capstone_Project/TheAndersonProject/obj/Debug/net9.0/compressed/",
       "BasePath": "_content/TheAndersonProject",
-      "RelativePath": "TheAndersonProject#[.{fingerprint=84vmr7daz0}]!.bundle.scp.css.gz",
+      "RelativePath": "TheAndersonProject#[.{fingerprint=whambfc1zc}]!.bundle.scp.css.gz",
       "AssetKind": "All",
       "AssetMode": "Reference",
       "AssetRole": "Alternative",
@@ -829,8 +829,8 @@
       "RelatedAsset": "/home/luis/github/OG-E_Capstone_Project/TheAndersonProject/obj/Debug/net9.0/scopedcss/projectbundle/TheAndersonProject.bundle.scp.css",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "gzip",
-      "Fingerprint": "xef2qisua5",
-      "Integrity": "idz6Is5VseM1xq/eclhydT3Zh5ypHWkmkADP1FVY9aA=",
+      "Fingerprint": "ruwcs4jntd",
+      "Integrity": "rbI36PdSB++oGG264kz1RmNmOUaBwU88kx5VLcD22IQ=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "/home/luis/github/OG-E_Capstone_Project/TheAndersonProject/obj/Debug/net9.0/scopedcss/projectbundle/TheAndersonProject.bundle.scp.css"
@@ -1060,8 +1060,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "ScopedCss",
       "AssetTraitValue": "ApplicationBundle",
-      "Fingerprint": "84vmr7daz0",
-      "Integrity": "CA60obqpi/kP2cfGn+AfxCFVxb22oPzp8aYI6i6+eZM=",
+      "Fingerprint": "whambfc1zc",
+      "Integrity": "XJrgn0x45+vivSjA6vwjI3CozeK2ZyJnPLRWufCw/SQ=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "/home/luis/github/OG-E_Capstone_Project/TheAndersonProject/obj/Debug/net9.0/scopedcss/bundle/TheAndersonProject.styles.css"
@@ -1081,8 +1081,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "ScopedCss",
       "AssetTraitValue": "ProjectBundle",
-      "Fingerprint": "84vmr7daz0",
-      "Integrity": "CA60obqpi/kP2cfGn+AfxCFVxb22oPzp8aYI6i6+eZM=",
+      "Fingerprint": "whambfc1zc",
+      "Integrity": "XJrgn0x45+vivSjA6vwjI3CozeK2ZyJnPLRWufCw/SQ=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "/home/luis/github/OG-E_Capstone_Project/TheAndersonProject/obj/Debug/net9.0/scopedcss/projectbundle/TheAndersonProject.bundle.scp.css"
@@ -2473,7 +2473,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1680"
+          "Value": "3677"
         },
         {
           "Name": "Content-Type",
@@ -2481,17 +2481,17 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"Xt2UUCDcjd2qK4FEWY9j2OmRJQ4CBYWCaGWlH1KVV+Y=\""
+          "Value": "\"vCF1ADGF08mP/SjS6s84Y0pbNV/33lr54V2F5xsLP88=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 24 Apr 2025 18:53:49 GMT"
+          "Value": "Tue, 29 Apr 2025 20:34:12 GMT"
         }
       ],
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-Xt2UUCDcjd2qK4FEWY9j2OmRJQ4CBYWCaGWlH1KVV+Y="
+          "Value": "sha256-vCF1ADGF08mP/SjS6s84Y0pbNV/33lr54V2F5xsLP88="
         },
         {
           "Name": "script-type",
@@ -2501,12 +2501,12 @@
     },
     {
       "Route": "Components/Pages/Map.razor.js",
-      "AssetFile": "/home/luis/github/OG-E_Capstone_Project/TheAndersonProject/obj/Debug/net9.0/compressed/ilx0dnabqm-iwpmq7eh10.gz",
+      "AssetFile": "/home/luis/github/OG-E_Capstone_Project/TheAndersonProject/obj/Debug/net9.0/compressed/ilx0dnabqm-c6q7e8bnwb.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.001204819277"
+          "Quality": "0.000734753857"
         }
       ],
       "ResponseHeaders": [
@@ -2516,15 +2516,15 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "829"
+          "Value": "1360"
         },
         {
           "Name": "ETag",
-          "Value": "\"2186TIKaNe5bweLlOSW+4Jvi5hw4xJTpwaeUCSaF/eU=\""
+          "Value": "\"lAIpZRirQgZTLmLsIvfTOXVS9qZphrwdsse0kMJ4WTY=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 24 Apr 2025 18:53:49 GMT"
+          "Value": "Tue, 29 Apr 2025 20:34:12 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2544,13 +2544,13 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"Xt2UUCDcjd2qK4FEWY9j2OmRJQ4CBYWCaGWlH1KVV+Y=\""
+          "Value": "W/\"vCF1ADGF08mP/SjS6s84Y0pbNV/33lr54V2F5xsLP88=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-Xt2UUCDcjd2qK4FEWY9j2OmRJQ4CBYWCaGWlH1KVV+Y="
+          "Value": "sha256-vCF1ADGF08mP/SjS6s84Y0pbNV/33lr54V2F5xsLP88="
         },
         {
           "Name": "script-type",
@@ -2560,7 +2560,7 @@
     },
     {
       "Route": "Components/Pages/Map.razor.js.gz",
-      "AssetFile": "/home/luis/github/OG-E_Capstone_Project/TheAndersonProject/obj/Debug/net9.0/compressed/ilx0dnabqm-iwpmq7eh10.gz",
+      "AssetFile": "/home/luis/github/OG-E_Capstone_Project/TheAndersonProject/obj/Debug/net9.0/compressed/ilx0dnabqm-c6q7e8bnwb.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -2569,7 +2569,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "829"
+          "Value": "1360"
         },
         {
           "Name": "Content-Type",
@@ -2577,11 +2577,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"2186TIKaNe5bweLlOSW+4Jvi5hw4xJTpwaeUCSaF/eU=\""
+          "Value": "\"lAIpZRirQgZTLmLsIvfTOXVS9qZphrwdsse0kMJ4WTY=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 24 Apr 2025 18:53:49 GMT"
+          "Value": "Tue, 29 Apr 2025 20:34:12 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2599,7 +2599,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-2186TIKaNe5bweLlOSW+4Jvi5hw4xJTpwaeUCSaF/eU="
+          "Value": "sha256-lAIpZRirQgZTLmLsIvfTOXVS9qZphrwdsse0kMJ4WTY="
         }
       ]
     },
@@ -16208,13 +16208,13 @@
       ]
     },
     {
-      "Route": "TheAndersonProject.84vmr7daz0.bundle.scp.css",
-      "AssetFile": "/home/luis/github/OG-E_Capstone_Project/TheAndersonProject/obj/Debug/net9.0/compressed/p5fiz6tea4-84vmr7daz0.gz",
+      "Route": "TheAndersonProject.bundle.scp.css",
+      "AssetFile": "/home/luis/github/OG-E_Capstone_Project/TheAndersonProject/obj/Debug/net9.0/compressed/p5fiz6tea4-whambfc1zc.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.000424808836"
+          "Quality": "0.000409668169"
         }
       ],
       "ResponseHeaders": [
@@ -16224,19 +16224,19 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "2353"
+          "Value": "2440"
         },
         {
           "Name": "ETag",
-          "Value": "\"idz6Is5VseM1xq/eclhydT3Zh5ypHWkmkADP1FVY9aA=\""
+          "Value": "\"rbI36PdSB++oGG264kz1RmNmOUaBwU88kx5VLcD22IQ=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 24 Apr 2025 18:44:59 GMT"
+          "Value": "Tue, 29 Apr 2025 20:34:24 GMT"
         },
         {
           "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
+          "Value": "no-cache"
         },
         {
           "Name": "Content-Encoding",
@@ -16252,26 +16252,18 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"CA60obqpi/kP2cfGn+AfxCFVxb22oPzp8aYI6i6+eZM=\""
+          "Value": "W/\"XJrgn0x45+vivSjA6vwjI3CozeK2ZyJnPLRWufCw/SQ=\""
         }
       ],
       "EndpointProperties": [
         {
-          "Name": "fingerprint",
-          "Value": "84vmr7daz0"
-        },
-        {
-          "Name": "label",
-          "Value": "TheAndersonProject.bundle.scp.css"
-        },
-        {
           "Name": "integrity",
-          "Value": "sha256-CA60obqpi/kP2cfGn+AfxCFVxb22oPzp8aYI6i6+eZM="
+          "Value": "sha256-XJrgn0x45+vivSjA6vwjI3CozeK2ZyJnPLRWufCw/SQ="
         }
       ]
     },
     {
-      "Route": "TheAndersonProject.84vmr7daz0.bundle.scp.css",
+      "Route": "TheAndersonProject.bundle.scp.css",
       "AssetFile": "/home/luis/github/OG-E_Capstone_Project/TheAndersonProject/obj/Debug/net9.0/scopedcss/projectbundle/TheAndersonProject.bundle.scp.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -16281,7 +16273,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "8467"
+          "Value": "8845"
         },
         {
           "Name": "Content-Type",
@@ -16289,11 +16281,293 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"CA60obqpi/kP2cfGn+AfxCFVxb22oPzp8aYI6i6+eZM=\""
+          "Value": "\"XJrgn0x45+vivSjA6vwjI3CozeK2ZyJnPLRWufCw/SQ=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 24 Apr 2025 18:44:59 GMT"
+          "Value": "Tue, 29 Apr 2025 20:34:24 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-XJrgn0x45+vivSjA6vwjI3CozeK2ZyJnPLRWufCw/SQ="
+        }
+      ]
+    },
+    {
+      "Route": "TheAndersonProject.bundle.scp.css.gz",
+      "AssetFile": "/home/luis/github/OG-E_Capstone_Project/TheAndersonProject/obj/Debug/net9.0/compressed/p5fiz6tea4-whambfc1zc.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2440"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"rbI36PdSB++oGG264kz1RmNmOUaBwU88kx5VLcD22IQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 29 Apr 2025 20:34:24 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-rbI36PdSB++oGG264kz1RmNmOUaBwU88kx5VLcD22IQ="
+        }
+      ]
+    },
+    {
+      "Route": "TheAndersonProject.styles.css",
+      "AssetFile": "/home/luis/github/OG-E_Capstone_Project/TheAndersonProject/obj/Debug/net9.0/compressed/0u4q2egdhp-whambfc1zc.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.000409668169"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2440"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"rbI36PdSB++oGG264kz1RmNmOUaBwU88kx5VLcD22IQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 29 Apr 2025 20:34:24 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"XJrgn0x45+vivSjA6vwjI3CozeK2ZyJnPLRWufCw/SQ=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-XJrgn0x45+vivSjA6vwjI3CozeK2ZyJnPLRWufCw/SQ="
+        }
+      ]
+    },
+    {
+      "Route": "TheAndersonProject.styles.css",
+      "AssetFile": "/home/luis/github/OG-E_Capstone_Project/TheAndersonProject/obj/Debug/net9.0/scopedcss/bundle/TheAndersonProject.styles.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "8845"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"XJrgn0x45+vivSjA6vwjI3CozeK2ZyJnPLRWufCw/SQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 29 Apr 2025 20:34:24 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-XJrgn0x45+vivSjA6vwjI3CozeK2ZyJnPLRWufCw/SQ="
+        }
+      ]
+    },
+    {
+      "Route": "TheAndersonProject.styles.css.gz",
+      "AssetFile": "/home/luis/github/OG-E_Capstone_Project/TheAndersonProject/obj/Debug/net9.0/compressed/0u4q2egdhp-whambfc1zc.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2440"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"rbI36PdSB++oGG264kz1RmNmOUaBwU88kx5VLcD22IQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 29 Apr 2025 20:34:24 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-rbI36PdSB++oGG264kz1RmNmOUaBwU88kx5VLcD22IQ="
+        }
+      ]
+    },
+    {
+      "Route": "TheAndersonProject.whambfc1zc.bundle.scp.css",
+      "AssetFile": "/home/luis/github/OG-E_Capstone_Project/TheAndersonProject/obj/Debug/net9.0/compressed/p5fiz6tea4-whambfc1zc.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.000409668169"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2440"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"rbI36PdSB++oGG264kz1RmNmOUaBwU88kx5VLcD22IQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 29 Apr 2025 20:34:24 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"XJrgn0x45+vivSjA6vwjI3CozeK2ZyJnPLRWufCw/SQ=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "whambfc1zc"
+        },
+        {
+          "Name": "label",
+          "Value": "TheAndersonProject.bundle.scp.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-XJrgn0x45+vivSjA6vwjI3CozeK2ZyJnPLRWufCw/SQ="
+        }
+      ]
+    },
+    {
+      "Route": "TheAndersonProject.whambfc1zc.bundle.scp.css",
+      "AssetFile": "/home/luis/github/OG-E_Capstone_Project/TheAndersonProject/obj/Debug/net9.0/scopedcss/projectbundle/TheAndersonProject.bundle.scp.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "8845"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"XJrgn0x45+vivSjA6vwjI3CozeK2ZyJnPLRWufCw/SQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 29 Apr 2025 20:34:24 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -16303,7 +16577,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "84vmr7daz0"
+          "Value": "whambfc1zc"
         },
         {
           "Name": "label",
@@ -16311,13 +16585,13 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-CA60obqpi/kP2cfGn+AfxCFVxb22oPzp8aYI6i6+eZM="
+          "Value": "sha256-XJrgn0x45+vivSjA6vwjI3CozeK2ZyJnPLRWufCw/SQ="
         }
       ]
     },
     {
-      "Route": "TheAndersonProject.84vmr7daz0.bundle.scp.css.gz",
-      "AssetFile": "/home/luis/github/OG-E_Capstone_Project/TheAndersonProject/obj/Debug/net9.0/compressed/p5fiz6tea4-84vmr7daz0.gz",
+      "Route": "TheAndersonProject.whambfc1zc.bundle.scp.css.gz",
+      "AssetFile": "/home/luis/github/OG-E_Capstone_Project/TheAndersonProject/obj/Debug/net9.0/compressed/p5fiz6tea4-whambfc1zc.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -16326,7 +16600,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "2353"
+          "Value": "2440"
         },
         {
           "Name": "Content-Type",
@@ -16334,11 +16608,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"idz6Is5VseM1xq/eclhydT3Zh5ypHWkmkADP1FVY9aA=\""
+          "Value": "\"rbI36PdSB++oGG264kz1RmNmOUaBwU88kx5VLcD22IQ=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 24 Apr 2025 18:44:59 GMT"
+          "Value": "Tue, 29 Apr 2025 20:34:24 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -16356,7 +16630,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "84vmr7daz0"
+          "Value": "whambfc1zc"
         },
         {
           "Name": "label",
@@ -16364,18 +16638,18 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-idz6Is5VseM1xq/eclhydT3Zh5ypHWkmkADP1FVY9aA="
+          "Value": "sha256-rbI36PdSB++oGG264kz1RmNmOUaBwU88kx5VLcD22IQ="
         }
       ]
     },
     {
-      "Route": "TheAndersonProject.84vmr7daz0.styles.css",
-      "AssetFile": "/home/luis/github/OG-E_Capstone_Project/TheAndersonProject/obj/Debug/net9.0/compressed/0u4q2egdhp-84vmr7daz0.gz",
+      "Route": "TheAndersonProject.whambfc1zc.styles.css",
+      "AssetFile": "/home/luis/github/OG-E_Capstone_Project/TheAndersonProject/obj/Debug/net9.0/compressed/0u4q2egdhp-whambfc1zc.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.000424808836"
+          "Quality": "0.000409668169"
         }
       ],
       "ResponseHeaders": [
@@ -16385,15 +16659,15 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "2353"
+          "Value": "2440"
         },
         {
           "Name": "ETag",
-          "Value": "\"idz6Is5VseM1xq/eclhydT3Zh5ypHWkmkADP1FVY9aA=\""
+          "Value": "\"rbI36PdSB++oGG264kz1RmNmOUaBwU88kx5VLcD22IQ=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 24 Apr 2025 18:44:59 GMT"
+          "Value": "Tue, 29 Apr 2025 20:34:24 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -16413,13 +16687,13 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"CA60obqpi/kP2cfGn+AfxCFVxb22oPzp8aYI6i6+eZM=\""
+          "Value": "W/\"XJrgn0x45+vivSjA6vwjI3CozeK2ZyJnPLRWufCw/SQ=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "84vmr7daz0"
+          "Value": "whambfc1zc"
         },
         {
           "Name": "label",
@@ -16427,12 +16701,12 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-CA60obqpi/kP2cfGn+AfxCFVxb22oPzp8aYI6i6+eZM="
+          "Value": "sha256-XJrgn0x45+vivSjA6vwjI3CozeK2ZyJnPLRWufCw/SQ="
         }
       ]
     },
     {
-      "Route": "TheAndersonProject.84vmr7daz0.styles.css",
+      "Route": "TheAndersonProject.whambfc1zc.styles.css",
       "AssetFile": "/home/luis/github/OG-E_Capstone_Project/TheAndersonProject/obj/Debug/net9.0/scopedcss/bundle/TheAndersonProject.styles.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -16442,7 +16716,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "8467"
+          "Value": "8845"
         },
         {
           "Name": "Content-Type",
@@ -16450,11 +16724,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"CA60obqpi/kP2cfGn+AfxCFVxb22oPzp8aYI6i6+eZM=\""
+          "Value": "\"XJrgn0x45+vivSjA6vwjI3CozeK2ZyJnPLRWufCw/SQ=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 24 Apr 2025 18:44:59 GMT"
+          "Value": "Tue, 29 Apr 2025 20:34:24 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -16464,7 +16738,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "84vmr7daz0"
+          "Value": "whambfc1zc"
         },
         {
           "Name": "label",
@@ -16472,13 +16746,13 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-CA60obqpi/kP2cfGn+AfxCFVxb22oPzp8aYI6i6+eZM="
+          "Value": "sha256-XJrgn0x45+vivSjA6vwjI3CozeK2ZyJnPLRWufCw/SQ="
         }
       ]
     },
     {
-      "Route": "TheAndersonProject.84vmr7daz0.styles.css.gz",
-      "AssetFile": "/home/luis/github/OG-E_Capstone_Project/TheAndersonProject/obj/Debug/net9.0/compressed/0u4q2egdhp-84vmr7daz0.gz",
+      "Route": "TheAndersonProject.whambfc1zc.styles.css.gz",
+      "AssetFile": "/home/luis/github/OG-E_Capstone_Project/TheAndersonProject/obj/Debug/net9.0/compressed/0u4q2egdhp-whambfc1zc.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -16487,7 +16761,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "2353"
+          "Value": "2440"
         },
         {
           "Name": "Content-Type",
@@ -16495,11 +16769,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"idz6Is5VseM1xq/eclhydT3Zh5ypHWkmkADP1FVY9aA=\""
+          "Value": "\"rbI36PdSB++oGG264kz1RmNmOUaBwU88kx5VLcD22IQ=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 24 Apr 2025 18:44:59 GMT"
+          "Value": "Tue, 29 Apr 2025 20:34:24 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -16517,7 +16791,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "84vmr7daz0"
+          "Value": "whambfc1zc"
         },
         {
           "Name": "label",
@@ -16525,281 +16799,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-idz6Is5VseM1xq/eclhydT3Zh5ypHWkmkADP1FVY9aA="
-        }
-      ]
-    },
-    {
-      "Route": "TheAndersonProject.bundle.scp.css",
-      "AssetFile": "/home/luis/github/OG-E_Capstone_Project/TheAndersonProject/obj/Debug/net9.0/compressed/p5fiz6tea4-84vmr7daz0.gz",
-      "Selectors": [
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip",
-          "Quality": "0.000424808836"
-        }
-      ],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "2353"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"idz6Is5VseM1xq/eclhydT3Zh5ypHWkmkADP1FVY9aA=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Thu, 24 Apr 2025 18:44:59 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        },
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip"
-        },
-        {
-          "Name": "Vary",
-          "Value": "Content-Encoding"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "W/\"CA60obqpi/kP2cfGn+AfxCFVxb22oPzp8aYI6i6+eZM=\""
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-CA60obqpi/kP2cfGn+AfxCFVxb22oPzp8aYI6i6+eZM="
-        }
-      ]
-    },
-    {
-      "Route": "TheAndersonProject.bundle.scp.css",
-      "AssetFile": "/home/luis/github/OG-E_Capstone_Project/TheAndersonProject/obj/Debug/net9.0/scopedcss/projectbundle/TheAndersonProject.bundle.scp.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "8467"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"CA60obqpi/kP2cfGn+AfxCFVxb22oPzp8aYI6i6+eZM=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Thu, 24 Apr 2025 18:44:59 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-CA60obqpi/kP2cfGn+AfxCFVxb22oPzp8aYI6i6+eZM="
-        }
-      ]
-    },
-    {
-      "Route": "TheAndersonProject.bundle.scp.css.gz",
-      "AssetFile": "/home/luis/github/OG-E_Capstone_Project/TheAndersonProject/obj/Debug/net9.0/compressed/p5fiz6tea4-84vmr7daz0.gz",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "2353"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"idz6Is5VseM1xq/eclhydT3Zh5ypHWkmkADP1FVY9aA=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Thu, 24 Apr 2025 18:44:59 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        },
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip"
-        },
-        {
-          "Name": "Vary",
-          "Value": "Content-Encoding"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-idz6Is5VseM1xq/eclhydT3Zh5ypHWkmkADP1FVY9aA="
-        }
-      ]
-    },
-    {
-      "Route": "TheAndersonProject.styles.css",
-      "AssetFile": "/home/luis/github/OG-E_Capstone_Project/TheAndersonProject/obj/Debug/net9.0/compressed/0u4q2egdhp-84vmr7daz0.gz",
-      "Selectors": [
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip",
-          "Quality": "0.000424808836"
-        }
-      ],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "2353"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"idz6Is5VseM1xq/eclhydT3Zh5ypHWkmkADP1FVY9aA=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Thu, 24 Apr 2025 18:44:59 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        },
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip"
-        },
-        {
-          "Name": "Vary",
-          "Value": "Content-Encoding"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "W/\"CA60obqpi/kP2cfGn+AfxCFVxb22oPzp8aYI6i6+eZM=\""
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-CA60obqpi/kP2cfGn+AfxCFVxb22oPzp8aYI6i6+eZM="
-        }
-      ]
-    },
-    {
-      "Route": "TheAndersonProject.styles.css",
-      "AssetFile": "/home/luis/github/OG-E_Capstone_Project/TheAndersonProject/obj/Debug/net9.0/scopedcss/bundle/TheAndersonProject.styles.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "8467"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"CA60obqpi/kP2cfGn+AfxCFVxb22oPzp8aYI6i6+eZM=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Thu, 24 Apr 2025 18:44:59 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-CA60obqpi/kP2cfGn+AfxCFVxb22oPzp8aYI6i6+eZM="
-        }
-      ]
-    },
-    {
-      "Route": "TheAndersonProject.styles.css.gz",
-      "AssetFile": "/home/luis/github/OG-E_Capstone_Project/TheAndersonProject/obj/Debug/net9.0/compressed/0u4q2egdhp-84vmr7daz0.gz",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "2353"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"idz6Is5VseM1xq/eclhydT3Zh5ypHWkmkADP1FVY9aA=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Thu, 24 Apr 2025 18:44:59 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        },
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip"
-        },
-        {
-          "Name": "Vary",
-          "Value": "Content-Encoding"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-idz6Is5VseM1xq/eclhydT3Zh5ypHWkmkADP1FVY9aA="
+          "Value": "sha256-rbI36PdSB++oGG264kz1RmNmOUaBwU88kx5VLcD22IQ="
         }
       ]
     }

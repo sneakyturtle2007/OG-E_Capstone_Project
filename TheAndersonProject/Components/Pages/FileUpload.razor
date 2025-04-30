@@ -100,7 +100,7 @@
             if (row.Length >= 6)
             {
                 readerEvents.Add(new ReaderEvent(
-                    row[0],
+                    DateTime.Parse(row[0]).ToString("yyyy-MM-dd"),
                     row[1],
                     row[2],
                     row[3],
@@ -165,15 +165,6 @@
         }
         return sortedList;
     }
-    List<int> GetPanelIDs(List<ReaderEvent> totalEvents){
-        List<int> panelIDs = new List<int>();
-        foreach(ReaderEvent temp in totalEvents){
-            if(!panelIDs.Contains(temp.Machine)){
-                panelIDs.Add(temp.Machine);
-            }
-        }
-        return panelIDs;
-    }
      void SaveFileInfo(List<Site> sites){
         FileData.FileName = FileName;
         FileData.FileType = FileType;
@@ -198,6 +189,5 @@
             panelIDByEventCount = OrganizeKeyByCount_Int(eventsByPanel);
         }
     }
-    
 }
 

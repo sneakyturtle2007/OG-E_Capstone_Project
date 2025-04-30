@@ -205,12 +205,6 @@ main[b-viwk7d5aor] {
         overflow-y: auto;
     }
 }
-/* _content/TheAndersonProject/Components/Pages/AdditionalInfo.razor.rz.scp.css */
-.main[b-l4vcyjtmym]{
-    border: 3px solid black;
-    border-radius: 10px;
-    height: 30vh;
-}
 /* _content/TheAndersonProject/Components/Pages/Calendar.razor.rz.scp.css */
 table[b-vsokelsdoc]{
   text-align: center;
@@ -224,7 +218,7 @@ td[b-vsokelsdoc]{
     flex-direction: column;
     justify-content: center;
     align-items: top;
-    height: 25vh;
+    height: 60vh;
     width: 30vw;
     padding-left: 5%;
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -247,7 +241,17 @@ td[b-vsokelsdoc]{
 .monthDay[b-vsokelsdoc]{
   align-self: center;
 }
-
+.heatKey[b-vsokelsdoc]{
+  height: 5%;
+  width: 100%;
+  border: 3px solid black;
+  border-radius: 10px;
+  background: linear-gradient(to right, white,rgb(90,90,255));
+}
+.heatKeyValues[b-vsokelsdoc]{
+  display:flex;
+  justify-content: space-between;
+}
 
 /* _content/TheAndersonProject/Components/Pages/FileUpload.razor.rz.scp.css */
 .main[b-nr6u10gl2j]{
@@ -301,6 +305,17 @@ td[b-vsokelsdoc]{
     height: auto;
 }
 
+/* _content/TheAndersonProject/Components/Pages/Info.razor.rz.scp.css */
+p[b-5so2s6omzd]{
+  padding: 1%;
+}
+.main[b-5so2s6omzd]{
+    border: 3px solid black;
+    border-radius: 10px;
+    height: 30vh;
+    overflow-y: auto;
+}
+
 /* _content/TheAndersonProject/Components/Pages/Map.razor.rz.scp.css */
 #map[b-wd8kt97pvu]{
     background-image:url('img/map.png');/*url('img/BuildingBlueprint.jpg')*/
@@ -312,7 +327,8 @@ td[b-vsokelsdoc]{
     border: 3px solid black;
     border-radius:10px; 
 }
-.back[b-wd8kt97pvu]{
+.backButton[b-wd8kt97pvu]{
+    background-color: white;
     border: 2px solid black;
     border-radius: 10px;
     text-align: center;
@@ -320,4 +336,6 @@ td[b-vsokelsdoc]{
     height: auto;
     margin-top: 2%;
     margin-left: 2%;
+    position: absolute;
+    z-index: 99999999;
 }

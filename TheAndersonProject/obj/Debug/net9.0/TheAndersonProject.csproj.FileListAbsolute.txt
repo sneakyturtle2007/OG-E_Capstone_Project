@@ -192,10 +192,10 @@ C:/Users/Luis Blake/Desktop/GitHub/OG-E_Capstone_Project/TheAndersonProject/obj/
 /home/luis/github/OG-E_Capstone_Project/TheAndersonProject/obj/Debug/net9.0/TheAndersonProject.sourcelink.json
 /home/luis/github/OG-E_Capstone_Project/TheAndersonProject/obj/Debug/net9.0/scopedcss/Components/Layout/MainLayout.razor.rz.scp.css
 /home/luis/github/OG-E_Capstone_Project/TheAndersonProject/obj/Debug/net9.0/scopedcss/Components/Layout/NavMenu.razor.rz.scp.css
-/home/luis/github/OG-E_Capstone_Project/TheAndersonProject/obj/Debug/net9.0/scopedcss/Components/Pages/AdditionalInfo.razor.rz.scp.css
 /home/luis/github/OG-E_Capstone_Project/TheAndersonProject/obj/Debug/net9.0/scopedcss/Components/Pages/Calendar.razor.rz.scp.css
 /home/luis/github/OG-E_Capstone_Project/TheAndersonProject/obj/Debug/net9.0/scopedcss/Components/Pages/FileUpload.razor.rz.scp.css
 /home/luis/github/OG-E_Capstone_Project/TheAndersonProject/obj/Debug/net9.0/scopedcss/Components/Pages/Home.razor.rz.scp.css
+/home/luis/github/OG-E_Capstone_Project/TheAndersonProject/obj/Debug/net9.0/scopedcss/Components/Pages/Info.razor.rz.scp.css
 /home/luis/github/OG-E_Capstone_Project/TheAndersonProject/obj/Debug/net9.0/scopedcss/Components/Pages/Map.razor.rz.scp.css
 /home/luis/github/OG-E_Capstone_Project/TheAndersonProject/obj/Debug/net9.0/scopedcss/bundle/TheAndersonProject.styles.css
 /home/luis/github/OG-E_Capstone_Project/TheAndersonProject/obj/Debug/net9.0/scopedcss/projectbundle/TheAndersonProject.bundle.scp.css
@@ -244,6 +244,9 @@ C:/Users/Luis Blake/Desktop/GitHub/OG-E_Capstone_Project/TheAndersonProject/obj/
 /home/luis/github/OG-E_Capstone_Project/TheAndersonProject/obj/Debug/net9.0/compressed/30s7u7x8vu-h1s4sie4z3.gz
 /home/luis/github/OG-E_Capstone_Project/TheAndersonProject/obj/Debug/net9.0/compressed/8h5zsrty0k-63fj8s7r0e.gz
 /home/luis/github/OG-E_Capstone_Project/TheAndersonProject/obj/Debug/net9.0/compressed/1ebpo84nvo-0j3bgjxly4.gz
+/home/luis/github/OG-E_Capstone_Project/TheAndersonProject/obj/Debug/net9.0/compressed/ilx0dnabqm-c6q7e8bnwb.gz
+/home/luis/github/OG-E_Capstone_Project/TheAndersonProject/obj/Debug/net9.0/compressed/0u4q2egdhp-whambfc1zc.gz
+/home/luis/github/OG-E_Capstone_Project/TheAndersonProject/obj/Debug/net9.0/compressed/p5fiz6tea4-whambfc1zc.gz
 /home/luis/github/OG-E_Capstone_Project/TheAndersonProject/obj/Debug/net9.0/staticwebassets.build.json
 /home/luis/github/OG-E_Capstone_Project/TheAndersonProject/obj/Debug/net9.0/staticwebassets.development.json
 /home/luis/github/OG-E_Capstone_Project/TheAndersonProject/obj/Debug/net9.0/staticwebassets.build.endpoints.json
@@ -259,6 +262,3 @@ C:/Users/Luis Blake/Desktop/GitHub/OG-E_Capstone_Project/TheAndersonProject/obj/
 /home/luis/github/OG-E_Capstone_Project/TheAndersonProject/obj/Debug/net9.0/TheAndersonProject.pdb
 /home/luis/github/OG-E_Capstone_Project/TheAndersonProject/obj/Debug/net9.0/TheAndersonProject.genruntimeconfig.cache
 /home/luis/github/OG-E_Capstone_Project/TheAndersonProject/obj/Debug/net9.0/ref/TheAndersonProject.dll
-/home/luis/github/OG-E_Capstone_Project/TheAndersonProject/obj/Debug/net9.0/compressed/0u4q2egdhp-84vmr7daz0.gz
-/home/luis/github/OG-E_Capstone_Project/TheAndersonProject/obj/Debug/net9.0/compressed/p5fiz6tea4-84vmr7daz0.gz
-/home/luis/github/OG-E_Capstone_Project/TheAndersonProject/obj/Debug/net9.0/compressed/ilx0dnabqm-iwpmq7eh10.gz

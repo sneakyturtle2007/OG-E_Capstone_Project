@@ -7,13 +7,14 @@
 @inject IJSRuntime JSRuntime
 @inject MapData MapData
 @inject SiteData SiteData
+@inject AdditionalInfo AdditionalInfo
 @inject NavigationManager navigationManager
 
 @if(SiteData.DisplaySiteInfo){
     
     <div id="map" style="background-image:url('img/BuildingBlueprint.jpg')">
         @if(SiteData.DisplaySiteInfo){
-            <div class="back" style="align-self: start;" @onclick="@back">Back</div>
+            <div class="backButton" style="align-self: start;" @onclick="@back">Back</div>
         }
     </div>
 }else{
@@ -24,24 +25,41 @@
 @code{
     public static List<Site> sites { get; set; } = new List<Site>();
     private static IJSObjectReference? module;
-    private static List<double[]> siteCoordinates = new List<double[]>();
-
+    private static List<double[]> elementCoordinates = new List<double[]>();
+    
     protected override async Task OnAfterRenderAsync(bool firstRender){
-        RestoreMapInfo();
+        RestoreMapInfo("sites");
         if (firstRender && sites.Count > 0 ){
             module = await JSRuntime.InvokeAsync<IJSObjectReference>("import",
                 "./Components/Pages/Map.razor.js");
             if(SiteData.DisplaySiteInfo){
+                RestoreMapInfo("readers&panels");
                 List<ReaderEvent> readerEvents = SiteData.ReaderEvents;
                 Dictionary<string, List<ReaderEvent>> eventsByReader = SiteData.OrganizeEvents_StringKey(readerEvents, "reader");
+                
                 Dictionary<int, List<ReaderEvent>> eventsByPanel = SiteData.OrganizeEvents_IntKey(readerEvents);
+                string[] readerNames = new string[eventsByReader.Count];
+                int[] panelNames = new int[eventsByPanel.Count];
+                int tempIndex = 0;
+                foreach(KeyValuePair<string, List<ReaderEvent>> kvp in eventsByReader){
+                    readerNames[tempIndex] = kvp.Key;
+                    tempIndex++;
+                }
+                tempIndex = 0;
+                foreach(KeyValuePair<int, List<ReaderEvent>> kvp in eventsByPanel){
+                    panelNames[tempIndex] = kvp.Key;
+                    tempIndex++;
+                }
+                elementCoordinates = await module.InvokeAsync<List<double[]>>("SiteInit", readerNames, panelNames, elementCoordinates);
+                SaveMapInfo("readers&panels");
             }else{
+                
                 string[] siteNames = new string[sites.Count];
                 for(int i = 0; i < sites.Count; i++){
                     siteNames[i] = sites[i].SiteName;
                 }
-                siteCoordinates = await module.InvokeAsync<List<double[]>>("MapInit", siteNames, siteCoordinates);
-                SaveMapInfo();
+                elementCoordinates = await module.InvokeAsync<List<double[]>>("MapInit", siteNames, elementCoordinates);
+                SaveMapInfo("sites");
             }
         }
     }
@@ -49,27 +67,60 @@
         SiteData.DisplaySiteInfo = false;
         navigationManager.NavigateTo(navigationManager.Uri, forceLoad: true);
     }
-    void SaveMapInfo(){
-        if(sites.Count > 0){
-            MapData.Sites = sites;
-            MapData.SiteCoordinates = siteCoordinates;
+    void SaveMapInfo(string category){
+        switch(category){
+            case "sites":
+                MapData.SiteCoordinates = elementCoordinates;
+                break;
+            case "readers&panels":
+                MapData.Reader_PanelCoordinates = elementCoordinates;
+                break;
+            default:
+                break;
         }
+        
     }
-    void RestoreMapInfo(){
-        sites = MapData.Sites;
-        siteCoordinates = MapData.SiteCoordinates;
+    void RestoreMapInfo(string category){
+        if(category == "sites"){
+            sites = MapData.Sites;
+            elementCoordinates = MapData.SiteCoordinates;
+        }else{
+            elementCoordinates = MapData.Reader_PanelCoordinates;
+        }
+        
     }
-    
+
     [JSInvokable]
-    public static void SelectSite(string siteName){
-        foreach(Site site in sites){
-            Console.WriteLine(site.SiteName);
-            if(site.SiteName == siteName){
-                SiteData.DisplaySiteInfo = true;
-                SiteData.SiteName = site.SiteName;  
-                SiteData.ReaderEvents = site.ReaderEvents;
-                SiteData.ReaderEventsCount = site.ReaderEvents.Count;
-            }
+    public static void SelectElement(string elementName, string category){
+        switch(category){
+            case "sites":
+                foreach(Site site in sites){
+                    if(site.SiteName == elementName){
+                        SiteData.SiteName = site.SiteName;  
+                        SiteData.ReaderEvents = site.ReaderEvents;
+                        SiteData.ReaderEventsCount = site.ReaderEvents.Count;
+                        SiteData.DisplaySiteInfo = true;
+                    }
+                }
+                break;
+            case "readers":
+                AdditionalInfo.content.Clear();
+                AdditionalInfo.content.Add("Reader: " + elementName);
+                string temp;
+                foreach(ReaderEvent readerEvent in SiteData.ReaderEvents){
+                    temp = "" + readerEvent.DevID + readerEvent.Machine;
+                    if(temp == elementName){
+                        AdditionalInfo.content.Add("Parent Panel: " + readerEvent.Machine);
+                        break;
+                    }
+                }
+                //AdditionalInfo.content.Add("Interactions: ");
+                break;
+            case "panels":
+                
+                break;
+            default:
+                break;
         }
     }
     async ValueTask IAsyncDisposable.DisposeAsync(){
@@ -83,5 +134,6 @@
             }
         }
     }
+    
 }
 

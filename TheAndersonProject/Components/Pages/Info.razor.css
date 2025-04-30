@@ -1,5 +1,10 @@
-.main[b-l4vcyjtmym]{
+p{
+  padding: 1%;
+}
+.main{
     border: 3px solid black;
     border-radius: 10px;
     height: 30vh;
+    overflow-y: auto;
 }
+
