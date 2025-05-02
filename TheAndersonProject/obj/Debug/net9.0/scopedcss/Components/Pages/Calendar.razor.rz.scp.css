@@ -1,11 +1,11 @@
-table[b-3vplxajmae]{
+table[b-vsokelsdoc]{
   text-align: center;
 }
-td[b-3vplxajmae]{
+td[b-vsokelsdoc]{
   
   border-radius: 20px;
 }
-.main[b-3vplxajmae]{
+.main[b-vsokelsdoc]{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -16,32 +16,32 @@ td[b-3vplxajmae]{
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 12px;
 }
-.monthManagement *[b-3vplxajmae]{
+.monthManagement *[b-vsokelsdoc]{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
-.monthManagement .navButtons[b-3vplxajmae]{
+.monthManagement .navButtons[b-vsokelsdoc]{
     font-size: 30px;
 }
-.navButtons[b-3vplxajmae]{
+.navButtons[b-vsokelsdoc]{
   color: black;
 }
-.navButtons:hover[b-3vplxajmae]{
+.navButtons:hover[b-vsokelsdoc]{
   color: grey;
   cursor: pointer;
 }
-.monthDay[b-3vplxajmae]{
+.monthDay[b-vsokelsdoc]{
   align-self: center;
 }
-.heatKey[b-3vplxajmae]{
+.heatKey[b-vsokelsdoc]{
   height: 5%;
   width: 100%;
-  border: 3px solid black;
+  border: 2px solid black;
   border-radius: 10px;
   background: linear-gradient(to right, white,rgb(90,90,255));
 }
-.heatKeyValues[b-3vplxajmae]{
+.heatKeyValues[b-vsokelsdoc]{
   display:flex;
   justify-content: space-between;
 }

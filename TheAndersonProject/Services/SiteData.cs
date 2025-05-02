@@ -6,6 +6,7 @@ namespace TheAndersonProject.Services
         public static int ReaderEventsCount {get; set;} = 0;
         public static List<ReaderEvent> ReaderEvents {get; set;} = new List<ReaderEvent>();    
         public static int[] YearMonth {get; set;} = new int[2]; 
+        
         public static Dictionary<string, List<ReaderEvent>> OrganizeEvents_StringKey(List<ReaderEvent> totalEvents, string category){
             Dictionary<string, List<ReaderEvent>> eventsByCategory = new Dictionary<string, List<ReaderEvent>>();
             List<ReaderEvent> tempList = new List<ReaderEvent>();

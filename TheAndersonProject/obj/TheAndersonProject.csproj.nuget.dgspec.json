@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Luis Blake\\Desktop\\GitHub\\OG-E_Capstone_Project\\TheAndersonProject\\TheAndersonProject.csproj": {}
+    "/home/luis/github/OG-E_Capstone_Project/TheAndersonProject/TheAndersonProject.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Luis Blake\\Desktop\\GitHub\\OG-E_Capstone_Project\\TheAndersonProject\\TheAndersonProject.csproj": {
+    "/home/luis/github/OG-E_Capstone_Project/TheAndersonProject/TheAndersonProject.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Luis Blake\\Desktop\\GitHub\\OG-E_Capstone_Project\\TheAndersonProject\\TheAndersonProject.csproj",
+        "projectUniqueName": "/home/luis/github/OG-E_Capstone_Project/TheAndersonProject/TheAndersonProject.csproj",
         "projectName": "TheAndersonProject",
-        "projectPath": "C:\\Users\\Luis Blake\\Desktop\\GitHub\\OG-E_Capstone_Project\\TheAndersonProject\\TheAndersonProject.csproj",
-        "packagesPath": "C:\\Users\\Luis Blake\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Luis Blake\\Desktop\\GitHub\\OG-E_Capstone_Project\\TheAndersonProject\\obj\\",
+        "projectPath": "/home/luis/github/OG-E_Capstone_Project/TheAndersonProject/TheAndersonProject.csproj",
+        "packagesPath": "/home/luis/.nuget/packages/",
+        "outputPath": "/home/luis/github/OG-E_Capstone_Project/TheAndersonProject/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Luis Blake\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/home/luis/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
@@ -68,7 +68,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/9.0.203/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

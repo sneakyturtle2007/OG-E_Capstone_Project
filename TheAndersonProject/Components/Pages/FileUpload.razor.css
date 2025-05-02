@@ -10,16 +10,7 @@ p{
     justify-content: center;
     padding-left: 2vw;
 }
-.listTitle{
-  padding-top: 2%;
-}
-.columnNames{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 1%;
-    border-bottom: 3px solid black;
-}
+
 .listContainer{
     display: flex;
     flex-direction: column;
@@ -30,27 +21,38 @@ p{
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 12px;    
     overflow-y: auto;
-    max-height: 20vh;
-    border: 3px solid black;
+    max-height: 22vh;
+    border: 2px solid black;
     border-radius: 5px;
 }
-.listElement{
+.listTitle{
+  padding-top: 2%;
+}
+.columnNames{
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin: 1%;
     border-bottom: 2px solid black;
 }
+.listElement{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1%;
+    border-bottom: 1px solid black;
+}
 .Alert{
-    
+    text-align : center;
     width: 25%;
-    font-size: 12px;
+    height: 50%;
+    font-size: 9px;
     color: white;
     background-color: red;
     border-radius: 15px;
 }
 .title{
-    width: 60%;
+    width: 40%;
     white-space: wrap;
     overflow: hidden;
     text-overflow: ellipsis;

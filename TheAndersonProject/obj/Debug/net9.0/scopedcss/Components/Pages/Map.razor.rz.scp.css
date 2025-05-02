@@ -1,4 +1,4 @@
-#map[b-3263mq7ju5]{
+#map[b-wd8kt97pvu]{
     background-image:url('img/map.png');/*url('img/BuildingBlueprint.jpg')*/
     background-repeat: no-repeat;
     background-size: cover;
@@ -8,7 +8,7 @@
     border: 3px solid black;
     border-radius:10px; 
 }
-.backButton[b-3263mq7ju5]{
+.backButton[b-wd8kt97pvu]{
     background-color: white;
     border: 2px solid black;
     border-radius: 10px;
@@ -20,6 +20,6 @@
     position: absolute;
     z-index: 99999999;
 }
-.elementTitle[b-3263mq7ju5]{
+.elementTitle[b-wd8kt97pvu]{
     font-size: 2px;
 }

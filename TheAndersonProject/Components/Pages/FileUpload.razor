@@ -22,7 +22,7 @@
         if(@SiteData.DisplaySiteInfo){
             <div class="listContainer">
                 <h4>@SiteData.SiteName</h4>
-                <h5 class="listTitle">Most Visited Readers:</h5>
+                <h6 class="listTitle">Most Visited Readers:</h6>
                 <div class="list">
                     <div class="columnNames"><div class="title">Reader Name</div> <p>|</p> <span class="interactions">Scans</span></div>
                     @foreach(string readerID in readerIDByEventCount){
@@ -34,26 +34,24 @@
                         </div>
                     }
                 </div>
-                <h5 class="listTitle">Most Active Panels:</h5>
+                <h6 class="listTitle">Most Active Panels:</h6>
                 <div class="list">
                     <div class="columnNames"><div class="title">Panel Name</div> <p>|</p><span class="interactions">Pings</span></div>
                     @foreach(int panelID in panelIDByEventCount){
                         <div class="listElement"><div class="title">Panel @panelID</div> 
                             @if(@eventsByPanel[panelID].Count > UserSettings.PanelMaintenanceTheshold){
-                                
+                                // PLACEHOLDER
                             }
                             <span class="interactions">@eventsByPanel[panelID].Count</span>
                         </div> 
                     }
                 </div>
-                <h5 class="listTitle">Most Active Users:</h5>
+                <h6 class="listTitle">Most Active Users:</h6>
                 <div class="list">
                     <div class="columnNames"><div class="title">User</div> <p>|</p> <span class="interactions">Interactions</span></div>
                     @foreach(string userID in userIDByEventCount){
                         <div class="listElement"><div class="title">@userID</div>
-                            @if(@eventsByUser[userID].Count % 2 != 0){
-                                <span class="Alert" style="Color: orange;">Maintenance!</span>
-                            }
+                            
                             <span class="interactions">@eventsByUser[userID].Count</span>
                         </div>
                     }
@@ -63,7 +61,7 @@
         <Calendar userIDByDate="@userIDByDate"/>
         <div class="settingsButton" alt="Gear icons created by Freepik - Flaticon https://www.flaticon.com/free-icons/gear">
             <NavLink class="nav-link" href="settings">
-                <span>&#9881;</span>Settings
+                <span>&#9881;</span>
             </NavLink>
         </div>
     }

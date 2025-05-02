@@ -41,11 +41,11 @@
             }
             daysInMonth = DateTime.DaysInMonth(year, month);
             numOfDay = daysInMonth - (Array.FindIndex(daysOfWeek,day => day == currDay.ToString("dddd")) - 1);
-            string intensity = GetIntensity(numOfDay);
+            string intensity = GetIntensity(numOfDay, day);
             <td style="background-color: rgb(@intensity, @intensity, 255, 1);"><div>@numOfDay</div></td>
             numOfDay++; 
           }else{
-            string intensity = GetIntensity(numOfDay);
+            string intensity = GetIntensity(numOfDay, day);
             <td style="background-color: rgb(@intensity, @intensity, 255, 1);"><div>@numOfDay</div></td>
             numOfDay++;
           }
@@ -78,6 +78,7 @@
   <div class="heatKey" > </div>
   <div class="heatKeyValues">
     <p>0</p>
+    <p>Number of Users</p>
     <p>@maxNumOfUniqueIDsPerDay</p>
   </div>
   <Info/>
@@ -94,6 +95,7 @@
   string[] daysOfWeek = new string[7]{"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
   
   float maxNumOfUniqueIDsPerDay = 0;
+  int maxNumofUsersPerDay_InWeek = 0;
   bool tableRendered = false;
 
   [Parameter]
@@ -116,18 +118,26 @@
     }
   }
 
-  string GetIntensity(int day){
+  string GetIntensity(int day, int weekDay){
+    
     string tempMonth = month.ToString().PadLeft(2,'0');
     string tempDay = day.ToString().PadLeft(2,'0');
+    string date = $"{year}-{tempMonth}-{tempDay}";
     string resultIntensity = "";
+    /*if(weekDay == 0){
+      maxNumofUsersPerDay_InWeek = 0;
+    }else if(userIDByDate[date].Count > maxNumofUsersPerDay_InWeek){
+      maxNumofUsersPerDay_InWeek = userIDByDate[date].Count;
+    }*/
     float colorIntensity;
-    if(userIDByDate.ContainsKey($"{year}-{tempMonth}-{tempDay}")){
-      colorIntensity = (userIDByDate[$"{year}-{tempMonth}-{tempDay}"].Count / maxNumOfUniqueIDsPerDay) * 255;
+    if(userIDByDate.ContainsKey(date)){
+      colorIntensity = (userIDByDate[date].Count / maxNumOfUniqueIDsPerDay) * 255;
       //Console.WriteLine((userIDByDate[$"{year}-{tempMonth}-{tempDay}"].Count / maxNumOfUniqueIDsPerDay)*100 + "%");
       //Console.WriteLine("Count: " + userIDByDate[$"{year}-{tempMonth}-{tempDay}"].Count + " Day: " + $"{year}-{tempMonth}-{tempDay}");
       if(colorIntensity > 165){
         colorIntensity = 165;
       }
+      
       resultIntensity = (255 - colorIntensity).ToString();
     }else{
       resultIntensity = "255";

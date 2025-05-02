@@ -1,8 +1,8 @@
-p[b-8grji1h6qi]{
+p[b-nr6u10gl2j]{
     margin: 0;
     padding: 0;
 }
-.main[b-8grji1h6qi]{
+.main[b-nr6u10gl2j]{
     
     display: flex;
     flex-direction: row;
@@ -10,66 +10,68 @@ p[b-8grji1h6qi]{
     justify-content: center;
     padding-left: 2vw;
 }
-.listTitle[b-8grji1h6qi]{
-  padding-top: 2%;
-}
-.columnNames[b-8grji1h6qi]{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 1%;
-    border-bottom: 3px solid black;
-}
-.listContainer[b-8grji1h6qi]{
+
+.listContainer[b-nr6u10gl2j]{
     display: flex;
     flex-direction: column;
     width: 17vw;
 
 }
-.list[b-8grji1h6qi]{
+.list[b-nr6u10gl2j]{
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 12px;    
     overflow-y: auto;
-    max-height: 20vh;
-    border: 3px solid black;
+    max-height: 22vh;
+    border: 2px solid black;
     border-radius: 5px;
 }
-.listElement[b-8grji1h6qi]{
+.listTitle[b-nr6u10gl2j]{
+  padding-top: 2%;
+}
+.columnNames[b-nr6u10gl2j]{
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin: 1%;
     border-bottom: 2px solid black;
 }
-.maintenanceAlert[b-8grji1h6qi]{
-    
+.listElement[b-nr6u10gl2j]{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1%;
+    border-bottom: 1px solid black;
+}
+.Alert[b-nr6u10gl2j]{
+    text-align : center;
     width: 25%;
-    font-size: 12px;
+    height: 50%;
+    font-size: 9px;
     color: white;
     background-color: red;
-    border-radius: 5px;
+    border-radius: 15px;
 }
-.title[b-8grji1h6qi]{
-    width: 60%;
+.title[b-nr6u10gl2j]{
+    width: 40%;
     white-space: wrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
-.title:hover[b-8grji1h6qi]{
+.title:hover[b-nr6u10gl2j]{
     overflow: visible;
     overflow-wrap: break-word;
     text-overflow: wrap;
 }
-.interactions[b-8grji1h6qi]{
+.interactions[b-nr6u10gl2j]{
     margin-right: 2%;
 }
-.settingsButton[b-8grji1h6qi]{
+.settingsButton[b-nr6u10gl2j]{
     align-self: start;
     width: 1vw;
     height: 1vw;
     background-size: cover;
 }
-.settingsButton:hover[b-8grji1h6qi]{
+.settingsButton:hover[b-nr6u10gl2j]{
     background-color: rgba(255,255,255,0.1);
     cursor: pointer;
 }
