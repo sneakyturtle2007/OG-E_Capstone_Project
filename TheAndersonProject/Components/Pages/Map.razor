@@ -26,7 +26,7 @@
     public static List<Site> sites { get; set; } = new List<Site>();
     private static IJSObjectReference? module;
     private static List<double[]> elementCoordinates = new List<double[]>();
-    
+
     protected override async Task OnAfterRenderAsync(bool firstRender){
         RestoreMapInfo("sites");
         if (firstRender && sites.Count > 0 ){
@@ -65,6 +65,8 @@
     }
     void back(){
         SiteData.DisplaySiteInfo = false;
+        AdditionalInfo.content.Clear();
+        AdditionalInfo.content.Add("Additional information will be displayed here.");
         navigationManager.NavigateTo(navigationManager.Uri, forceLoad: true);
     }
     void SaveMapInfo(string category){
@@ -100,29 +102,68 @@
                         SiteData.ReaderEvents = site.ReaderEvents;
                         SiteData.ReaderEventsCount = site.ReaderEvents.Count;
                         SiteData.DisplaySiteInfo = true;
-                    }
+                    }Console.WriteLine("Updating element location");
                 }
                 break;
             case "readers":
                 AdditionalInfo.content.Clear();
                 AdditionalInfo.content.Add("Reader: " + elementName);
-                string temp;
+                
                 foreach(ReaderEvent readerEvent in SiteData.ReaderEvents){
-                    temp = "" + readerEvent.DevID + readerEvent.Machine;
-                    if(temp == elementName){
+                    if(readerEvent.ReaderDesc == elementName){
                         AdditionalInfo.content.Add("Parent Panel: " + readerEvent.Machine);
                         break;
                     }
                 }
-                //AdditionalInfo.content.Add("Interactions: ");
+                string mostInteractiveUser = "";
+                Dictionary<string, List<ReaderEvent>> eventsByReader = SiteData.OrganizeEvents_StringKey(SiteData.ReaderEvents, "reader");
+                foreach(KeyValuePair<string, List<ReaderEvent>> kvp in eventsByReader){
+                    if(kvp.Key == elementName){
+                        Dictionary<string, List<ReaderEvent>> temp = SiteData.OrganizeEvents_StringKey(kvp.Value, "user");
+                        List<string> mostActiveUsers = SiteData.OrganizeCount_String(temp);
+                        mostInteractiveUser = mostActiveUsers[0];
+                        break;
+                    }
+                }
+                AdditionalInfo.content.Add("Most active user: " + mostInteractiveUser);
                 break;
             case "panels":
-                
+                AdditionalInfo.content.Clear();
+                AdditionalInfo.content.Add("Panel: " + elementName);
+                List<string> temp2 = new List<string>();
+                int index = 0;
+                foreach(ReaderEvent readerEvent in SiteData.ReaderEvents){
+                    if(readerEvent.Machine.ToString() == elementName){
+                        if(index == SiteData.ReaderEvents.Count -1 && !temp2.Contains(readerEvent.ReaderDesc)){
+                            temp2.Add(readerEvent.ReaderDesc);
+                        }else if(!temp2.Contains(readerEvent.ReaderDesc)){
+                            temp2.Add(readerEvent.ReaderDesc);
+                        }
+                    }
+                }
+                string temp3 = "";
+                for(int i = 0; i < temp2.Count; i++){
+                    if(i == temp2.Count - 1){
+                        temp3 += temp2[i];
+                    }else{
+                        temp3 += temp2[i] + ", ";
+                    }
+                }
+                AdditionalInfo.content.Add("Children Readers: " + temp3);
                 break;
             default:
                 break;
         }
     }
+    [JSInvokable]
+    public static void UpdateElementLocation(double[] coordinates, int index, string category){
+        
+        if(category == "sites"){
+            MapData.SiteCoordinates[index] = coordinates;
+        }else{
+            MapData.Reader_PanelCoordinates[index] = coordinates;
+        }
+    }   
     async ValueTask IAsyncDisposable.DisposeAsync(){
         if (module is not null){
             try{

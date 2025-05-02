@@ -29,6 +29,7 @@ td[b-vsokelsdoc]{
 }
 .navButtons:hover[b-vsokelsdoc]{
   color: grey;
+  cursor: pointer;
 }
 .monthDay[b-vsokelsdoc]{
   align-self: center;

@@ -20,3 +20,6 @@
     position: absolute;
     z-index: 99999999;
 }
+.elementTitle{
+    font-size: 2px;
+}

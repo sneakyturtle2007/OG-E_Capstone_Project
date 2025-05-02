@@ -15,7 +15,7 @@ namespace TheAndersonProject.Services
                         key = temp.UserID;
                         break;
                     case "reader":
-                        key = ""+temp.DevID + temp.Machine;
+                        key = temp.ReaderDesc;
                         break;
                     case "day":
                         key = DateTime.Parse(temp.EventTime).ToString("dddd");
@@ -45,6 +45,21 @@ namespace TheAndersonProject.Services
                 eventsByPanel[temp.Machine].Add(temp);
             }
             return eventsByPanel;
+        }
+        public static List<string> OrganizeCount_String<T>(Dictionary<string, List<T>> dictionary){
+            List<string> sortedList = new List<string>();
+            foreach(KeyValuePair<string, List<T>> kvp in dictionary){
+                for(int i = 0; i < sortedList.Count; i++){
+                    if(kvp.Value.Count > dictionary[sortedList[i]].Count){
+                        sortedList.Insert(i, kvp.Key);
+                        break;
+                    }
+                }
+                if(!sortedList.Contains(kvp.Key)){
+                    sortedList.Add(kvp.Key);
+                }
+            }
+            return sortedList;
         }
     }
 }

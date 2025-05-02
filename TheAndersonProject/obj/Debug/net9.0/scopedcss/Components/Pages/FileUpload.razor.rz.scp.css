@@ -1,3 +1,7 @@
+p[b-nr6u10gl2j]{
+    margin: 0;
+    padding: 0;
+}
 .main[b-nr6u10gl2j]{
     
     display: flex;
@@ -20,8 +24,36 @@
     border: 3px solid black;
     border-radius: 5px;
 }
+.listElement[b-nr6u10gl2j]{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1%;
+    border-bottom: 2px solid black;
+}
+.title[b-nr6u10gl2j]{
+    width: 60%;
+    white-space: wrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.title:hover[b-nr6u10gl2j]{
+    overflow: visible;
+    overflow-wrap: break-word;
+    text-overflow: wrap;
+}
+.interactions[b-nr6u10gl2j]{
+    margin-right: 2%;
+}
 .listTitle[b-nr6u10gl2j]{
   padding-top: 2%;
+}
+.columnNames[b-nr6u10gl2j]{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1%;
+    border-bottom: 3px solid black;
 }
 .truncate-text[b-nr6u10gl2j] {
     overflow: hidden;

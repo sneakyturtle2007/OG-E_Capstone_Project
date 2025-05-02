@@ -1,3 +1,7 @@
+p{
+    margin: 0;
+    padding: 0;
+}
 .main{
     
     display: flex;
@@ -20,8 +24,36 @@
     border: 3px solid black;
     border-radius: 5px;
 }
+.listElement{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1%;
+    border-bottom: 2px solid black;
+}
+.title{
+    width: 60%;
+    white-space: wrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.title:hover{
+    overflow: visible;
+    overflow-wrap: break-word;
+    text-overflow: wrap;
+}
+.interactions{
+    margin-right: 2%;
+}
 .listTitle{
   padding-top: 2%;
+}
+.columnNames{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1%;
+    border-bottom: 3px solid black;
 }
 .truncate-text {
     overflow: hidden;

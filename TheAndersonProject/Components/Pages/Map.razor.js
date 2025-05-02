@@ -13,7 +13,7 @@ export function MapInit(elements, siteLocations) {
     });
     for(let i = 0; i < elements.length; i++){
         console.log("Adding elementName: " + elements[i].SiteName);
-        AddElement(elements[i], siteLocations[i], "sites");
+        AddElement(elements[i], siteLocations[i], "sites", i);
     }
     return elementLocations;
 }
@@ -36,14 +36,14 @@ export function SiteInit(readers, panels, elementCoordinates){
     map.setMaxBounds(bounds);
     
     for(let i = 0; i < readers.length; i++){
-        AddElement(readers[i], elementCoordinates[i], "readers");
+        AddElement(readers[i], elementCoordinates[i], "readers", i);
     }
     for(let i = 0; i < panels.length; i++){
-        AddElement(panels[i], elementCoordinates[i + readers.length], "panels");
+        AddElement(panels[i], elementCoordinates[i + readers.length], "panels", i + readers.length);
     }
     return elementLocations;
 }
-export function AddElement(elementName, elementCoor, category){
+export function AddElement(elementName, elementCoor, category, index){
     var Icon;
     let toolTipOffset;
     switch(category){
@@ -95,8 +95,10 @@ export function AddElement(elementName, elementCoor, category){
         var marker = event.target;
         var position = marker.getLatLng();
         marker.setLatLng(new L.LatLng(position.lat, position.lng),{draggable:'true', icon: Icon});
+        DotNet.invokeMethodAsync('TheAndersonProject', 'UpdateElementLocation', [position.lat, position.lng], index, category);
     });
-    markerElement.bindTooltip(elementName.toString(), {permanent: true, direction:'center', offset: toolTipOffset, className:"elementTitle"}).openTooltip();
+    
+    markerElement.bindTooltip(elementName.toString(), {permanent: true, direction:'center', offset: toolTipOffset}).openTooltip();
 
     elementLocations.push(coordinates);
 }

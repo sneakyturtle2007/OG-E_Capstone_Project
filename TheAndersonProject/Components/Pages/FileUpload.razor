@@ -23,20 +23,23 @@
                 <h4>@SiteData.SiteName</h4>
                 <h5 class="listTitle">Most Visited Readers:</h5>
                 <div class="list">
+                    <div class="columnNames"><div class="title">Reader Name</div> <p>|</p> <span class="interactions">Scans</span></div>
                     @foreach(string readerID in readerIDByEventCount){
-                        <div>Reader @readerID - @eventsByReader[readerID].Count Interactions</div>
+                        <div class="listElement"><div class="title">@readerID</div> <span class="interactions">@eventsByReader[readerID].Count</span></div>
                     }
                 </div>
                 <h5 class="listTitle">Most Active Panels:</h5>
                 <div class="list">
+                     <div class="columnNames"><div class="title">Panel Name</div> <p>|</p><span class="interactions">Pings</span></div>
                     @foreach(int panelID in panelIDByEventCount){
-                        <div>Panel @panelID - @eventsByPanel[panelID].Count Total Pings</div>
+                        <div class="listElement"><div class="title">Panel @panelID</div> <span class="interactions">@eventsByPanel[panelID].Count</span></div> 
                     }
                 </div>
                 <h5 class="listTitle">Most Active Users:</h5>
                 <div class="list">
+                     <div class="columnNames"><div class="title">User</div> <p>|</p> <span class="interactions">Interactions</span></div>
                     @foreach(string userID in userIDByEventCount){
-                        <div>@userID - @eventsByUser[userID].Count Interactions</div>
+                        <div class="listElement"><div class="title">@userID</div><span class="interactions">@eventsByUser[userID].Count</span></div>
                     }
                 </div>
             </div>
@@ -69,6 +72,7 @@
             RestoreInfo();
         }
     }
+
     public async Task FileUploaded(InputFileChangeEventArgs e){
         var file = e.File;
         if (file != null)
@@ -102,7 +106,7 @@
                 readerEvents.Add(new ReaderEvent(
                     DateTime.Parse(row[0]).ToString("yyyy-MM-dd"),
                     row[1],
-                    row[2],
+                    row[2].Substring(row[1].Length + 1).Substring(row[2].Substring(row[1].Length + 1).Split(' ')[0].Length + 1),
                     row[3],
                     int.Parse(row[4]),
                     int.Parse(row[5])
@@ -150,21 +154,7 @@
         }
         return sortedList;
     }
-    List<string> OrganizeCount_String<T>(Dictionary<string, List<T>> dictionary){
-        List<string> sortedList = new List<string>();
-        foreach(KeyValuePair<string, List<T>> kvp in dictionary){
-            for(int i = 0; i < sortedList.Count; i++){
-                if(kvp.Value.Count > dictionary[sortedList[i]].Count){
-                    sortedList.Insert(i, kvp.Key);
-                    break;
-                }
-            }
-            if(!sortedList.Contains(kvp.Key)){
-                sortedList.Add(kvp.Key);
-            }
-        }
-        return sortedList;
-    }
+    
      void SaveFileInfo(List<Site> sites){
         FileData.FileName = FileName;
         FileData.FileType = FileType;
@@ -183,9 +173,9 @@
             eventsByUser = SiteData.OrganizeEvents_StringKey(readerEvents, "user");
             eventsByReader = SiteData.OrganizeEvents_StringKey(readerEvents, "reader");
             eventsByPanel = SiteData.OrganizeEvents_IntKey(readerEvents);        
-            userIDByEventCount = OrganizeCount_String(eventsByUser);
+            userIDByEventCount = SiteData.OrganizeCount_String(eventsByUser);
             
-            readerIDByEventCount = OrganizeCount_String(eventsByReader);
+            readerIDByEventCount = SiteData.OrganizeCount_String(eventsByReader);
             panelIDByEventCount = OrganizeKeyByCount_Int(eventsByPanel);
         }
     }

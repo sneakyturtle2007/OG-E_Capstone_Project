@@ -29,6 +29,7 @@ td{
 }
 .navButtons:hover{
   color: grey;
+  cursor: pointer;
 }
 .monthDay{
   align-self: center;

@@ -1,4 +1,5 @@
 using TheAndersonProject.Components;
+using TheAndersonProject.Components.Pages;
 using TheAndersonProject.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +10,7 @@ builder.Services.AddSingleton<ReaderEvent>();
 builder.Services.AddSingleton<SiteData>();
 builder.Services.AddSingleton<Site>();
 builder.Services.AddSingleton<AdditionalInfo>();
+builder.Services.AddSingleton<UserSettings>();
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
