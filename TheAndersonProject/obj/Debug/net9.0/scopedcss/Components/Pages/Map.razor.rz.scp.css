@@ -1,14 +1,14 @@
-#map[b-wd8kt97pvu]{
+#map[b-3263mq7ju5]{
     background-image:url('img/map.png');/*url('img/BuildingBlueprint.jpg')*/
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
-    height: 75%;
+    height: 78%;
     width: 75vh;
     border: 3px solid black;
     border-radius:10px; 
 }
-.backButton[b-wd8kt97pvu]{
+.backButton[b-3263mq7ju5]{
     background-color: white;
     border: 2px solid black;
     border-radius: 10px;
@@ -20,6 +20,6 @@
     position: absolute;
     z-index: 99999999;
 }
-.elementTitle[b-wd8kt97pvu]{
+.elementTitle[b-3263mq7ju5]{
     font-size: 2px;
 }

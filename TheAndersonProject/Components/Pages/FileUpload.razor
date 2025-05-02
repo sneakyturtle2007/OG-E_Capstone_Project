@@ -7,6 +7,7 @@
 @inject FileData FileData
 @inject MapData MapData
 @inject SiteData SiteData
+@inject UserSettings UserSettings
 @inject NavigationManager navigationManager
 
 
@@ -25,26 +26,46 @@
                 <div class="list">
                     <div class="columnNames"><div class="title">Reader Name</div> <p>|</p> <span class="interactions">Scans</span></div>
                     @foreach(string readerID in readerIDByEventCount){
-                        <div class="listElement"><div class="title">@readerID</div> <span class="interactions">@eventsByReader[readerID].Count</span></div>
+                        <div class="listElement"><div class="title">@readerID</div>
+                            @if(@eventsByReader[readerID].Count > UserSettings.ReaderMaintenanceTheshold){
+                                <span class="Alert">Maintenance!</span>
+                            }
+                            <span class="interactions">@eventsByReader[readerID].Count</span>
+                        </div>
                     }
                 </div>
                 <h5 class="listTitle">Most Active Panels:</h5>
                 <div class="list">
-                     <div class="columnNames"><div class="title">Panel Name</div> <p>|</p><span class="interactions">Pings</span></div>
+                    <div class="columnNames"><div class="title">Panel Name</div> <p>|</p><span class="interactions">Pings</span></div>
                     @foreach(int panelID in panelIDByEventCount){
-                        <div class="listElement"><div class="title">Panel @panelID</div> <span class="interactions">@eventsByPanel[panelID].Count</span></div> 
+                        <div class="listElement"><div class="title">Panel @panelID</div> 
+                            @if(@eventsByPanel[panelID].Count > UserSettings.PanelMaintenanceTheshold){
+                                
+                            }
+                            <span class="interactions">@eventsByPanel[panelID].Count</span>
+                        </div> 
                     }
                 </div>
                 <h5 class="listTitle">Most Active Users:</h5>
                 <div class="list">
-                     <div class="columnNames"><div class="title">User</div> <p>|</p> <span class="interactions">Interactions</span></div>
+                    <div class="columnNames"><div class="title">User</div> <p>|</p> <span class="interactions">Interactions</span></div>
                     @foreach(string userID in userIDByEventCount){
-                        <div class="listElement"><div class="title">@userID</div><span class="interactions">@eventsByUser[userID].Count</span></div>
+                        <div class="listElement"><div class="title">@userID</div>
+                            @if(@eventsByUser[userID].Count % 2 != 0){
+                                <span class="Alert" style="Color: orange;">Maintenance!</span>
+                            }
+                            <span class="interactions">@eventsByUser[userID].Count</span>
+                        </div>
                     }
                 </div>
             </div>
         }
         <Calendar userIDByDate="@userIDByDate"/>
+        <div class="settingsButton" alt="Gear icons created by Freepik - Flaticon https://www.flaticon.com/free-icons/gear">
+            <NavLink class="nav-link" href="settings">
+                <span>&#9881;</span>Settings
+            </NavLink>
+        </div>
     }
 </div>
 
@@ -53,9 +74,6 @@
 
 @code {
     int MAX_FILESIZE = 10000 * 1024; 
-    string FileName { get; set; } = "";
-    string FileType { get; set; } = "";
-    List<ReaderEvent> readerEvents = new List<ReaderEvent>();
     int readerEventsCount = 0;
     List<string> readerIDByEventCount = new List<string>();
     List<int> panelIDByEventCount = new List<int>();
@@ -72,25 +90,20 @@
             RestoreInfo();
         }
     }
-
     public async Task FileUploaded(InputFileChangeEventArgs e){
         var file = e.File;
-        if (file != null)
-        {
-            FileName = file.Name;
+        if (file != null){
+            FileData.FileName = file.Name;
             long FileSize = file.Size;
-            FileType = file.ContentType;
-            if (file.Size > MAX_FILESIZE)
-            {
+            FileData.FileType = file.ContentType;
+            if (file.Size > MAX_FILESIZE){
                 ErrorMessage = "File size exceeds the maximum limit.";
                 return;
             }
-            using (var stream = new MemoryStream())
-            {
+            using (var stream = new MemoryStream()){
                 await file.OpenReadStream(MAX_FILESIZE).CopyToAsync(stream);
                 stream.Position = 0;
-                using (var reader = new StreamReader(stream))
-                {
+                using (var reader = new StreamReader(stream)){
                     ReadFile(reader);
                 }
             }
@@ -103,7 +116,7 @@
             var row = line.Split(",");
             if (row.Length >= 6)
             {
-                readerEvents.Add(new ReaderEvent(
+                FileData.ReaderEvents.Add(new ReaderEvent(
                     DateTime.Parse(row[0]).ToString("yyyy-MM-dd"),
                     row[1],
                     row[2].Substring(row[1].Length + 1).Substring(row[2].Substring(row[1].Length + 1).Split(' ')[0].Length + 1),
@@ -114,14 +127,13 @@
             }
         }
 
-        userIDByDate = OrganizeUniqueUserIDByDay(readerEvents);
-        List<Site> sites = new List<Site>();
-        Dictionary<string, List<ReaderEvent>> eventsByLocation = SiteData.OrganizeEvents_StringKey(readerEvents, "location");
+        userIDByDate = OrganizeUniqueUserIDByDay(FileData.ReaderEvents);
+        
+        Dictionary<string, List<ReaderEvent>> eventsByLocation = SiteData.OrganizeEvents_StringKey(FileData.ReaderEvents, "location");
         foreach(KeyValuePair<string, List<ReaderEvent>> kvp in eventsByLocation){
-            sites.Add(new Site(kvp.Key, kvp.Value));
+            MapData.Sites.Add(new Site(kvp.Key, kvp.Value));
         }
-        SaveFileInfo(sites);
-        StateHasChanged();
+        navigationManager.NavigateTo(navigationManager.Uri, forceLoad: true);
         
     }
 
@@ -155,24 +167,14 @@
         return sortedList;
     }
     
-     void SaveFileInfo(List<Site> sites){
-        FileData.FileName = FileName;
-        FileData.FileType = FileType;
-        FileData.ReaderEvents = readerEvents;
-        MapData.Sites = sites;
-        navigationManager.NavigateTo(navigationManager.Uri, forceLoad: true);
-    }
-    void RestoreInfo(){
-        FileName = FileData.FileName;
-        FileType = FileData.FileType;
-        readerEvents = FileData.ReaderEvents;
-        userIDByDate = OrganizeUniqueUserIDByDay(readerEvents);
 
+    void RestoreInfo(){
+        userIDByDate = OrganizeUniqueUserIDByDay(FileData.ReaderEvents);
         if(SiteData.DisplaySiteInfo){
-            eventsByDay = SiteData.OrganizeEvents_StringKey(readerEvents, "day");
-            eventsByUser = SiteData.OrganizeEvents_StringKey(readerEvents, "user");
-            eventsByReader = SiteData.OrganizeEvents_StringKey(readerEvents, "reader");
-            eventsByPanel = SiteData.OrganizeEvents_IntKey(readerEvents);        
+            eventsByDay = SiteData.OrganizeEvents_StringKey(FileData.ReaderEvents, "day");
+            eventsByUser = SiteData.OrganizeEvents_StringKey(FileData.ReaderEvents, "user");
+            eventsByReader = SiteData.OrganizeEvents_StringKey(FileData.ReaderEvents, "reader");
+            eventsByPanel = SiteData.OrganizeEvents_IntKey(FileData.ReaderEvents);        
             userIDByEventCount = SiteData.OrganizeCount_String(eventsByUser);
             
             readerIDByEventCount = SiteData.OrganizeCount_String(eventsByReader);

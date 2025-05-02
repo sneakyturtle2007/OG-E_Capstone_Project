@@ -1,0 +1,35 @@
+.main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+}
+.titleContainer{
+    align-self: start;
+    display: flex;
+    flex-direction: row;
+    width: 55%;
+    height: 5%;
+    margin-bottom: 2%;
+    justify-content: space-between;
+}
+
+.backButton{
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 10px;
+    text-align: center;
+    width: 5vw;
+    height: 3vh;
+    margin-top: 2%;
+    margin-left: 2%;
+}
+
+.settingsContainer{
+    display: flex;
+    font-size: 20px;
+    flex-direction: row;
+    width: 50%;
+    justify-content: space-between;
+}

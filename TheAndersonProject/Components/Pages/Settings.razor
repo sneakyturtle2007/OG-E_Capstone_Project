@@ -1,4 +1,36 @@
+@page "/settings"
 @rendermode InteractiveServer
+
 @using TheAndersonProject.Services
 @using TheAndersonProject.Components
 
+@inject UserSettings UserSettings
+
+<PageTitle>Settings</PageTitle>
+
+
+<div class="main">
+    <div class="titleContainer">
+        <div class="backButton" >
+            <NavLink class="nav-link" href="">
+                <div style="rotate: 180deg;">&#10153;</div>
+            </NavLink>
+        </div>
+        <h1 style="align-self: center;">Settings</h1>
+    </div>
+    <div class="settingsContainer">
+        <h5>Reader Maintenance Theshold</h5>
+        <span><input type="number" @onchange="(value) => {alterSetting(Int32.Parse(value.Value.ToString()), 'S');}" min="0" step="1" /> Scans</span>
+    </div>
+</div>
+@code{
+    void alterSetting(int value, char setting){
+        switch(setting){
+            case 'S':
+                UserSettings.ReaderMaintenanceTheshold = value;
+                break;
+            default:
+                break;
+        }
+    }
+}

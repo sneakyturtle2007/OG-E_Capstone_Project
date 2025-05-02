@@ -10,6 +10,16 @@ p{
     justify-content: center;
     padding-left: 2vw;
 }
+.listTitle{
+  padding-top: 2%;
+}
+.columnNames{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1%;
+    border-bottom: 3px solid black;
+}
 .listContainer{
     display: flex;
     flex-direction: column;
@@ -31,6 +41,14 @@ p{
     margin: 1%;
     border-bottom: 2px solid black;
 }
+.Alert{
+    
+    width: 25%;
+    font-size: 12px;
+    color: white;
+    background-color: red;
+    border-radius: 15px;
+}
 .title{
     width: 60%;
     white-space: wrap;
@@ -45,22 +63,13 @@ p{
 .interactions{
     margin-right: 2%;
 }
-.listTitle{
-  padding-top: 2%;
+.settingsButton{
+    align-self: start;
+    width: 1vw;
+    height: 1vw;
+    background-size: cover;
 }
-.columnNames{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 1%;
-    border-bottom: 3px solid black;
-}
-.truncate-text {
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-}
-.truncate-text:hover{
-    overflow: visible;
-    white-space: wrap;
+.settingsButton:hover{
+    background-color: rgba(255,255,255,0.1);
+    cursor: pointer;
 }
