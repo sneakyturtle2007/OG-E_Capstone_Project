@@ -5,8 +5,9 @@ namespace TheAndersonProject.Services
         public static bool DisplaySiteInfo { get; set; } = false;
         public static int ReaderEventsCount {get; set;} = 0;
         public static List<ReaderEvent> ReaderEvents {get; set;} = new List<ReaderEvent>();    
-        public static int[] YearMonth {get; set;} = new int[2]; 
-        
+        public static int[] YearMonth {get; set;} = new int[2]{0, 0}; 
+        public static Dictionary<string, int> ReaderMaintenance = new Dictionary<string, int>();
+        public static Dictionary<string, int> PanelMaintenance = new Dictionary<string, int>();
         public static Dictionary<string, List<ReaderEvent>> OrganizeEvents_StringKey(List<ReaderEvent> totalEvents, string category){
             Dictionary<string, List<ReaderEvent>> eventsByCategory = new Dictionary<string, List<ReaderEvent>>();
             List<ReaderEvent> tempList = new List<ReaderEvent>();

@@ -1,11 +1,12 @@
+
 #map{
-    background-image:url('img/map.png');/*url('img/BuildingBlueprint.jpg')*/
     background-repeat: no-repeat;
     background-size: cover;
+    background-color: white;
     background-position: center center;
     height: 78%;
     width: 75vh;
-    border: 3px solid black;
+    border: 2px solid black;
     border-radius:10px; 
 }
 .backButton{
@@ -19,7 +20,5 @@
     margin-left: 2%;
     position: absolute;
     z-index: 99999999;
-}
-.elementTitle{
-    font-size: 2px;
+    cursor: pointer;
 }

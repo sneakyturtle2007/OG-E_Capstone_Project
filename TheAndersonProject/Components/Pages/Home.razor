@@ -15,7 +15,7 @@
   <Map/>
   <FileUpload/>
 </div>
-<div class="newFile" @onclick="@reset">Reset</div>
+<div class="newFile" @onclick="@reset"><p>Reset</p></div>
 
 
 @code{
@@ -30,7 +30,6 @@
   
   void reset(){
     FileData.FileName = "";
-    FileData.FileType = "";
     FileData.ReaderEventsCount = 0;
     FileData.ReaderEvents = new List<ReaderEvent>();
     MapData.Sites = new List<Site>();
@@ -39,7 +38,9 @@
     SiteData.SiteName = "";
     SiteData.ReaderEvents = new List<ReaderEvent>();
     SiteData.ReaderEventsCount = 0;
-    
+    SiteData.YearMonth = new int[2]{0,0};
+    AdditionalInfo.content = new List<string>();
+    AdditionalInfo.content.Add("No file uploaded.");
     StateHasChanged();
     navigationManager.NavigateTo(navigationManager.Uri, forceLoad: true); 
   }

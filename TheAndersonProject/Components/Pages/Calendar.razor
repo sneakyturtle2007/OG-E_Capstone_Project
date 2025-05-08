@@ -42,14 +42,14 @@
             daysInMonth = DateTime.DaysInMonth(year, month);
             numOfDay = daysInMonth - (Array.FindIndex(daysOfWeek,day => day == currDay.ToString("dddd")) - 1);
             string intensity = GetIntensity(numOfDay, day);
-            <td style="background-color: rgb(@intensity, @intensity, 255, 1);"><div>@numOfDay</div></td>
+            <td style="background-color: rgb(@intensity, @intensity, 255, 1);">@numOfDay</td>
             numOfDay++; 
           }else{
             string intensity = GetIntensity(numOfDay, day);
-            <td style="background-color: rgb(@intensity, @intensity, 255, 1);"><div>@numOfDay</div></td>
+            <td style="background-color: rgb(@intensity, @intensity, 255, 1);">@numOfDay</td>
             numOfDay++;
           }
-          @if(numOfDay  > daysInMonth){
+          @if(numOfDay > daysInMonth){
             numOfDay = 1;
                   
             @if(month == 12){
@@ -72,8 +72,24 @@
         }
       }
     }
-    
   </table>
+  <div class="averageNumUsersContainer">
+    <table>
+      <tr>
+        <th> Avg. Number of Users Per Day</th>
+      </tr>
+      <tr>
+
+        <td style="background-color: rgb(@intensity, @intensity, 255, 1);"></td>
+        <td style="background-color: rgb(@intensity, @intensity, 255, 1);"></td>
+        <td style="background-color: rgb(@intensity, @intensity, 255, 1);">@numOfDay</td>
+        <td style="background-color: rgb(@intensity, @intensity, 255, 1);">@numOfDay</td>
+        <td style="background-color: rgb(@intensity, @intensity, 255, 1);">@numOfDay</td>
+        <td style="background-color: rgb(@intensity, @intensity, 255, 1);">@numOfDay</td>
+        <td style="background-color: rgb(@intensity, @intensity, 255, 1);">@numOfDay</td>
+      </tr>
+    </table>
+  </div>
   
   <div class="heatKey" > </div>
   <div class="heatKeyValues">
@@ -96,6 +112,7 @@
   
   float maxNumOfUniqueIDsPerDay = 0;
   int maxNumofUsersPerDay_InWeek = 0;
+  int[] avgNumOfUsersPerDay = new int[7]{0,0,0,0,0,0,0};
   bool tableRendered = false;
 
   [Parameter]
@@ -104,8 +121,12 @@
 
   protected override void OnInitialized(){
     dateYM = DateTime.Now.ToString("yyyy/MM").Split('/');
-    year = Int32.Parse(dateYM[0]);
-    month = Int32.Parse(dateYM[1]);
+    if(SiteData.YearMonth[0] == 0){
+      SiteData.YearMonth[0] = Int32.Parse(dateYM[0]);
+      SiteData.YearMonth[1] = Int32.Parse(dateYM[1]);
+    }
+    year = SiteData.YearMonth[0];
+    month = SiteData.YearMonth[1];
     daysInMonth = DateTime.DaysInMonth(year, month);
     currDay = new DateTime(year, month, 1);
     int tempNumOfUniqueIDs = 0;
@@ -113,7 +134,6 @@
       tempNumOfUniqueIDs = kvp.Value.Count;
       if(tempNumOfUniqueIDs > maxNumOfUniqueIDsPerDay){
         maxNumOfUniqueIDsPerDay = tempNumOfUniqueIDs;
-        //Console.WriteLine(maxNumOfUniqueIDsPerDay + " day: " + kvp.Key);
       }
     }
   }
@@ -124,28 +144,20 @@
     string tempDay = day.ToString().PadLeft(2,'0');
     string date = $"{year}-{tempMonth}-{tempDay}";
     string resultIntensity = "";
-    /*if(weekDay == 0){
-      maxNumofUsersPerDay_InWeek = 0;
-    }else if(userIDByDate[date].Count > maxNumofUsersPerDay_InWeek){
-      maxNumofUsersPerDay_InWeek = userIDByDate[date].Count;
-    }*/
     float colorIntensity;
     if(userIDByDate.ContainsKey(date)){
-      colorIntensity = (userIDByDate[date].Count / maxNumOfUniqueIDsPerDay) * 255;
-      //Console.WriteLine((userIDByDate[$"{year}-{tempMonth}-{tempDay}"].Count / maxNumOfUniqueIDsPerDay)*100 + "%");
-      //Console.WriteLine("Count: " + userIDByDate[$"{year}-{tempMonth}-{tempDay}"].Count + " Day: " + $"{year}-{tempMonth}-{tempDay}");
+      colorIntensity = (userIDByDate[date].Count / maxNumOfUniqueIDsPerDay) * 125 * 1.4f;
       if(colorIntensity > 165){
         colorIntensity = 165;
       }
       
-      resultIntensity = (255 - colorIntensity).ToString();
+      resultIntensity = ( 255 - (int) colorIntensity).ToString();
     }else{
       resultIntensity = "255";
     }
     return resultIntensity; 
   }
   void PreviousMonth(){
-    tableRendered = false;
     month--;
     if(month <= 0){
       month = 12;
@@ -155,47 +167,22 @@
     StateHasChanged();
   }
   void NextMonth(){
-    tableRendered = false;
     month++;
     if(month > 12){
       month = 1;
       year ++;
     }
     InitializeNewCalendarData();
-    
     StateHasChanged();
   }
   void InitializeNewCalendarData(){
+    SiteData.YearMonth[0] = year;
+    SiteData.YearMonth[1] = month;
     dateYM = new DateTime(year, month, 1).ToString("yyyy/MM").Split("/");
     daysInMonth = DateTime.DaysInMonth(year, month);
     numOfDay = 1;
     currDay = new DateTime(year, month, 1);
   }
-  /*void SelectDay(){
-    int day = numOfDay;
-    string tempMonth = month.ToString().PadLeft(2,'0');
-    string tempDay = day.ToString().PadLeft(2,'0');
-    string date = $"{year}-{tempMonth}-{tempDay}";
-    if(userIDByDate.ContainsKey(date)){
-      var temp = userIDByDate[date];
-      List<ReaderEvent> readerEvents = SiteData.ReaderEvents;
-      Dictionary<string, List<ReaderEvent>> eventsPerDay = SiteData.OrganizeEvents_StringKey(readerEvents, "day");
-      foreach(KeyValuePair<string, List<ReaderEvent>> kvp in eventsPerDay){
-        Console.WriteLine("Key: " + kvp.Key + " Value: " + kvp.Value);
-      }
-      if(eventsPerDay.ContainsKey(date)){
-        readerEvents = eventsPerDay[date];
-        Dictionary<string, List<ReaderEvent>> eventsPerReader = SiteData.OrganizeEvents_StringKey(readerEvents, "reader");
-        string content_Readers = "Readers: ";
-        foreach(KeyValuePair<string, List<ReaderEvent>> kvp in eventsPerReader){
-          content_Readers += $"{kvp.Key}, ";
-        }
-        content_Readers.Substring(0,content_Readers.Length -1 );
-        AdditionalInfo.content.Add(content_Readers);
-        StateHasChanged();
-      }
-    }
-  }*/
 
 }
 

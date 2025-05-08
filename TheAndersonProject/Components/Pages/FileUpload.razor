@@ -25,10 +25,19 @@
                 <h6 class="listTitle">Most Visited Readers:</h6>
                 <div class="list">
                     <div class="columnNames"><div class="title">Reader Name</div> <p>|</p> <span class="interactions">Scans</span></div>
-                    @foreach(string readerID in readerIDByEventCount){
-                        <div class="listElement"><div class="title">@readerID</div>
-                            @if(@eventsByReader[readerID].Count > UserSettings.ReaderMaintenanceTheshold){
-                                <span class="Alert">Maintenance!</span>
+                    @{
+                        int maintenanceIndex = 0;
+                    }
+                    @for(int i = 0; i < readerIDByEventCount.Count; i++){
+                        string readerID = readerIDByEventCount[i];
+                        int temp = i;
+                        <div class="listElement">
+                            <div class="title">@readerID</div>
+                            @if(i < SiteData.ReaderMaintenance.Count){
+                                maintenanceIndex = SiteData.ReaderMaintenance[readerID];
+                                @if( @eventsByReader[readerID].Count/maintenanceIndex > UserSettings.ReaderMaintenanceTheshold){
+                                    <span class="Alert" @onclick="() => {HandleAlert('m', true, temp, readerID);}">Maintenance!</span>
+                                }
                             }
                             <span class="interactions">@eventsByReader[readerID].Count</span>
                         </div>
@@ -38,7 +47,8 @@
                 <div class="list">
                     <div class="columnNames"><div class="title">Panel Name</div> <p>|</p><span class="interactions">Pings</span></div>
                     @foreach(int panelID in panelIDByEventCount){
-                        <div class="listElement"><div class="title">Panel @panelID</div> 
+                        <div class="listElement">
+                            <div class="title">Panel @panelID</div> 
                             @if(@eventsByPanel[panelID].Count > UserSettings.PanelMaintenanceTheshold){
                                 // PLACEHOLDER
                             }
@@ -50,8 +60,8 @@
                 <div class="list">
                     <div class="columnNames"><div class="title">User</div> <p>|</p> <span class="interactions">Interactions</span></div>
                     @foreach(string userID in userIDByEventCount){
-                        <div class="listElement"><div class="title">@userID</div>
-                            
+                        <div class="listElement">
+                            <div class="title" style="max-width: 70%;">@userID</div>
                             <span class="interactions">@eventsByUser[userID].Count</span>
                         </div>
                     }
@@ -61,7 +71,7 @@
         <Calendar userIDByDate="@userIDByDate"/>
         <div class="settingsButton" alt="Gear icons created by Freepik - Flaticon https://www.flaticon.com/free-icons/gear">
             <NavLink class="nav-link" href="settings">
-                <span>&#9881;</span>
+                <span><p class="settingsButton">&#9881;</p></span>
             </NavLink>
         </div>
     }
@@ -93,7 +103,10 @@
         if (file != null){
             FileData.FileName = file.Name;
             long FileSize = file.Size;
-            FileData.FileType = file.ContentType;
+            if(file.ContentType != "text/csv"){
+                ErrorMessage = "File type is not supported.";
+                return;
+            }
             if (file.Size > MAX_FILESIZE){
                 ErrorMessage = "File size exceeds the maximum limit.";
                 return;
@@ -131,6 +144,8 @@
         foreach(KeyValuePair<string, List<ReaderEvent>> kvp in eventsByLocation){
             MapData.Sites.Add(new Site(kvp.Key, kvp.Value));
         }
+        AdditionalInfo.content.Clear();
+        AdditionalInfo.content.Add("Additional information will be displayed here.");
         navigationManager.NavigateTo(navigationManager.Uri, forceLoad: true);
         
     }
@@ -165,7 +180,28 @@
         return sortedList;
     }
     
-
+    void HandleAlert(char type, bool subtype, int index, string listItemName){
+        switch(type){
+            case 'm':
+                Console.WriteLine("index: " + index + " listItemName: " + listItemName);
+                if(subtype){
+                    Console.WriteLine("\n Maintenance Alert " + SiteData.ReaderMaintenance[listItemName] + " " + listItemName + "\n");
+                    int currentValue = SiteData.ReaderMaintenance[listItemName];
+                    SiteData.ReaderMaintenance[listItemName] = currentValue + 1; 
+                }else{
+                    Console.WriteLine("\n Maintenance Alert " + SiteData.PanelMaintenance[listItemName] + " " + listItemName + "\n");
+                    int currentValue = SiteData.PanelMaintenance[listItemName];
+                    SiteData.PanelMaintenance[listItemName] = currentValue + 1; 
+                }
+                
+                FileData.SaveInfo();
+                StateHasChanged();
+                navigationManager.NavigateTo(navigationManager.Uri, forceLoad: true);
+                break;
+            default:
+                break;
+        }
+    }
     void RestoreInfo(){
         userIDByDate = OrganizeUniqueUserIDByDay(FileData.ReaderEvents);
         if(SiteData.DisplaySiteInfo){
@@ -174,7 +210,6 @@
             eventsByReader = SiteData.OrganizeEvents_StringKey(FileData.ReaderEvents, "reader");
             eventsByPanel = SiteData.OrganizeEvents_IntKey(FileData.ReaderEvents);        
             userIDByEventCount = SiteData.OrganizeCount_String(eventsByUser);
-            
             readerIDByEventCount = SiteData.OrganizeCount_String(eventsByReader);
             panelIDByEventCount = OrganizeKeyByCount_Int(eventsByPanel);
         }

@@ -27,7 +27,7 @@ export function SiteInit(readers, panels, elementCoordinates){
         maxBoundsViscosity: 1.0,
         zoomControl: false,
     }).setView([500,400], 0.25);
-    L.imageOverlay('img/BuildingBlueprint.jpg', bounds).addTo(map);
+    //L.imageOverlay('img/BuildingBlueprint.jpg', bounds).addTo(map);
     L.control.zoom({
         position: 'topright',
         zoomInText: '+',
@@ -76,7 +76,7 @@ export function AddElement(elementName, elementCoor, category, index){
         if(category == "sites"){
             coordinates = [RandNum(34.8, 36.8531), RandNum(-101.9515, -94.4914)];
         }else{
-            coordinates = [RandNum(200, 800), RandNum(100, 700)];
+            coordinates = [RandNum(200, 750), RandNum(100, 900)];
 
         }
     }

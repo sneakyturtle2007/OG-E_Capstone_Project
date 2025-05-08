@@ -206,6 +206,7 @@ main[b-viwk7d5aor] {
     }
 }
 /* _content/TheAndersonProject/Components/Pages/Calendar.razor.rz.scp.css */
+
 table[b-vsokelsdoc]{
   text-align: center;
 }
@@ -303,13 +304,14 @@ p[b-nr6u10gl2j]{
     text-align : center;
     width: 25%;
     height: 50%;
-    font-size: 9px;
+    font-size: 8px;
+    font-weight: bold;
     color: white;
     background-color: red;
     border-radius: 15px;
 }
 .title[b-nr6u10gl2j]{
-    width: 40%;
+    max-width: 50%;
     white-space: wrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -327,12 +329,15 @@ p[b-nr6u10gl2j]{
     width: 1vw;
     height: 1vw;
     background-size: cover;
+    font-size: 23px;
+    cursor:pointer;
 }
 .settingsButton:hover[b-nr6u10gl2j]{
     background-color: rgba(255,255,255,0.1);
     cursor: pointer;
 }
 /* _content/TheAndersonProject/Components/Pages/Home.razor.rz.scp.css */
+
 #main[b-sj0wmxzp23]{
     display: flex;
     flex-direction: row;
@@ -344,14 +349,18 @@ p[b-nr6u10gl2j]{
 .newFile[b-sj0wmxzp23], .settingsButton[b-sj0wmxzp23]{
     border: 2px solid black;
     border-radius: 10px;
-    text-align: center;
     width: 5%;
-    height: auto;
+    margin-bottom: 0;
     margin-left: 1%;
+    vertical-align: center;
+    text-align: center;
+    cursor: pointer;
 }
 /* _content/TheAndersonProject/Components/Pages/Info.razor.rz.scp.css */
 p[b-5so2s6omzd]{
-  margin: 0%;
+  margin: 0;
+  padding-left: 1%;
+  padding-right: 1%;
 }
 .main[b-5so2s6omzd]{
     border: 2px solid black;
@@ -361,14 +370,15 @@ p[b-5so2s6omzd]{
 }
 
 /* _content/TheAndersonProject/Components/Pages/Map.razor.rz.scp.css */
+
 #map[b-wd8kt97pvu]{
-    background-image:url('img/map.png');/*url('img/BuildingBlueprint.jpg')*/
     background-repeat: no-repeat;
     background-size: cover;
+    background-color: white;
     background-position: center center;
     height: 78%;
     width: 75vh;
-    border: 3px solid black;
+    border: 2px solid black;
     border-radius:10px; 
 }
 .backButton[b-wd8kt97pvu]{
@@ -382,9 +392,7 @@ p[b-5so2s6omzd]{
     margin-left: 2%;
     position: absolute;
     z-index: 99999999;
-}
-.elementTitle[b-wd8kt97pvu]{
-    font-size: 2px;
+    cursor: pointer;
 }
 /* _content/TheAndersonProject/Components/Pages/Settings.razor.rz.scp.css */
 .main[b-zi4mied9ei]{
@@ -410,7 +418,7 @@ p[b-5so2s6omzd]{
     border-radius: 10px;
     text-align: center;
     width: 5vw;
-    height: 3vh;
+    height: auto;
     margin-top: 2%;
     margin-left: 2%;
 }

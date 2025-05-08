@@ -46,13 +46,14 @@ p[b-nr6u10gl2j]{
     text-align : center;
     width: 25%;
     height: 50%;
-    font-size: 9px;
+    font-size: 8px;
+    font-weight: bold;
     color: white;
     background-color: red;
     border-radius: 15px;
 }
 .title[b-nr6u10gl2j]{
-    width: 40%;
+    max-width: 50%;
     white-space: wrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -70,6 +71,8 @@ p[b-nr6u10gl2j]{
     width: 1vw;
     height: 1vw;
     background-size: cover;
+    font-size: 23px;
+    cursor:pointer;
 }
 .settingsButton:hover[b-nr6u10gl2j]{
     background-color: rgba(255,255,255,0.1);

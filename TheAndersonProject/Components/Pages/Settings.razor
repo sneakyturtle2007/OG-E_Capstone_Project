@@ -20,7 +20,7 @@
     </div>
     <div class="settingsContainer">
         <h5>Reader Maintenance Theshold</h5>
-        <span><input type="number" @onchange="(value) => {alterSetting(Int32.Parse(value.Value.ToString()), 'S');}" min="0" step="1" /> Scans</span>
+        <span><input type="number" @onchange="(value) => {alterSetting(Int32.Parse(value.Value.ToString()), 'S');}" min="0" step="1" value="@UserSettings.ReaderMaintenanceTheshold"/> Scans</span>
     </div>
 </div>
 @code{

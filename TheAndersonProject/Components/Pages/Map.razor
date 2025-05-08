@@ -12,13 +12,13 @@
 
 @if(SiteData.DisplaySiteInfo){
     
-    <div id="map" style="background-image:url('img/BuildingBlueprint.jpg')">
+    <div id="map">
         @if(SiteData.DisplaySiteInfo){
-            <div class="backButton" style="align-self: start;" @onclick="@back">Back</div>
+            <div class="backButton" style="align-self: start;" @onclick="@back"><p>Back</p></div>
         }
     </div>
 }else{
-    <div id="map"></div>
+    <div id="map" style="background-image:url('img/map.png');"></div>
 }
  
 
@@ -102,8 +102,15 @@
                         SiteData.ReaderEvents = site.ReaderEvents;
                         SiteData.ReaderEventsCount = site.ReaderEvents.Count;
                         SiteData.DisplaySiteInfo = true;
-                    }Console.WriteLine("Updating element location");
+                        AdditionalInfo.content.Clear();
+                        AdditionalInfo.content.Add("Site: " + elementName);
+                        AdditionalInfo.content.Add("Number of readers: " + SiteData.OrganizeEvents_StringKey(site.ReaderEvents, "reader").Count);
+                        AdditionalInfo.content.Add("Number of panels: " + SiteData.OrganizeEvents_IntKey(site.ReaderEvents).Count);
+                        AdditionalInfo.content.Add("Number of users: " + SiteData.OrganizeEvents_StringKey(site.ReaderEvents, "user").Count);
+                        FileData.LoadInfo(site.SiteName);
+                    }
                 }
+                
                 break;
             case "readers":
                 AdditionalInfo.content.Clear();

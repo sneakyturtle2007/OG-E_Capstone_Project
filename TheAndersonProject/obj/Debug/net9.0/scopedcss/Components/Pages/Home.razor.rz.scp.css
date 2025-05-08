@@ -1,3 +1,4 @@
+
 #main[b-sj0wmxzp23]{
     display: flex;
     flex-direction: row;
@@ -9,8 +10,10 @@
 .newFile[b-sj0wmxzp23], .settingsButton[b-sj0wmxzp23]{
     border: 2px solid black;
     border-radius: 10px;
-    text-align: center;
     width: 5%;
-    height: auto;
+    margin-bottom: 0;
     margin-left: 1%;
+    vertical-align: center;
+    text-align: center;
+    cursor: pointer;
 }
