@@ -73,24 +73,33 @@
       }
     }
   </table>
-  <div class="averageNumUsersContainer">
-    <table>
-      <tr>
-        <th> Avg. Number of Users Per Day</th>
-      </tr>
-      <tr>
-
-        <td style="background-color: rgb(@intensity, @intensity, 255, 1);"></td>
-        <td style="background-color: rgb(@intensity, @intensity, 255, 1);"></td>
-        <td style="background-color: rgb(@intensity, @intensity, 255, 1);">@numOfDay</td>
-        <td style="background-color: rgb(@intensity, @intensity, 255, 1);">@numOfDay</td>
-        <td style="background-color: rgb(@intensity, @intensity, 255, 1);">@numOfDay</td>
-        <td style="background-color: rgb(@intensity, @intensity, 255, 1);">@numOfDay</td>
-        <td style="background-color: rgb(@intensity, @intensity, 255, 1);">@numOfDay</td>
-      </tr>
-    </table>
-  </div>
   
+  <table title="Avg. Number of Users Per Day">
+    <tr><th colspan="7">Avg. Number of Users Per Day</th></tr>
+    <tr>
+      <th>Sunday</th>
+      <th>Monday</th>
+      <th>Tuesday</th>
+      <th>Wednesday</th>
+      <th>Thursday</th>
+      <th>Friday</th>
+      <th>Saturday</th>
+    </tr>
+    <tr>
+      @{
+        float numOfUsers = 0;
+      }
+      @for(int i = 0; i < 7; i++){
+        numOfUsers = (avgNumOfUsersPerDay[i] / maxNumOfUniqueIDsPerDay) * 125 * 1.4f;
+        if(numOfUsers > 165){
+          numOfUsers = 165;
+        }
+        
+        string resultIntensity = ( 255 - numOfUsers).ToString();
+        <td style="background-color: rgb(@resultIntensity, @resultIntensity, 255, 1);">@avgNumOfUsersPerDay[i]</td>
+      }
+    </tr>
+  </table>
   <div class="heatKey" > </div>
   <div class="heatKeyValues">
     <p>0</p>
@@ -145,7 +154,10 @@
     string date = $"{year}-{tempMonth}-{tempDay}";
     string resultIntensity = "";
     float colorIntensity;
+    ;
     if(userIDByDate.ContainsKey(date)){
+      avgNumOfUsersPerDay[weekDay] += userIDByDate[date].Count;
+      avgNumOfUsersPerDay[weekDay] = (int) (avgNumOfUsersPerDay[weekDay] / 2);
       colorIntensity = (userIDByDate[date].Count / maxNumOfUniqueIDsPerDay) * 125 * 1.4f;
       if(colorIntensity > 165){
         colorIntensity = 165;

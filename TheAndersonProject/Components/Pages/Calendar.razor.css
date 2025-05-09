@@ -1,7 +1,10 @@
 
 table{
   text-align: center;
+  caption-side: top;
+  margin-bottom: 2%;
 }
+
 td{
   
   border-radius: 20px;

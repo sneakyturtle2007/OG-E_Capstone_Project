@@ -5,7 +5,8 @@ var zoomLevel;
 export function MapInit(elements, siteLocations) {
     map = L.map('map').setView([35.548087971615125, -97.50602842324439], 7);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        mazxZoom: 19,
+        maxZoom: 19,
+        minZoom: 7,
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
     map.on('zoomend', function(e){

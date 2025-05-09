@@ -61,7 +61,10 @@
                     <div class="columnNames"><div class="title">User</div> <p>|</p> <span class="interactions">Interactions</span></div>
                     @foreach(string userID in userIDByEventCount){
                         <div class="listElement">
-                            <div class="title" style="max-width: 70%;">@userID</div>
+                            <div class="title" style="max-width: 65%;">@userID</div>
+                            @if(eventsByUser[userID].Count % 2 != 0){
+                                
+                            }
                             <span class="interactions">@eventsByUser[userID].Count</span>
                         </div>
                     }

@@ -1,7 +1,10 @@
 
 table[b-vsokelsdoc]{
   text-align: center;
+  caption-side: top;
+  margin-bottom: 2%;
 }
+
 td[b-vsokelsdoc]{
   
   border-radius: 20px;
