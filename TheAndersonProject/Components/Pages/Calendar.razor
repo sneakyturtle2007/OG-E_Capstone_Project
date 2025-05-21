@@ -129,6 +129,9 @@
   
 
   protected override void OnInitialized(){
+    Refresh();
+  }
+  public void Refresh(){
     dateYM = DateTime.Now.ToString("yyyy/MM").Split('/');
     if(SiteData.YearMonth[0] == 0){
       SiteData.YearMonth[0] = Int32.Parse(dateYM[0]);
@@ -145,8 +148,9 @@
         maxNumOfUniqueIDsPerDay = tempNumOfUniqueIDs;
       }
     }
+    NextMonth();
+    PreviousMonth();
   }
-
   string GetIntensity(int day, int weekDay){
     
     string tempMonth = month.ToString().PadLeft(2,'0');

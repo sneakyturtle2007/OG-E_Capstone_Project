@@ -11,30 +11,39 @@ namespace TheAndersonProject.Services
 
         public static void SaveInfo(){
             Console.WriteLine("Saving FileInfo");
-            if(File.Exists("FileInfo.txt")){
+            if (File.Exists("FileInfo.txt"))
+            {
                 string[] contents = File.ReadAllLines("FileInfo.txt");
-                for(int i = 0; i < contents.Length; i++){
-                    if(contents[i].Contains(FileName)){
+                for (int i = 0; i < contents.Length; i++)
+                {
+                    if (contents[i].Contains(FileName))
+                    {
                         string readerMaintenance = JsonSerializer.Serialize(SiteData.ReaderMaintenance);
                         string panelMaintenance = JsonSerializer.Serialize(SiteData.PanelMaintenance);
                         contents[i] = $"{FileName}|{SiteData.SiteName}`{readerMaintenance}`{panelMaintenance}";
                     }
                 }
                 File.WriteAllLines("FileInfo.txt", contents);
-            }else{
-                using(StreamWriter writer = new StreamWriter("FileInfo.txt")){
+                
+            }
+            else
+            {
+                using (StreamWriter writer = new StreamWriter("FileInfo.txt"))
+                {
                     string maintenance = "";
                     Dictionary<string, List<ReaderEvent>> eventsByReaders = SiteData.OrganizeEvents_StringKey(ReaderEvents, "reader");
                     Dictionary<int, List<ReaderEvent>> eventsByPanels = SiteData.OrganizeEvents_IntKey(ReaderEvents);
                     Dictionary<string, int> tempList = new Dictionary<string, int>();
-                    foreach(KeyValuePair<string, List<ReaderEvent>> kvp in eventsByReaders){
+                    foreach (KeyValuePair<string, List<ReaderEvent>> kvp in eventsByReaders)
+                    {
                         tempList.Add(kvp.Key, 1);
                     }
 
                     maintenance += $"{JsonSerializer.Serialize(tempList)}`";
                     tempList.Clear();
 
-                    foreach(KeyValuePair<int, List<ReaderEvent>> kvp in eventsByPanels){
+                    foreach (KeyValuePair<int, List<ReaderEvent>> kvp in eventsByPanels)
+                    {
                         tempList.Add(kvp.Key.ToString(), 1);
                     }
                     maintenance += $"{JsonSerializer.Serialize(tempList)}";
@@ -53,6 +62,7 @@ namespace TheAndersonProject.Services
                     File.Delete("FileInfo.txt");
                     SaveInfo();
                 }
+                reader.Close();
                 reader = new StreamReader("FileInfo.txt");
                 while(!reader.EndOfStream){
                     line = reader.ReadLine();
@@ -72,7 +82,7 @@ namespace TheAndersonProject.Services
                 
             }else{
                 SaveInfo();
-                using (StreamReader reader = new StreamReader("FileInfo.txt")){
+                using(StreamReader reader = new StreamReader("FileInfo.txt")){
                     
                     string line = "";
 

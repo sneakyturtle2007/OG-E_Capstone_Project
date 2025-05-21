@@ -1,11 +1,11 @@
-.main[b-zi4mied9ei]{
+.main[b-l16alhi482]{
     display: flex;
     flex-direction: column;
     align-items: center;
     height: 100vh;
     width: 100vw;
 }
-.titleContainer[b-zi4mied9ei]{
+.titleContainer[b-l16alhi482]{
     align-self: start;
     display: flex;
     flex-direction: row;
@@ -15,7 +15,7 @@
     justify-content: space-between;
 }
 
-.backButton[b-zi4mied9ei]{
+.backButton[b-l16alhi482]{
     background-color: white;
     border: 2px solid black;
     border-radius: 10px;
@@ -26,7 +26,7 @@
     margin-left: 2%;
 }
 
-.settingsContainer[b-zi4mied9ei]{
+.settingsContainer[b-l16alhi482]{
     display: flex;
     font-size: 20px;
     flex-direction: row;

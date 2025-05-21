@@ -71,7 +71,7 @@
                 </div>
             </div>
         }
-        <Calendar userIDByDate="@userIDByDate"/>
+        <Calendar @ref=calendarComponent userIDByDate="@userIDByDate"/>
         <div class="settingsButton" alt="Gear icons created by Freepik - Flaticon https://www.flaticon.com/free-icons/gear">
             <NavLink class="nav-link" href="settings">
                 <span><p class="settingsButton">&#9881;</p></span>
@@ -94,6 +94,7 @@
     Dictionary<string, List<ReaderEvent>> eventsByUser = new Dictionary<string, List<ReaderEvent>>();
     Dictionary<int, List<ReaderEvent>> eventsByPanel = new Dictionary<int, List<ReaderEvent>>();
     Dictionary<string, List<string>> userIDByDate = new Dictionary<string, List<string>>();
+    private Calendar calendarComponent;
     string ErrorMessage { get; set; } = "";
     
     protected override void OnInitialized(){
@@ -199,7 +200,8 @@
                 
                 FileData.SaveInfo();
                 StateHasChanged();
-                navigationManager.NavigateTo(navigationManager.Uri, forceLoad: true);
+                calendarComponent.Refresh();
+                //navigationManager.NavigateTo(navigationManager.Uri, forceLoad: true);
                 break;
             default:
                 break;

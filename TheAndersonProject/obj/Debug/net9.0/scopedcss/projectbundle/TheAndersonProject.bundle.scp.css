@@ -1,5 +1,5 @@
 /* _content/TheAndersonProject/Components/Layout/MainLayout.razor.rz.scp.css */
-.page[b-viwk7d5aor] {
+.page[b-x1zjlh5ecz] {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -7,15 +7,15 @@
     width: 100vw;
 }
 
-main[b-viwk7d5aor] {
+main[b-x1zjlh5ecz] {
     flex: 1;
 }
 
-.sidebar[b-viwk7d5aor] {
+.sidebar[b-x1zjlh5ecz] {
     background-image: linear-gradient(180deg, rgb(5, 39, 103) 0%, #3a0647 70%);
 }
 
-.top-row[b-viwk7d5aor] {
+.top-row[b-x1zjlh5ecz] {
     background-color: #f7f7f7;
     border-bottom: 1px solid #d6d5d5;
     justify-content: flex-end;
@@ -24,62 +24,62 @@ main[b-viwk7d5aor] {
     align-items: center;
 }
 
-    .top-row[b-viwk7d5aor]  a, .top-row[b-viwk7d5aor]  .btn-link {
+    .top-row[b-x1zjlh5ecz]  a, .top-row[b-x1zjlh5ecz]  .btn-link {
         white-space: nowrap;
         margin-left: 1.5rem;
         text-decoration: none;
     }
 
-    .top-row[b-viwk7d5aor]  a:hover, .top-row[b-viwk7d5aor]  .btn-link:hover {
+    .top-row[b-x1zjlh5ecz]  a:hover, .top-row[b-x1zjlh5ecz]  .btn-link:hover {
         text-decoration: underline;
     }
 
-    .top-row[b-viwk7d5aor]  a:first-child {
+    .top-row[b-x1zjlh5ecz]  a:first-child {
         overflow: hidden;
         text-overflow: ellipsis;
     }
 
 @media (max-width: 640.98px) {
-    .top-row[b-viwk7d5aor] {
+    .top-row[b-x1zjlh5ecz] {
         justify-content: space-between;
     }
 
-    .top-row[b-viwk7d5aor]  a, .top-row[b-viwk7d5aor]  .btn-link {
+    .top-row[b-x1zjlh5ecz]  a, .top-row[b-x1zjlh5ecz]  .btn-link {
         margin-left: 0;
     }
 }
 
 @media (min-width: 641px) {
-    .page[b-viwk7d5aor] {
+    .page[b-x1zjlh5ecz] {
         flex-direction: row;
     }
 
-    .sidebar[b-viwk7d5aor] {
+    .sidebar[b-x1zjlh5ecz] {
         width: 250px;
         height: 100vh;
         position: sticky;
         top: 0;
     }
 
-    .top-row[b-viwk7d5aor] {
+    .top-row[b-x1zjlh5ecz] {
         position: sticky;
         top: 0;
         z-index: 1;
     }
 
-    .top-row.auth[b-viwk7d5aor]  a:first-child {
+    .top-row.auth[b-x1zjlh5ecz]  a:first-child {
         flex: 1;
         text-align: right;
         width: 0;
     }
 
-    .top-row[b-viwk7d5aor], article[b-viwk7d5aor] {
+    .top-row[b-x1zjlh5ecz], article[b-x1zjlh5ecz] {
         padding-left: 2rem !important;
         padding-right: 1.5rem !important;
     }
 }
 
-#blazor-error-ui[b-viwk7d5aor] {
+#blazor-error-ui[b-x1zjlh5ecz] {
     color-scheme: light only;
     background: lightyellow;
     bottom: 0;
@@ -93,14 +93,14 @@ main[b-viwk7d5aor] {
     z-index: 1000;
 }
 
-    #blazor-error-ui .dismiss[b-viwk7d5aor] {
+    #blazor-error-ui .dismiss[b-x1zjlh5ecz] {
         cursor: pointer;
         position: absolute;
         right: 0.75rem;
         top: 0.5rem;
     }
 /* _content/TheAndersonProject/Components/Layout/NavMenu.razor.rz.scp.css */
-.navbar-toggler[b-f5lw9dbrcw] {
+.navbar-toggler[b-44d2nnpbsr] {
     appearance: none;
     cursor: pointer;
     width: 3.5rem;
@@ -113,20 +113,20 @@ main[b-viwk7d5aor] {
     background: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") no-repeat center/1.75rem rgba(255, 255, 255, 0.1);
 }
 
-.navbar-toggler:checked[b-f5lw9dbrcw] {
+.navbar-toggler:checked[b-44d2nnpbsr] {
     background-color: rgba(255, 255, 255, 0.5);
 }
 
-.top-row[b-f5lw9dbrcw] {
+.top-row[b-44d2nnpbsr] {
     min-height: 3.5rem;
     background-color: rgba(0,0,0,0.4);
 }
 
-.navbar-brand[b-f5lw9dbrcw] {
+.navbar-brand[b-44d2nnpbsr] {
     font-size: 1.1rem;
 }
 
-.bi[b-f5lw9dbrcw] {
+.bi[b-44d2nnpbsr] {
     display: inline-block;
     position: relative;
     width: 1.25rem;
@@ -136,32 +136,32 @@ main[b-viwk7d5aor] {
     background-size: cover;
 }
 
-.bi-house-door-fill-nav-menu[b-f5lw9dbrcw] {
+.bi-house-door-fill-nav-menu[b-44d2nnpbsr] {
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='white' class='bi bi-house-door-fill' viewBox='0 0 16 16'%3E%3Cpath d='M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5Z'/%3E%3C/svg%3E");
 }
 
-.bi-plus-square-fill-nav-menu[b-f5lw9dbrcw] {
+.bi-plus-square-fill-nav-menu[b-44d2nnpbsr] {
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='white' class='bi bi-plus-square-fill' viewBox='0 0 16 16'%3E%3Cpath d='M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0z'/%3E%3C/svg%3E");
 }
 
-.bi-list-nested-nav-menu[b-f5lw9dbrcw] {
+.bi-list-nested-nav-menu[b-44d2nnpbsr] {
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='white' class='bi bi-list-nested' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M4.5 11.5A.5.5 0 0 1 5 11h10a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5zm-2-4A.5.5 0 0 1 3 7h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm-2-4A.5.5 0 0 1 1 3h10a.5.5 0 0 1 0 1H1a.5.5 0 0 1-.5-.5z'/%3E%3C/svg%3E");
 }
 
-.nav-item[b-f5lw9dbrcw] {
+.nav-item[b-44d2nnpbsr] {
     font-size: 0.9rem;
     padding-bottom: 0.5rem;
 }
 
-    .nav-item:first-of-type[b-f5lw9dbrcw] {
+    .nav-item:first-of-type[b-44d2nnpbsr] {
         padding-top: 1rem;
     }
 
-    .nav-item:last-of-type[b-f5lw9dbrcw] {
+    .nav-item:last-of-type[b-44d2nnpbsr] {
         padding-bottom: 1rem;
     }
 
-    .nav-item[b-f5lw9dbrcw]  .nav-link {
+    .nav-item[b-44d2nnpbsr]  .nav-link {
         color: #d7d7d7;
         background: none;
         border: none;
@@ -173,30 +173,30 @@ main[b-viwk7d5aor] {
         width: 100%;
     }
 
-.nav-item[b-f5lw9dbrcw]  a.active {
+.nav-item[b-44d2nnpbsr]  a.active {
     background-color: rgba(255,255,255,0.37);
     color: white;
 }
 
-.nav-item[b-f5lw9dbrcw]  .nav-link:hover {
+.nav-item[b-44d2nnpbsr]  .nav-link:hover {
     background-color: rgba(255,255,255,0.1);
     color: white;
 }
 
-.nav-scrollable[b-f5lw9dbrcw] {
+.nav-scrollable[b-44d2nnpbsr] {
     display: none;
 }
 
-.navbar-toggler:checked ~ .nav-scrollable[b-f5lw9dbrcw] {
+.navbar-toggler:checked ~ .nav-scrollable[b-44d2nnpbsr] {
     display: block;
 }
 
 @media (min-width: 641px) {
-    .navbar-toggler[b-f5lw9dbrcw] {
+    .navbar-toggler[b-44d2nnpbsr] {
         display: none;
     }
 
-    .nav-scrollable[b-f5lw9dbrcw] {
+    .nav-scrollable[b-44d2nnpbsr] {
         /* Never collapse the sidebar for wide screens */
         display: block;
 
@@ -207,17 +207,17 @@ main[b-viwk7d5aor] {
 }
 /* _content/TheAndersonProject/Components/Pages/Calendar.razor.rz.scp.css */
 
-table[b-vsokelsdoc]{
+table[b-3vplxajmae]{
   text-align: center;
   caption-side: top;
   margin-bottom: 2%;
 }
 
-td[b-vsokelsdoc]{
+td[b-3vplxajmae]{
   
   border-radius: 20px;
 }
-.main[b-vsokelsdoc]{
+.main[b-3vplxajmae]{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -228,42 +228,42 @@ td[b-vsokelsdoc]{
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 12px;
 }
-.monthManagement *[b-vsokelsdoc]{
+.monthManagement *[b-3vplxajmae]{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
-.monthManagement .navButtons[b-vsokelsdoc]{
+.monthManagement .navButtons[b-3vplxajmae]{
     font-size: 30px;
 }
-.navButtons[b-vsokelsdoc]{
+.navButtons[b-3vplxajmae]{
   color: black;
 }
-.navButtons:hover[b-vsokelsdoc]{
+.navButtons:hover[b-3vplxajmae]{
   color: grey;
   cursor: pointer;
 }
-.monthDay[b-vsokelsdoc]{
+.monthDay[b-3vplxajmae]{
   align-self: center;
 }
-.heatKey[b-vsokelsdoc]{
+.heatKey[b-3vplxajmae]{
   height: 5%;
   width: 100%;
   border: 2px solid black;
   border-radius: 10px;
   background: linear-gradient(to right, white,rgb(90,90,255));
 }
-.heatKeyValues[b-vsokelsdoc]{
+.heatKeyValues[b-3vplxajmae]{
   display:flex;
   justify-content: space-between;
 }
 
 /* _content/TheAndersonProject/Components/Pages/FileUpload.razor.rz.scp.css */
-p[b-nr6u10gl2j]{
+p[b-8grji1h6qi]{
     margin: 0;
     padding: 0;
 }
-.main[b-nr6u10gl2j]{
+.main[b-8grji1h6qi]{
     
     display: flex;
     flex-direction: row;
@@ -272,13 +272,13 @@ p[b-nr6u10gl2j]{
     padding-left: 2vw;
 }
 
-.listContainer[b-nr6u10gl2j]{
+.listContainer[b-8grji1h6qi]{
     display: flex;
     flex-direction: column;
     width: 17vw;
 
 }
-.list[b-nr6u10gl2j]{
+.list[b-8grji1h6qi]{
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 12px;    
     overflow-y: auto;
@@ -286,24 +286,24 @@ p[b-nr6u10gl2j]{
     border: 2px solid black;
     border-radius: 5px;
 }
-.listTitle[b-nr6u10gl2j]{
+.listTitle[b-8grji1h6qi]{
   padding-top: 2%;
 }
-.columnNames[b-nr6u10gl2j]{
+.columnNames[b-8grji1h6qi]{
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin: 1%;
     border-bottom: 2px solid black;
 }
-.listElement[b-nr6u10gl2j]{
+.listElement[b-8grji1h6qi]{
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin: 1%;
     border-bottom: 1px solid black;
 }
-.Alert[b-nr6u10gl2j]{
+.Alert[b-8grji1h6qi]{
     text-align : center;
     width: 25%;
     height: 50%;
@@ -313,21 +313,21 @@ p[b-nr6u10gl2j]{
     background-color: red;
     border-radius: 15px;
 }
-.title[b-nr6u10gl2j]{
+.title[b-8grji1h6qi]{
     max-width: 50%;
     white-space: wrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
-.title:hover[b-nr6u10gl2j]{
+.title:hover[b-8grji1h6qi]{
     overflow: visible;
     overflow-wrap: break-word;
     text-overflow: wrap;
 }
-.interactions[b-nr6u10gl2j]{
+.interactions[b-8grji1h6qi]{
     margin-right: 2%;
 }
-.settingsButton[b-nr6u10gl2j]{
+.settingsButton[b-8grji1h6qi]{
     align-self: start;
     width: 1vw;
     height: 1vw;
@@ -335,13 +335,13 @@ p[b-nr6u10gl2j]{
     font-size: 23px;
     cursor:pointer;
 }
-.settingsButton:hover[b-nr6u10gl2j]{
+.settingsButton:hover[b-8grji1h6qi]{
     background-color: rgba(255,255,255,0.1);
     cursor: pointer;
 }
 /* _content/TheAndersonProject/Components/Pages/Home.razor.rz.scp.css */
 
-#main[b-sj0wmxzp23]{
+#main[b-sw8oeq1c1y]{
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -349,7 +349,7 @@ p[b-nr6u10gl2j]{
     width: 100%;
     height: 96%;
 }
-.newFile[b-sj0wmxzp23], .settingsButton[b-sj0wmxzp23]{
+.newFile[b-sw8oeq1c1y], .settingsButton[b-sw8oeq1c1y]{
     border: 2px solid black;
     border-radius: 10px;
     width: 5%;
@@ -360,12 +360,12 @@ p[b-nr6u10gl2j]{
     cursor: pointer;
 }
 /* _content/TheAndersonProject/Components/Pages/Info.razor.rz.scp.css */
-p[b-5so2s6omzd]{
+p[b-x2szbeahn8]{
   margin: 0;
   padding-left: 1%;
   padding-right: 1%;
 }
-.main[b-5so2s6omzd]{
+.main[b-x2szbeahn8]{
     border: 2px solid black;
     border-radius: 10px;
     height: 30vh;
@@ -374,7 +374,7 @@ p[b-5so2s6omzd]{
 
 /* _content/TheAndersonProject/Components/Pages/Map.razor.rz.scp.css */
 
-#map[b-wd8kt97pvu]{
+#map[b-3263mq7ju5]{
     background-repeat: no-repeat;
     background-size: cover;
     background-color: white;
@@ -384,7 +384,7 @@ p[b-5so2s6omzd]{
     border: 2px solid black;
     border-radius:10px; 
 }
-.backButton[b-wd8kt97pvu]{
+.backButton[b-3263mq7ju5]{
     background-color: white;
     border: 2px solid black;
     border-radius: 10px;
@@ -398,14 +398,14 @@ p[b-5so2s6omzd]{
     cursor: pointer;
 }
 /* _content/TheAndersonProject/Components/Pages/Settings.razor.rz.scp.css */
-.main[b-zi4mied9ei]{
+.main[b-l16alhi482]{
     display: flex;
     flex-direction: column;
     align-items: center;
     height: 100vh;
     width: 100vw;
 }
-.titleContainer[b-zi4mied9ei]{
+.titleContainer[b-l16alhi482]{
     align-self: start;
     display: flex;
     flex-direction: row;
@@ -415,7 +415,7 @@ p[b-5so2s6omzd]{
     justify-content: space-between;
 }
 
-.backButton[b-zi4mied9ei]{
+.backButton[b-l16alhi482]{
     background-color: white;
     border: 2px solid black;
     border-radius: 10px;
@@ -426,7 +426,7 @@ p[b-5so2s6omzd]{
     margin-left: 2%;
 }
 
-.settingsContainer[b-zi4mied9ei]{
+.settingsContainer[b-l16alhi482]{
     display: flex;
     font-size: 20px;
     flex-direction: row;
